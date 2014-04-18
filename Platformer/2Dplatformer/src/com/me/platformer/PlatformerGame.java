@@ -9,58 +9,59 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.me.platformer.handlers.GInputProcessor;
+import com.me.platformer.handlers.GameStateManager;
 
 public class PlatformerGame implements ApplicationListener {
-	private OrthographicCamera camera;
-	private SpriteBatch batch;
-	private Texture texture;
-	private Sprite sprite;
+	public static final String TITLE = "The Game";
+	public static final int V_WIDTH = 1280;
+	public static final int V_HEIGHT = 720;
 	
-	@Override
-	public void create() {		
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
+	public static final float STEP = 1 / 60f;
+	private float accum;
+	
+	private SpriteBatch sb;
+	private OrthographicCamera cam;
+	private OrthographicCamera hudCam;
+	
+	private GameStateManager gsm;
+	
+	public void create() {
+		Gdx.input.setInputProcessor(new GInputProcessor());
+		sb = new SpriteBatch();
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
+		hudCam = new OrthographicCamera();
+		hudCam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		
-		camera = new OrthographicCamera(1, h/w);
-		batch = new SpriteBatch();
-		
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
-		
-		sprite = new Sprite(region);
-		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
-		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+		gsm = new GameStateManager(this);		
 	}
-
-	@Override
+	
+	public void render() {
+		
+		accum += Gdx.graphics.getDeltaTime();
+		while(accum >= STEP) {
+			accum -= STEP;
+			gsm.update(STEP);
+			gsm.render();
+		}
+		/*
+		sb.setProjectionMatrix(hudCam.combined); 
+		sb.begin();
+		sb.draw(res.getTexture("bunny"),0,0);
+		sb.end();*/
+		
+	}
+	
 	public void dispose() {
-		batch.dispose();
-		texture.dispose();
-	}
-
-	@Override
-	public void render() {		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
 	}
-
-	@Override
-	public void resize(int width, int height) {
-	}
-
-	@Override
-	public void pause() {
-	}
-
-	@Override
-	public void resume() {
-	}
+	
+	public SpriteBatch getSpriteBatch() { return sb; }
+	public OrthographicCamera getCamera() { return cam; }
+	public OrthographicCamera getHUDCamera() { return hudCam; }
+	
+	public void resize(int w, int h) {}
+	public void pause() {}
+	public void resume() {}
 }

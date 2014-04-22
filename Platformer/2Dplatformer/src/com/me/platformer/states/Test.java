@@ -50,10 +50,10 @@ public class Test extends GameState {
 		//Touch inputs
 		if(GInput.isPressed()){
 			if(gcl.isOnGround()){
-				if(GInput.x < Gdx.graphics.getWidth() / 2){
+				if(GInput.x < Gdx.graphics.getWidth() / 2){//Om hen toucher vänstra delen hoppa högt 
 					player.getBody().applyForceToCenter(0, 270, true);
 				}else{
-					player.getBody().applyForceToCenter(0, 100, true);
+					player.getBody().applyForceToCenter(0, 100, true);//Annars hoppa lågt
 				}
 			}
 		

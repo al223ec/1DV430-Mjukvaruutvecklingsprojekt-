@@ -1,7 +1,6 @@
 package com.me.platformer.states;
 
 import static com.me.platformer.handlers.B2DVars.*;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -18,7 +17,6 @@ import com.me.platformer.handlers.GameStateManager;
 
 public class Test extends GameState {
 	private BitmapFont font = new BitmapFont(); 
-	private boolean worldIsFlipped = false; 
 	private World world; 
 
 	private Box2DDebugRenderer b2dr; 
@@ -46,21 +44,34 @@ public class Test extends GameState {
 		// keyboard input
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
 			if(gcl.isOnGround()){
-				if(worldIsFlipped){
-					player.getBody().applyForceToCenter(0, -270, true);
-				}else{
-					player.getBody().applyForceToCenter(0, 270, true);
-				}
+				player.getBody().applyForceToCenter(0, 100, true);
 			}
 		}
+		//Touch inputs
+		if(GInput.isPressed()){
+			if(gcl.isOnGround()){
+				if(GInput.x < Gdx.graphics.getWidth() / 2){
+					player.getBody().applyForceToCenter(0, 270, true);
+				}else{
+					player.getBody().applyForceToCenter(0, 100, true);
+				}
+			}
 		
+		}
+		
+		/*
 		if(GInput.isDown(GInput.BUTTONFLIP)){
+			player.getBody().applyForceToCenter(0, 270, true);
 			System.out.println("Flip is pressed");
 			world.setGravity(new Vector2(0, 9.81f));
 			System.out.println("Flip to inverted");
 			player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
 			worldIsFlipped = true; 
 			/*
+			 * Skapa world flip 
+			 * function som ser 
+			 * till att spelaren är 
+			 * de fakto på marken innan man kan flippa igen
 			if(worldIsFlipped){
 				world.setGravity(new Vector2(0, -9.81f));
 				System.out.println("Flip to normal");
@@ -72,7 +83,7 @@ public class Test extends GameState {
 				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
 				worldIsFlipped = true; 
 			}*/
-		}
+	//	}
 	}
 	
 	public void update(float dt) {		

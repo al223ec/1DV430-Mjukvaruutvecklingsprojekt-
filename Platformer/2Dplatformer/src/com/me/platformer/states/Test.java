@@ -18,7 +18,7 @@ import com.me.platformer.handlers.GameStateManager;
 
 public class Test extends GameState {
 	private BitmapFont font = new BitmapFont(); 
-
+	private boolean worldIsFlipped = false; 
 	private World world; 
 
 	private Box2DDebugRenderer b2dr; 
@@ -33,7 +33,8 @@ public class Test extends GameState {
 		world.setContactListener(gcl = new GContactListener()); 
 		b2dr = new Box2DDebugRenderer(); 
 		
-		createPlatform(); 
+		createPlatform(160,120); 
+		createPlatform(160,700); 
 		createBox(); 
 		createBall(); 
 
@@ -45,8 +46,32 @@ public class Test extends GameState {
 		// keyboard input
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
 			if(gcl.isOnGround()){
-				player.getBody().applyForceToCenter(0, 270, true);
+				if(worldIsFlipped){
+					player.getBody().applyForceToCenter(0, -270, true);
+				}else{
+					player.getBody().applyForceToCenter(0, 270, true);
+				}
 			}
+		}
+		
+		if(GInput.isDown(GInput.BUTTONFLIP)){
+			System.out.println("Flip is pressed");
+			world.setGravity(new Vector2(0, 9.81f));
+			System.out.println("Flip to inverted");
+			player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
+			worldIsFlipped = true; 
+			/*
+			if(worldIsFlipped){
+				world.setGravity(new Vector2(0, -9.81f));
+				System.out.println("Flip to normal");
+				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f);
+				worldIsFlipped = false; 
+			} else{
+				world.setGravity(new Vector2(0, 9.81f));
+				System.out.println("Flip to inverted");
+				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
+				worldIsFlipped = true; 
+			}*/
 		}
 	}
 	
@@ -119,9 +144,9 @@ public class Test extends GameState {
 		player = new Player(body); 
 	}
 
-	private void createPlatform(){	
+	private void createPlatform(float posX, float posY){	
 		BodyDef bdef = new BodyDef();
-		bdef.position.set(160 / PPM,120 /PPM);  
+		bdef.position.set(posX / PPM, posY /PPM);  
 		bdef.type = BodyType.StaticBody;
 		
 		Body body = world.createBody(bdef);

@@ -9,14 +9,16 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.me.platformer.handlers.Content;
 import com.me.platformer.handlers.GInputProcessor;
 import com.me.platformer.handlers.GameStateManager;
 
 public class PlatformerGame implements ApplicationListener {
 	public static final String TITLE = "The Game";
+	
 	public static final int V_WIDTH = 1280;
 	public static final int V_HEIGHT = 720;
-	
+
 	public static final float STEP = 1 / 60f;
 	private float accum;
 	
@@ -26,8 +28,16 @@ public class PlatformerGame implements ApplicationListener {
 	
 	private GameStateManager gsm;
 	
+	public static Content resources; 
+	
 	public void create() {
 		Gdx.input.setInputProcessor(new GInputProcessor());
+		Texture.setEnforcePotImages(false); //Utan dett får jag felmeddelandet
+		/*
+		* Exception in thread "LWJGL Application" com.badlogic.gdx.utils.GdxRuntimeException: Texture width and height must be powers of two: 96x32
+		* at com.badlogic.gdx.graphics.GLTexture.uploadImageData(GLTexture.java:241)
+		* förstår inte varför alls, som det är nu har jag ju inga texturer äns FFS!! OMG
+		*/
 		sb = new SpriteBatch();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
@@ -45,12 +55,6 @@ public class PlatformerGame implements ApplicationListener {
 			gsm.update(STEP);
 			gsm.render();
 		}
-		/*
-		sb.setProjectionMatrix(hudCam.combined); 
-		sb.begin();
-		sb.draw(res.getTexture("bunny"),0,0);
-		sb.end();*/
-		
 	}
 	
 	public void dispose() {

@@ -8,7 +8,13 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 public class GContactListener implements ContactListener {
 	private int numContacts; 
+	public boolean playerCanJump; 
+	public boolean playerCanFlip; 
+	//Jag kanske borde ha en referens till spelaren i denna 
+	//klass och sätt canjump och can flip till spelaren
+	
 	public boolean isOnGround () { return numContacts > 0; }
+	
 	@Override
 	public void beginContact(Contact contact) {
 		Fixture fa = contact.getFixtureA();

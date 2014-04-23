@@ -11,7 +11,7 @@ public abstract class GameState {
 	protected PlatformerGame game; 
 	
 	protected SpriteBatch sb; 
-	protected OrthographicCamera cam; 
+	protected OrthographicCamera  cam; 
 	protected OrthographicCamera hudCam; 
 	
 	public GameState(GameStateManager gsm){

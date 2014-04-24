@@ -11,12 +11,16 @@ public class Player extends B2DSprite{
 	}
 
 	public void update(float dt) {
-		// TODO Auto-generated method stub
+		body.setLinearVelocity(1f, body.getLinearVelocity().y); //Rör sig automatiskt i sidled
+		//Bug när spelaren står still mot en vägg verkar som kraften laddas upp och därigenom kuka ur när man hoppar
 		
 	}
 
 	public void render(SpriteBatch sb) {
-		// TODO Auto-generated method stub
-		
+		//Rendera spelarens textur här
+	}
+	
+	public void jump(){
+		body.applyForceToCenter(0, 270, true);
 	}
 }

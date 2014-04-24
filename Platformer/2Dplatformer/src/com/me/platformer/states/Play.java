@@ -57,7 +57,7 @@ public class Play extends GameState {
 	public void handleInput() {
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
 			if(gcl.isOnGround()){
-				player.getBody().applyForceToCenter(0, 270, true);
+				player.jump();
 			}
 		}
 	}

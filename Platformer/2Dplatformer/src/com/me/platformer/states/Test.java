@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -29,7 +30,7 @@ import com.me.platformer.handlers.GInput;
 import com.me.platformer.handlers.GameStateManager;
 
 public class Test extends GameState {
-	
+	private boolean debug = true; 
 	private BitmapFont font = new BitmapFont(); 
 	private World world; 
 
@@ -50,33 +51,39 @@ public class Test extends GameState {
 		world = new World(new Vector2(0, -9.81f), true);
 		world.setContactListener(gcl = new GContactListener()); 
 		b2dr = new Box2DDebugRenderer(); 
-		
-		//createPlatform(160,120); 
-		//createPlatform(160,700); 
 		createTiles(); 
 		
 		createPlayer(); 
-		createBall(); 
-
-		b2dCam = new OrthographicCamera(); 
-		b2dCam.setToOrtho(false, PlatformerGame.V_WIDTH / PPM, PlatformerGame.V_HEIGHT / PPM); 
+		createBall(121f, 420f); 
+		createBall(122f, 320f); 
+		createBall(124f, 520f); 
+		createBall(123f, 620f); 
+		createBall(125f, 720f); 
+		createBall(121f, 820f); 
+		createBall(122f, 920f); 
+		createBall(123f, 220f); 
+		createBall(124f, 350f);
 		
+		if(debug){
+			b2dCam = new OrthographicCamera(); 
+			b2dCam.setToOrtho(false, PlatformerGame.V_WIDTH / PPM, PlatformerGame.V_HEIGHT / PPM); 		
+		}
 	}
 
-	public void handleInput() {
+	protected void handleInput() {
 		// keyboard input
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
 			if(gcl.isOnGround()){
-				player.getBody().applyForceToCenter(0, 100, true);
+				player.jump();
 			}
 		}
 		//Touch inputs
 		if(GInput.isPressed()){
 			if(gcl.isOnGround()){
 				if(GInput.x < Gdx.graphics.getWidth() / 2){//Om hen toucher vänstra delen hoppa högt 
-					player.getBody().applyForceToCenter(0, 270, true);
+					player.jump();
 				}else{
-					player.getBody().applyForceToCenter(0, 100, true);//Annars hoppa lågt
+					player.jump();
 				}
 			}
 		}
@@ -84,19 +91,26 @@ public class Test extends GameState {
 	
 	public void update(float dt) {
 		handleInput(); 
+		player.update(dt); 
 		world.step(dt, 6, 2); 		
 	}
 	
 	public void render() {
 		//Rensa 
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
-	
+		
+		cam.position.set(player.getX() * PPM + PlatformerGame.V_WIDTH/4, PlatformerGame.V_HEIGHT / 2, 0f);  
+		
+		sb.setProjectionMatrix(cam.combined);
+		
 		tmr.setView(cam); 
 		tmr.render(); 
 		//Rita
-		b2dr.render(world, b2dCam.combined); 
+		if(debug){
+			b2dr.render(world, b2dCam.combined); 
+		}
 		
-		sb.setProjectionMatrix(cam.combined);
+		player.render(sb);
 		sb.begin();
 		font.draw(sb, "Teststate", 10, 500);
 		sb.end();
@@ -104,42 +118,42 @@ public class Test extends GameState {
 	
 	public void dispose() {}
 	
-	private void createBall(){
+	private void createBall(float spawnX, float spawnY){
 		BodyDef bdef = new BodyDef();
 		bdef.type = BodyType.DynamicBody; 
 
 		Body body = world.createBody(bdef);
 
-		bdef.position.set(152/PPM, 420/ PPM);
+		bdef.position.set(spawnX/PPM, spawnY/ PPM);
 		body = world.createBody(bdef);
 		
 		CircleShape cShape = new CircleShape(); 
 		cShape.setRadius(45/PPM);
 		FixtureDef fDef = new FixtureDef();
-		fDef.restitution = 0.5f; //Elastitet bouncing 
+		fDef.restitution = 0.9f; //Elastitet bouncing 
 		fDef.shape = cShape; 
-
 		fDef.filter.categoryBits = B2DVars.BIT_BALL; 
-		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
+		fDef.filter.maskBits = B2DVars.BIT_GROUND | B2DVars.BIT_PLAYER | B2DVars.BIT_BALL; 
 		body.createFixture(fDef).setUserData("ball");
-	
 	}
 	
 	private void createPlayer(){
 		BodyDef bdef = new BodyDef();
+		FixtureDef fDef = new FixtureDef();
+		PolygonShape shape = new PolygonShape();
+		
 		bdef.position.set(160 / PPM, 400 / PPM); 
 		bdef.type = BodyType.DynamicBody; 
 		
 		Body body = world.createBody(bdef);
-		PolygonShape shape = new PolygonShape();
-		
+				
 		shape.setAsBox(45 /PPM, 45 /PPM); 
-		FixtureDef fDef = new FixtureDef();
 		
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
-		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
-		
+		fDef.filter.maskBits = B2DVars.BIT_GROUND | B2DVars.BIT_BALL; 
+
+		fDef.friction = 0; //Antar detta måste sättas
 		body.createFixture(fDef).setUserData("player"); 
 		
 		//Fot sensor
@@ -249,7 +263,6 @@ public class Test extends GameState {
 				v[3] = new Vector2( //bottomright
 						tileSize/2/PPM, -tileSize/2/PPM ); 
 				cs.createLoop(v);
-				
 				fDef.friction = 0;
 				fDef.shape = cs; 
 				fDef.filter.categoryBits = bits;

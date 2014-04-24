@@ -24,10 +24,8 @@ public class PlatformerGame implements ApplicationListener {
 	
 	private SpriteBatch sb;
 	private OrthographicCamera cam;
-	private OrthographicCamera hudCam;
 	
 	private GameStateManager gsm;
-	
 	public static Content resources; 
 	
 	public void create() {
@@ -41,14 +39,10 @@ public class PlatformerGame implements ApplicationListener {
 		sb = new SpriteBatch();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
-		hudCam = new OrthographicCamera();
-		hudCam.setToOrtho(false, V_WIDTH, V_HEIGHT);
-		
 		gsm = new GameStateManager(this);		
 	}
 	
 	public void render() {
-		
 		accum += Gdx.graphics.getDeltaTime();
 		while(accum >= STEP) {
 			accum -= STEP;
@@ -63,7 +57,6 @@ public class PlatformerGame implements ApplicationListener {
 	
 	public SpriteBatch getSpriteBatch() { return sb; }
 	public OrthographicCamera getCamera() { return cam; }
-	public OrthographicCamera getHUDCamera() { return hudCam; }
 	
 	public void resize(int w, int h) {}
 	public void pause() {}

@@ -1,6 +1,7 @@
 package com.me.platformer.states;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.me.platformer.handlers.GInput;
 import com.me.platformer.handlers.GameStateManager;
 
 public class Menu extends GameState{
@@ -12,12 +13,18 @@ public class Menu extends GameState{
 	}
 
 	public void handleInput(){
-		
+	//Touch
+		if(GInput.isPressed()){
+			gsm.setState(GameStateManager.TEST);
+		}
+		//Keybouad
+		if(GInput.isPressed(GInput.BUTTONJUMP)){
+			gsm.setState(GameStateManager.TEST);
+		}
 	}
 	@Override
 	public void update(float dt) {
-		// TODO Auto-generated method stub
-		
+		handleInput();
 	}
 
 	@Override

@@ -9,16 +9,16 @@ public class Main {
 		
 		cfg.title = PlatformerGame.TITLE;
 		cfg.useGL20 = false;
-		/*
+		
 		cfg.width = PlatformerGame.V_WIDTH;
 		cfg.height = PlatformerGame.V_HEIGHT;
 		
 		new LwjglApplication(new PlatformerGame(), cfg);
-	*/
+	/*
 		cfg.width = OrthographicCameraController.WIDTH;
 		cfg.height = OrthographicCameraController.HEIGHT;
 		
 		new LwjglApplication(new OrthographicCameraController(), cfg);
-	
+	*/
 	}
 }

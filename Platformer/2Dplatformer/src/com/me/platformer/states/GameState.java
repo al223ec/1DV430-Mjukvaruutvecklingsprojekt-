@@ -15,9 +15,8 @@ public abstract class GameState {
 	
 	public GameState(GameStateManager gsm){
 		this.gsm = gsm; 
-		game = gsm.game(); 
-		sb = game.getSpriteBatch(); 
-		cam = game.getCamera(); 
+		sb = gsm.getSpriteBatch(); 
+		cam = gsm.getCamera(); 
 	}
 	
 	protected abstract void handleInput();

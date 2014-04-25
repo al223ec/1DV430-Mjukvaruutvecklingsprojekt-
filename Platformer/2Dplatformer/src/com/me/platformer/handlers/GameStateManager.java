@@ -1,51 +1,56 @@
 package com.me.platformer.handlers;
 
-import java.util.Stack;
+import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.platformer.PlatformerGame;
 import com.me.platformer.states.*;
 
 public class GameStateManager {
-
+	
 	private PlatformerGame game; 
-	private Stack<GameState> gameStates; //Tveksamt om jag bör använda än stack
-	public static final int STARTMENU = 912837; 
-	public static final int LEVEL1 = 234337;
-	public static final int TEST = 211323;
+	private ArrayList<GameState> gameStates;
+	private int currentState; 
+	private final int numberOfStates = 3; 
+	
+	public static final int STARTMENU = 0; 
+	public static final int TEST = 1;
+	public static final int LEVEL1 = 2;
 	
 	public GameStateManager(PlatformerGame game) {
 		this.game = game; 
-		gameStates = new Stack<GameState>();
-		pushState(TEST); 
+		
+		gameStates = new ArrayList<GameState>(numberOfStates);
+		currentState = STARTMENU; 
+		gameStates.add(STARTMENU, new Menu(this)); 
 	}
 	
-	public PlatformerGame game(){
-		return game; 
-	}
 	public void update(float dt){
-		gameStates.peek().update(dt); 
+		gameStates.get(currentState).update(dt); 
 	}
 	public void render(){
-		gameStates.peek().render(); 	
+		gameStates.get(currentState).render();
 	}
 	
-	private GameState getState(int state){
-		if(state == STARTMENU) return new Menu(this);
-		if(state == LEVEL1) return new Play(this);
-		if(state == TEST) return new Test(this);
-		return null; //Kanske raise error??  
-	}
-	public void setState(int state){
-		popState();
-		pushState(state); 
-	}
-	private void pushState(int state){
-		gameStates.push(getState(state)); 
+	public void setState(int state) throws IllegalArgumentException{	
+		if(state == STARTMENU){
+			gameStates.add(STARTMENU, new Menu(this)); 		
+		}else if(state == TEST){
+			gameStates.add(TEST, new Test(this));
+		}else if(state == LEVEL1){
+			gameStates.add(LEVEL1, new Play(this));			
+		}else{
+			throw new IllegalArgumentException("Denna state finns inte"); 
+		}
+		currentState = state;
 	}
 	
-	private void popState(){
-		GameState g = gameStates.pop();
-		g.dispose();
+	public SpriteBatch getSpriteBatch() {
+		return game.getSpriteBatch(); 
 	}
 
+	public OrthographicCamera getCamera() {
+		return game.getCamera();
+	}
 }

@@ -66,7 +66,7 @@ public class Test extends GameState {
 		
 		if(debug){
 			b2dCam = new OrthographicCamera(); 
-			b2dCam.setToOrtho(false, PlatformerGame.V_WIDTH / PPM, PlatformerGame.V_HEIGHT / PPM); 		
+			b2dCam.setToOrtho(false, PlatformerGame.WIDTH / PPM, PlatformerGame.HEIGHT / PPM); 		
 		}
 	}
 
@@ -96,11 +96,9 @@ public class Test extends GameState {
 	}
 	
 	public void render() {
-		//Rensa 
-		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
-		
-		cam.position.set(player.getX() * PPM + PlatformerGame.V_WIDTH/4, PlatformerGame.V_HEIGHT / 2, 0f);  
-		
+		cam.position.set(player.getX() * PPM + PlatformerGame.WIDTH/4, PlatformerGame.HEIGHT / 2, 0f);  
+		b2dCam.position.set(player.getX() + PlatformerGame.WIDTH/4/PPM, PlatformerGame.HEIGHT / 2/PPM, 0f);  
+		b2dCam.update();
 		sb.setProjectionMatrix(cam.combined);
 		
 		tmr.setView(cam); 

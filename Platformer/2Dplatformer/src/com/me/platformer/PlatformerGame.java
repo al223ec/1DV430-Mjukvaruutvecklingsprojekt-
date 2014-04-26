@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.me.platformer.handlers.Content;
 import com.me.platformer.handlers.GInputProcessor;
 import com.me.platformer.handlers.GameStateManager;
@@ -16,14 +17,15 @@ import com.me.platformer.handlers.GameStateManager;
 public class PlatformerGame implements ApplicationListener {
 	public static final String TITLE = "The Game";
 	
-	public static final int V_WIDTH = 1280;
-	public static final int V_HEIGHT = 720;
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
 
 	public static final float STEP = 1 / 60f;
 	private float accum;
 	
 	private SpriteBatch sb;
 	private OrthographicCamera cam;
+	private Rectangle glViewport; 
 	
 	private GameStateManager gsm;
 	public static Content resources; 
@@ -38,11 +40,25 @@ public class PlatformerGame implements ApplicationListener {
 		*/
 		sb = new SpriteBatch();
 		cam = new OrthographicCamera();
-		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
+		cam.setToOrtho(false, WIDTH, HEIGHT);
+		
+		glViewport = new Rectangle(0,0, WIDTH, HEIGHT); 
 		gsm = new GameStateManager(this);		
 	}
 	
 	public void render() {
+		//Rensa 
+		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
+		GL10 gl = Gdx.graphics.getGL10(); 
+		
+		//Kamera
+		gl.glClear(GL10.GL_COLOR_BUFFER_BIT); 
+		gl.glViewport((int) glViewport.x, (int) glViewport.y, 
+				(int) glViewport.width, (int) glViewport.height);
+		
+		cam.update();
+		cam.apply(gl);
+		
 		accum += Gdx.graphics.getDeltaTime();
 		while(accum >= STEP) {
 			accum -= STEP;

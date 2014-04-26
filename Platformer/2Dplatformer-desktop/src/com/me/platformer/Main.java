@@ -10,8 +10,8 @@ public class Main {
 		cfg.title = PlatformerGame.TITLE;
 		cfg.useGL20 = false;
 		
-		cfg.width = PlatformerGame.V_WIDTH;
-		cfg.height = PlatformerGame.V_HEIGHT;
+		cfg.width = PlatformerGame.WIDTH;
+		cfg.height = PlatformerGame.HEIGHT;
 		
 		new LwjglApplication(new PlatformerGame(), cfg);
 	/*

@@ -14,9 +14,9 @@ public class GameStateManager {
 	private int currentState; 
 	private final int numberOfStates = 3; 
 	
-	public static final int STARTMENU = 0; 
-	public static final int TEST = 1;
-	public static final int LEVEL1 = 2;
+	private static final int STARTMENU = 0; 
+	private static final int TEST = 1;
+	private static final int LEVEL1 = 2;
 	
 	public GameStateManager(PlatformerGame game) {
 		this.game = game; 
@@ -33,17 +33,30 @@ public class GameStateManager {
 		gameStates.get(currentState).render();
 	}
 	
-	public void setState(int state) throws IllegalArgumentException{	
-		if(state == STARTMENU){
+	public void playNextState() throws IllegalArgumentException{	
+		currentState++; 
+		if(currentState == STARTMENU){
 			gameStates.add(STARTMENU, new Menu(this)); 		
-		}else if(state == TEST){
+		}else if(currentState == TEST){
 			gameStates.add(TEST, new Test(this));
-		}else if(state == LEVEL1){
+		}else if(currentState == LEVEL1){
 			gameStates.add(LEVEL1, new Play(this));			
 		}else{
 			throw new IllegalArgumentException("Denna state finns inte"); 
 		}
-		currentState = state;
+	}
+	//Oklart om jag kommer använda denna
+	private void playNextState(int state) throws IllegalArgumentException{	 
+		currentState = state; 
+		if(currentState == STARTMENU){
+			gameStates.add(STARTMENU, new Menu(this)); 		
+		}else if(currentState == TEST){
+			gameStates.add(TEST, new Test(this));
+		}else if(currentState == LEVEL1){
+			gameStates.add(LEVEL1, new Play(this));			
+		}else{
+			throw new IllegalArgumentException("Denna state finns inte"); 
+		}
 	}
 	
 	public SpriteBatch getSpriteBatch() {

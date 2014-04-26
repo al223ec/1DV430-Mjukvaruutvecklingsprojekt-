@@ -50,7 +50,7 @@ public class Play extends GameState {
 		
 		// Set up box2d Cam
 		b2dCam = new OrthographicCamera(); 
-		b2dCam.setToOrtho(false, PlatformerGame.V_WIDTH / PPM, PlatformerGame.V_HEIGHT / PPM); 
+		b2dCam.setToOrtho(false, PlatformerGame.WIDTH / PPM, PlatformerGame.HEIGHT / PPM); 
 		
 	}
 	

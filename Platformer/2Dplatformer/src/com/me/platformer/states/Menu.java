@@ -15,11 +15,11 @@ public class Menu extends GameState{
 	public void handleInput(){
 	//Touch
 		if(GInput.isPressed()){
-			gsm.setState(GameStateManager.TEST);
+			gsm.playNextState();
 		}
 		//Keybouad
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
-			gsm.setState(GameStateManager.TEST);
+			gsm.playNextState();
 		}
 	}
 	@Override

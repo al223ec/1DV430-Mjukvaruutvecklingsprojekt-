@@ -14,8 +14,7 @@ public class GInput {
 	public static final int NUM_KEYS = 2; //Antalet kontroller el knappar du kan trycka på
 	public static final int BUTTONJUMP = 0;
 	public static final int BUTTONFLIP = 1; 
-	
-	
+		
 	static {
 		keys = new boolean[NUM_KEYS]; 
 		pkeys = new boolean[NUM_KEYS]; 

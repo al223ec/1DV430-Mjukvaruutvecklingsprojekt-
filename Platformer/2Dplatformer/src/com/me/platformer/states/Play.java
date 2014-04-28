@@ -95,15 +95,14 @@ public class Play extends GameState {
 		
 		//Skapa Player box
 		bdef.position.set(100 / PPM, 200 / PPM); 
-		bdef.type = BodyType.DynamicBody; 
-		//bdef.linearVelocity.set(0.1f,0);//Rörelse i sidled
+		bdef.type = BodyType.DynamicBody;
 		Body body = world.createBody(bdef); 
 		
 		shape.setAsBox(13 /PPM, 13 /PPM); 
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
 		fDef.filter.maskBits = B2DVars.BIT_GROUND | B2DVars.BIT_BALL; 
-		//fDef.restitution = 0.15f; //Elastitet bouncing 
+		fDef.restitution = 0.12f; //Elastitet bouncing 
 		body.createFixture(fDef).setUserData("player"); 
 		
 		//Fot sensor
@@ -114,7 +113,7 @@ public class Play extends GameState {
 		fDef.isSensor = true; 
 		body.createFixture(fDef).setUserData("foot");
 		
-		player = new Player(body); 
+		player = new Player(body, gcl); 
 		body.setUserData(player); 
 		
 		if(debug) {

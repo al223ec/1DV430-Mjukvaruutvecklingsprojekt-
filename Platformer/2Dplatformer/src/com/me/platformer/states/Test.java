@@ -51,10 +51,10 @@ public class Test extends GameState {
 		world = new World(new Vector2(0, -9.81f), true);
 		world.setContactListener(gcl = new GContactListener()); 
 		b2dr = new Box2DDebugRenderer(); 
-		createTiles(); 
 		
+		createTiles(); 
 		createPlayer(); 
-		createBall(121f, 420f); 
+	/*	createBall(121f, 420f); 
 		createBall(122f, 320f); 
 		createBall(124f, 520f); 
 		createBall(123f, 620f); 
@@ -63,7 +63,7 @@ public class Test extends GameState {
 		createBall(122f, 920f); 
 		createBall(123f, 220f); 
 		createBall(124f, 350f);
-		
+		*/
 		if(debug){
 			b2dCam = new OrthographicCamera(); 
 			b2dCam.setToOrtho(false, PlatformerGame.WIDTH / PPM, PlatformerGame.HEIGHT / PPM); 		
@@ -73,18 +73,14 @@ public class Test extends GameState {
 	protected void handleInput() {
 		// keyboard input
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
-			if(gcl.isOnGround()){
-				player.jump();
-			}
+			player.jump();			
 		}
 		//Touch inputs
 		if(GInput.isPressed()){
-			if(gcl.isOnGround()){
-				if(GInput.x < Gdx.graphics.getWidth() / 2){//Om hen toucher vänstra delen hoppa högt 
-					player.jump();
-				}else{
-					player.jump();
-				}
+			if(GInput.x < Gdx.graphics.getWidth() / 2){//Om hen toucher vänstra delen hoppa högt 
+				player.jump();
+			}else{
+				player.jump();
 			}
 		}
 	}
@@ -97,10 +93,16 @@ public class Test extends GameState {
 	
 	public void render() {
 		cam.position.set(player.getX() * PPM + PlatformerGame.WIDTH/4, PlatformerGame.HEIGHT / 2, 0f);  
-		b2dCam.position.set(player.getX() + PlatformerGame.WIDTH/4/PPM, PlatformerGame.HEIGHT / 2/PPM, 0f);  
-		b2dCam.update();
-		sb.setProjectionMatrix(cam.combined);
+		if(debug){
+			b2dCam.position.set(player.getX() + PlatformerGame.WIDTH/4/PPM, PlatformerGame.HEIGHT / 2/PPM, 0f);  
+			b2dCam.update();
+		}
+		//Rensa
+
+		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
+		cam.update();
 		
+		sb.setProjectionMatrix(cam.combined);//Sätter vad som ska renderas 
 		tmr.setView(cam); 
 		tmr.render(); 
 		//Rita
@@ -112,28 +114,13 @@ public class Test extends GameState {
 		sb.begin();
 		font.draw(sb, "Teststate", 10, 500);
 		sb.end();
+		
+		if(player.isPlayerDead()){
+			gsm.playNextState(GameStateManager.GAMEOVER); 
+		}
 	}
 	
 	public void dispose() {}
-	
-	private void createBall(float spawnX, float spawnY){
-		BodyDef bdef = new BodyDef();
-		bdef.type = BodyType.DynamicBody; 
-
-		Body body = world.createBody(bdef);
-
-		bdef.position.set(spawnX/PPM, spawnY/ PPM);
-		body = world.createBody(bdef);
-		
-		CircleShape cShape = new CircleShape(); 
-		cShape.setRadius(45/PPM);
-		FixtureDef fDef = new FixtureDef();
-		fDef.restitution = 0.9f; //Elastitet bouncing 
-		fDef.shape = cShape; 
-		fDef.filter.categoryBits = B2DVars.BIT_BALL; 
-		fDef.filter.maskBits = B2DVars.BIT_GROUND | B2DVars.BIT_PLAYER | B2DVars.BIT_BALL; 
-		body.createFixture(fDef).setUserData("ball");
-	}
 	
 	private void createPlayer(){
 		BodyDef bdef = new BodyDef();
@@ -151,6 +138,7 @@ public class Test extends GameState {
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
 		fDef.filter.maskBits = B2DVars.BIT_GROUND | B2DVars.BIT_BALL; 
 
+		fDef.restitution = 0.2f; 
 		fDef.friction = 0; //Antar detta måste sättas
 		body.createFixture(fDef).setUserData("player"); 
 		
@@ -160,77 +148,31 @@ public class Test extends GameState {
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
 		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
 		fDef.isSensor = true; 
-		body.createFixture(fDef).setUserData("foot");
-		
-		player = new Player(body); 
+		body.createFixture(fDef).setUserData("footSensor");
+	
+		//Höger sensor
+		shape.setAsBox(2/PPM, 40/PPM, new Vector2(45/PPM, 0), 0);
+		fDef.shape = shape; 
+		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
+		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
+		fDef.isSensor = true; 
+		body.createFixture(fDef).setUserData("rightSensor");
+	
+		player = new Player(body, gcl); 
 	}
 
-	private void createPlatform(float posX, float posY){	
-		BodyDef bdef = new BodyDef();
-		bdef.position.set(posX / PPM, posY /PPM);  
-		bdef.type = BodyType.StaticBody;
-		
-		Body body = world.createBody(bdef);
-		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(500 / PPM, 50/ PPM); 
-		FixtureDef fDef = new FixtureDef();
-		fDef.shape = boxShape; 
-		fDef.filter.categoryBits = B2DVars.BIT_GROUND; 
-		fDef.filter.maskBits = B2DVars.BIT_BALL | B2DVars.BIT_PLAYER; 
-		body.createFixture(fDef).setUserData("ground"); 
-	}
-	
-	private void playerJump(){ }
-	private void worldFlip(){ 
-		/*
-		if(GInput.isDown(GInput.BUTTONFLIP)){
-			player.getBody().applyForceToCenter(0, 270, true);
-			System.out.println("Flip is pressed");
-			world.setGravity(new Vector2(0, 9.81f));
-			System.out.println("Flip to inverted");
-			player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
-			worldIsFlipped = true; 
-			/*
-			 * Skapa world flip 
-			 * function som ser 
-			 * till att spelaren är 
-			 * de fakto på marken innan man kan flippa igen
-			if(worldIsFlipped){
-				world.setGravity(new Vector2(0, -9.81f));
-				System.out.println("Flip to normal");
-				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f);
-				worldIsFlipped = false; 
-			} else{
-				world.setGravity(new Vector2(0, 9.81f));
-				System.out.println("Flip to inverted");
-				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
-				worldIsFlipped = true; 
-			}*/
-	//	}
-	}
-	
 	private void createTiles(){
 		//Load map
 		tileMap = new TmxMapLoader().load("res/maps/test.tmx"); 
 		tmr = new OrthogonalTiledMapRenderer(tileMap); 		
 		tileSize = (int) tileMap.getProperties().get("tilewidth");
-		
-		if(tileMap == null){
-			System.out.println("tilemap Null why??????? ");
-		}
-		TiledMapTileLayer layer;
-		
-		layer = (TiledMapTileLayer) tileMap.getLayers().get("ground");
 
-		if(layer == null){
-			System.out.println("layer is?? Null why??????? ");
-		}else{
-		createLayer(layer, B2DVars.BIT_GROUND);		
-		}
+		//TiledMapTileLayer layer;		
+		//layer = (TiledMapTileLayer) tileMap.getLayers().get("ground");
+		createLayer((TiledMapTileLayer) tileMap.getLayers().get("ground"), B2DVars.BIT_GROUND);		
 	}
 	
 	private void createLayer(TiledMapTileLayer layer, short bits){
-
 		BodyDef bdef = new BodyDef();
 		FixtureDef fDef = new FixtureDef();
 		bdef.type = BodyType.StaticBody; 
@@ -268,5 +210,53 @@ public class Test extends GameState {
 				world.createBody(bdef).createFixture(fDef);	
 			}
 		}
+	}
+	
+	
+	private void playerJump(){ }
+	private void worldFlip(){ 
+		/*
+		if(GInput.isDown(GInput.BUTTONFLIP)){
+			player.getBody().applyForceToCenter(0, 270, true);
+			System.out.println("Flip is pressed");
+			world.setGravity(new Vector2(0, 9.81f));
+			System.out.println("Flip to inverted");
+			player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
+			worldIsFlipped = true; 
+			/*
+			 * Skapa world flip 
+			 * function som ser 
+			 * till att spelaren är 
+			 * de fakto på marken innan man kan flippa igen
+			if(worldIsFlipped){
+				world.setGravity(new Vector2(0, -9.81f));
+				System.out.println("Flip to normal");
+				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f);
+				worldIsFlipped = false; 
+			} else{
+				world.setGravity(new Vector2(0, 9.81f));
+				System.out.println("Flip to inverted");
+				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
+				worldIsFlipped = true; 
+			}*/
+	//	}
+	}
+	private void createBall(float spawnX, float spawnY){
+		BodyDef bdef = new BodyDef();
+		bdef.type = BodyType.DynamicBody; 
+
+		Body body = world.createBody(bdef);
+
+		bdef.position.set(spawnX/PPM, spawnY/ PPM);
+		body = world.createBody(bdef);
+		
+		CircleShape cShape = new CircleShape(); 
+		cShape.setRadius(45/PPM);
+		FixtureDef fDef = new FixtureDef();
+		fDef.restitution = 0.9f; //Elastitet bouncing 
+		fDef.shape = cShape; 
+		fDef.filter.categoryBits = B2DVars.BIT_BALL; 
+		fDef.filter.maskBits = B2DVars.BIT_GROUND | B2DVars.BIT_PLAYER | B2DVars.BIT_BALL; 
+		body.createFixture(fDef).setUserData("ball");
 	}
 }

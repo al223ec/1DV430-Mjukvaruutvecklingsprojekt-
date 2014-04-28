@@ -25,10 +25,12 @@ public class PlatformerGame implements ApplicationListener {
 	
 	private SpriteBatch sb;
 	private OrthographicCamera cam;
-	private Rectangle glViewport; 
+	//private Rectangle glViewport; 
 	
 	private GameStateManager gsm;
 	public static Content resources; 
+
+	private GL10 gl; 
 	
 	public void create() {
 		Gdx.input.setInputProcessor(new GInputProcessor());
@@ -42,29 +44,32 @@ public class PlatformerGame implements ApplicationListener {
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, WIDTH, HEIGHT);
 		
-		glViewport = new Rectangle(0,0, WIDTH, HEIGHT); 
+		//glViewport = new Rectangle(0,0, WIDTH, HEIGHT); 
 		gsm = new GameStateManager(this);		
-	}
-	
-	public void render() {
-		//Rensa 
-		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
-		GL10 gl = Gdx.graphics.getGL10(); 
+		gl = Gdx.graphics.getGL10(); 
 		
 		//Kamera
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT); 
+		gl.glViewport(0, 0, WIDTH, HEIGHT); 
+		/*
 		gl.glViewport((int) glViewport.x, (int) glViewport.y, 
 				(int) glViewport.width, (int) glViewport.height);
-		
-		cam.update();
+		*/
 		cam.apply(gl);
+	}
+	
+	public void render() {
+		Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
 		
+		gsm.update(Gdx.graphics.getDeltaTime());
+		gsm.render();
+		/*
 		accum += Gdx.graphics.getDeltaTime();
 		while(accum >= STEP) {
 			accum -= STEP;
 			gsm.update(STEP);
 			gsm.render();
-		}
+		}*/
 	}
 	
 	public void dispose() {

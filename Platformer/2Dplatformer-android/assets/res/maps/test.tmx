@@ -5,7 +5,12 @@
  </tileset>
  <layer name="ground" width="40" height="8">
   <data encoding="base64" compression="zlib">
-   eJxjZBjcgJFOesm1hxL30cNsWrqPGoDacURt/xJrHiMaphcgZBcjEj0QbsRmL6mYlgAAQJwAKA==
+   eJxjZBjcgJFOesm1hxL30cNsWrqPGoAecUQJINZORjRMiVmkAEJmMiLRxLiR2gCbvaRiWgIAQAAAKA==
   </data>
  </layer>
+ <objectgroup name="collision" width="40" height="8">
+  <object x="91" y="1">
+   <polyline points="0,0 1,628 453,626 630,539 805,537 804,330 849,445 905,279 944,356 988,315 1041,449 1168,447 1261,535 1301,625 1440,628 1443,718"/>
+  </object>
+ </objectgroup>
 </map>

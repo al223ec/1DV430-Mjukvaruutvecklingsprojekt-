@@ -23,8 +23,6 @@ public class Player extends B2DSprite{
 		if(!gcl.isCollidingRight()){
 			body.setLinearVelocity(speed, body.getLinearVelocity().y); //Rör sig automatiskt i sidled
 		}
-		//Bug när spelaren står still mot en vägg verkar som kraften laddas upp och därigenom kuka ur när man hoppar
-		System.out.println(body.getPosition().y);
 	}
 
 	public void render(SpriteBatch sb) {
@@ -39,6 +37,10 @@ public class Player extends B2DSprite{
 	private void checkBounds(){
 		if(body.getPosition().y < -2){
 			playerIsDead = true; 
+		}
+		System.out.println(body.getPosition().x);
+		//Kontrollerar om spelaren är nära slutet på banan
+		if(body.getPosition().x > 120){//Spelaren har klarat leveln
 		}
 	}
 }

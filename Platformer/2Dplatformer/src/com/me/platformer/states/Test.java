@@ -54,16 +54,7 @@ public class Test extends GameState {
 		
 		createTiles(); 
 		createPlayer(); 
-	/*	createBall(121f, 420f); 
-		createBall(122f, 320f); 
-		createBall(124f, 520f); 
-		createBall(123f, 620f); 
-		createBall(125f, 720f); 
-		createBall(121f, 820f); 
-		createBall(122f, 920f); 
-		createBall(123f, 220f); 
-		createBall(124f, 350f);
-		*/
+		
 		if(debug){
 			b2dCam = new OrthographicCamera(); 
 			b2dCam.setToOrtho(false, PlatformerGame.WIDTH / PPM, PlatformerGame.HEIGHT / PPM); 		
@@ -92,6 +83,7 @@ public class Test extends GameState {
 	}
 	
 	public void render() {
+		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
 		cam.position.set(player.getX() * PPM + PlatformerGame.WIDTH/4, PlatformerGame.HEIGHT / 2, 0f);  
 		if(debug){
 			b2dCam.position.set(player.getX() + PlatformerGame.WIDTH/4/PPM, PlatformerGame.HEIGHT / 2/PPM, 0f);  
@@ -99,9 +91,7 @@ public class Test extends GameState {
 		}
 		//Rensa
 
-		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
 		cam.update();
-		
 		sb.setProjectionMatrix(cam.combined);//Sätter vad som ska renderas 
 		tmr.setView(cam); 
 		tmr.render(); 
@@ -117,6 +107,7 @@ public class Test extends GameState {
 		
 		if(player.isPlayerDead()){
 			gsm.playNextState(GameStateManager.GAMEOVER); 
+			return; 
 		}
 	}
 	
@@ -211,7 +202,6 @@ public class Test extends GameState {
 			}
 		}
 	}
-	
 	
 	private void playerJump(){ }
 	private void worldFlip(){ 

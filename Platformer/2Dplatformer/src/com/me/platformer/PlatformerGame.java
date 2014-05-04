@@ -43,19 +43,14 @@ public class PlatformerGame implements ApplicationListener {
 		sb = new SpriteBatch();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, WIDTH, HEIGHT);
-		
-		//glViewport = new Rectangle(0,0, WIDTH, HEIGHT); 
+
 		gsm = new GameStateManager(this);		
 		gl = Gdx.graphics.getGL10(); 
 		
 		//Kamera
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT); 
 		gl.glViewport(0, 0, WIDTH, HEIGHT); 
-		/*
-		gl.glViewport((int) glViewport.x, (int) glViewport.y, 
-				(int) glViewport.width, (int) glViewport.height);
-		*/
-		cam.apply(gl);
+		//cam.apply(gl);
 	}
 	
 	public void render() {
@@ -63,7 +58,7 @@ public class PlatformerGame implements ApplicationListener {
 		
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render();
-		/*
+		/* tror inte man behöver hantera detta själv
 		accum += Gdx.graphics.getDeltaTime();
 		while(accum >= STEP) {
 			accum -= STEP;

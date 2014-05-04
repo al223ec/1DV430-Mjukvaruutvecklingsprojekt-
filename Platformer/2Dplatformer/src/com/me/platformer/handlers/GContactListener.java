@@ -32,16 +32,15 @@ public class GContactListener implements ContactListener {
 		if(fa.getUserData() != null && fa.getUserData().equals("footSensor")) {
 			numOfFootContacts++;
 		}
+		
 		if(fb.getUserData() != null && fb.getUserData().equals("footSensor")) {
 			numOfFootContacts++;
 		}
 		
 		if(fa.getUserData() != null && fa.getUserData().equals("rightSensor")) {
-			System.out.println("Collidingright");
 			numOfRightContacts++;
 		}
 		if(fb.getUserData() != null && fb.getUserData().equals("rightSensor")) {
-			System.out.println("Collidingright");
 			numOfRightContacts++;
 		}		
 	}

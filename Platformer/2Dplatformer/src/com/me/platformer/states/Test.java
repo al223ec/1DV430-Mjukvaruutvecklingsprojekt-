@@ -94,16 +94,17 @@ public class Test extends GameState {
 		sb.setProjectionMatrix(cam.combined);//Sätter vad som ska renderas 
 		tmr.setView(cam); 
 		tmr.render(); 
-		//Rita
-		if(debug){
-			b2dr.render(world, b2dCam.combined); 
-		}
 		
-		player.render(sb);
 		sb.begin();
+		player.render(sb);
 		font.draw(sb, "Teststate", 10, 500);
 		sb.end();
 		
+		//Rita box2d
+		if(debug){
+			b2dr.render(world, b2dCam.combined); 
+		}
+
 		if(player.hasPlayerCompletedGame()){
 			gsm.playNextState(new LevelCompleteState(gsm)); 
 			return; 
@@ -154,8 +155,6 @@ public class Test extends GameState {
 		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
 		fDef.isSensor = true; 
 		body.createFixture(fDef).setUserData("rightSensor");
-	
-		
 	}
 
 	private void createTiles(){
@@ -163,9 +162,7 @@ public class Test extends GameState {
 		tileMap = new TmxMapLoader().load("res/maps/test.tmx"); 
 		tmr = new OrthogonalTiledMapRenderer(tileMap); 		
 		tileSize = (int) tileMap.getProperties().get("tilewidth");
-
-		//TiledMapTileLayer layer;		
-		//layer = (TiledMapTileLayer) tileMap.getLayers().get("ground");
+		
 		createLayer((TiledMapTileLayer) tileMap.getLayers().get("ground"), B2DVars.BIT_GROUND);		
 	}
 	

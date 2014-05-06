@@ -21,36 +21,35 @@ public class PlatformerGame implements ApplicationListener {
 	public static final int HEIGHT = 720;
 
 	public static final float STEP = 1 / 60f;
-	private float accum;
 	
 	private SpriteBatch sb;
-	private OrthographicCamera cam;
-	//private Rectangle glViewport; 
+	private OrthographicCamera cam; 
 	
 	private GameStateManager gsm;
-	public static Content resources; 
 
+	public static Content cont; 
 	private GL10 gl; 
 	
 	public void create() {
+		Texture.setEnforcePotImages(false);
 		Gdx.input.setInputProcessor(new GInputProcessor());
-		Texture.setEnforcePotImages(false); //Utan dett får jag felmeddelandet
-		/*
-		* Exception in thread "LWJGL Application" com.badlogic.gdx.utils.GdxRuntimeException: Texture width and height must be powers of two: 96x32
-		* at com.badlogic.gdx.graphics.GLTexture.uploadImageData(GLTexture.java:241)
-		* förstår inte varför alls, som det är nu har jag ju inga texturer äns FFS!! OMG
-		*/
+		 
 		sb = new SpriteBatch();
+		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, WIDTH, HEIGHT);
 
 		gsm = new GameStateManager(this);		
-		gl = Gdx.graphics.getGL10(); 
-		
+		loadTextures(); 
 		//Kamera
+		gl = Gdx.graphics.getGL10(); 
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT); 
 		gl.glViewport(0, 0, WIDTH, HEIGHT); 
-		//cam.apply(gl);
+	}
+	
+	private void loadTextures(){
+		cont = new Content(); 
+		cont.loadTextures("res/images/player/idle.png", "player"); 
 	}
 	
 	public void render() {
@@ -58,13 +57,6 @@ public class PlatformerGame implements ApplicationListener {
 		
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render();
-		/* tror inte man behöver hantera detta själv
-		accum += Gdx.graphics.getDeltaTime();
-		while(accum >= STEP) {
-			accum -= STEP;
-			gsm.update(STEP);
-			gsm.render();
-		}*/
 	}
 	
 	public void dispose() {

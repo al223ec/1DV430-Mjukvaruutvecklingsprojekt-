@@ -36,7 +36,6 @@ public class Test extends GameState {
 
 	private Box2DDebugRenderer b2dr; 
 	private OrthographicCamera b2dCam;
-	private GContactListener gcl;
 	
 	private Player player; 
 
@@ -49,12 +48,12 @@ public class Test extends GameState {
 		super(gsm);
 		
 		world = new World(new Vector2(0, -9.81f), true);
-		world.setContactListener(gcl = new GContactListener()); 
-		b2dr = new Box2DDebugRenderer(); 
 		
 		createTiles(); 
 		createPlayer(); 
 		
+		world.setContactListener(new GContactListener(player)); 
+		b2dr = new Box2DDebugRenderer(); 
 		if(debug){
 			b2dCam = new OrthographicCamera(); 
 			b2dCam.setToOrtho(false, PlatformerGame.WIDTH / PPM, PlatformerGame.HEIGHT / PPM); 		
@@ -105,12 +104,18 @@ public class Test extends GameState {
 		font.draw(sb, "Teststate", 10, 500);
 		sb.end();
 		
+		if(player.hasPlayerCompletedGame()){
+			gsm.playNextState(new LevelCompleteState(gsm)); 
+			return; 
+		}
 		if(player.isPlayerDead()){
-			gsm.playNextState(GameStateManager.GAMEOVER); 
+			gsm.playNextState(new GameOver(gsm, this)); 
 			return; 
 		}
 	}
 	
+	public void resetState(){
+	}
 	public void dispose() {}
 	
 	private void createPlayer(){
@@ -122,8 +127,9 @@ public class Test extends GameState {
 		bdef.type = BodyType.DynamicBody; 
 		
 		Body body = world.createBody(bdef);
+		player = new Player(body); 
 				
-		shape.setAsBox(45 /PPM, 45 /PPM); 
+		shape.setAsBox(tileSize/2 /PPM, tileSize/2 /PPM); 
 		
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
@@ -134,7 +140,7 @@ public class Test extends GameState {
 		body.createFixture(fDef).setUserData("player"); 
 		
 		//Fot sensor
-		shape.setAsBox(45/PPM, 4/PPM, new Vector2(0, -45/PPM), 0);
+		shape.setAsBox(tileSize/2/PPM, 4/PPM, new Vector2(0, -tileSize/2/PPM), 0);
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
 		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
@@ -142,14 +148,14 @@ public class Test extends GameState {
 		body.createFixture(fDef).setUserData("footSensor");
 	
 		//Höger sensor
-		shape.setAsBox(2/PPM, 40/PPM, new Vector2(45/PPM, 0), 0);
+		shape.setAsBox(2/PPM, (tileSize/2 -2)/PPM, new Vector2(tileSize/2/PPM, 0), 0);
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
 		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
 		fDef.isSensor = true; 
 		body.createFixture(fDef).setUserData("rightSensor");
 	
-		player = new Player(body, gcl); 
+		
 	}
 
 	private void createTiles(){

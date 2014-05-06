@@ -10,30 +10,22 @@ import com.me.platformer.states.*;
 public class GameStateManager {
 	
 	private PlatformerGame game; 
-	private ArrayList<GameState> gameStates;
-	private int currentState; 
-	private final int numberOfStates = 6; 
-	
-	public static final int STARTMENU = 0; 
-	private static final int TEST = 1;
-	public static final int GAMEOVER = 2;
-	private static final int LEVEL1 = 3;
+	private GameState currentGameState; 
 	
 	public GameStateManager(PlatformerGame game) {
 		this.game = game; 
-		
-		gameStates = new ArrayList<GameState>(numberOfStates);
-		currentState = STARTMENU; 
-		gameStates.add(STARTMENU, new Menu(this)); 
+		currentGameState = new Menu(this); 
 	}
 	
 	public void update(float dt){
-		gameStates.get(currentState).update(dt); 
+		currentGameState.update(dt);
 	}
 	public void render(){
-		gameStates.get(currentState).render();
+		currentGameState.render(); 
 	}
-	
+/*	
+ * Vet inte hur bra den nuvarande gamestatemanagern är, skapas alltid nya objekt 
+ * det borde inte vara nog stor fara om man läser in alla texturer och andra saker tidigare
 	public void playNextState() throws IllegalArgumentException{	
 		currentState++; 
 		if(currentState == STARTMENU){
@@ -43,9 +35,14 @@ public class GameStateManager {
 		}else if(currentState == LEVEL1){
 			gameStates.add(LEVEL1, new Play(this));			
 		}else if(currentState == GAMEOVER){
-			gameStates.add(GAMEOVER, new GameOver(this));			
+			playNextState("Game Over"); 
 		}else{
 			throw new IllegalArgumentException("Denna state finns inte"); 	}
+	}
+	
+	public void playNextState(String message){	
+		currentState = GAMEOVER; 
+		gameStates.add(GAMEOVER, new GameOver(this, message));			
 	}
 	
 	public void playNextState(int state) throws IllegalArgumentException{	
@@ -57,10 +54,14 @@ public class GameStateManager {
 		}else if(currentState == LEVEL1){
 			gameStates.add(LEVEL1, new Play(this));			
 		}else if(currentState == GAMEOVER){
-			gameStates.add(GAMEOVER, new GameOver(this));			
+
 		}else{
 			throw new IllegalArgumentException("Denna state finns inte"); 	}
+	}	*/
+	public void playNextState(GameState state){	
+		currentGameState = state; 
 	}
+	
 	public SpriteBatch getSpriteBatch() {
 		return game.getSpriteBatch(); 
 	}

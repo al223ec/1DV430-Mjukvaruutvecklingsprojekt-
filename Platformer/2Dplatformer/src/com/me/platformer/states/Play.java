@@ -41,8 +41,7 @@ public class Play extends GameState {
 	public Play(GameStateManager gsm) {
 		super(gsm);
 		
-		world = new World(new Vector2(0, -9.81f), true);
-		world.setContactListener(gcl = new GContactListener()); 
+		world = new World(new Vector2(0, -9.81f), true); 
 		b2dr = new Box2DDebugRenderer(); 
 	
 		createPlayer();
@@ -55,11 +54,6 @@ public class Play extends GameState {
 	}
 	
 	public void handleInput() {
-		if(GInput.isPressed(GInput.BUTTONJUMP)){
-			if(gcl.isOnGround()){
-				player.jump();
-			}
-		}
 	}
 	
 	public void update(float dt) {
@@ -113,7 +107,7 @@ public class Play extends GameState {
 		fDef.isSensor = true; 
 		body.createFixture(fDef).setUserData("foot");
 		
-		player = new Player(body, gcl); 
+		player = new Player(body); 
 		body.setUserData(player); 
 		
 		if(debug) {

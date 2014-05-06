@@ -1,39 +1,39 @@
 package com.me.platformer.states;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.me.platformer.handlers.GInput;
 import com.me.platformer.handlers.GameStateManager;
 
-public class Menu extends GameState{
+public class LevelCompleteState extends GameState{
 
-	private BitmapFont font = new BitmapFont(); 
-	public Menu(GameStateManager gsm) {
-		super(gsm); 
-		font.scale(10);
+	public LevelCompleteState(GameStateManager gsm) {
+		super(gsm);
+		// TODO Auto-generated constructor stub
 	}
 
-	public void handleInput(){
-	//Touch
+	@Override
+	protected void handleInput() {
+		// TODO Auto-generated method stub
 		if(GInput.isPressed()){
 			gsm.playNextState(new Test(gsm));
-			return; 
 		}
 		//Keybouad
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
 			gsm.playNextState(new Test(gsm));
 		}
 	}
+
 	@Override
 	public void update(float dt) {
 		handleInput();
+		System.out.println("Levelcomplete"); 
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void render() {
-		sb.setProjectionMatrix(cam.combined);
-		sb.begin();
-		font.draw(sb, "Menustate", 10, 500);
-		sb.end();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

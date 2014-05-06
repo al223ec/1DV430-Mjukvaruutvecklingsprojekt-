@@ -1,25 +1,23 @@
 package com.me.platformer.states;
-
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.me.platformer.handlers.GInput;
 import com.me.platformer.handlers.GameStateManager;
 
 public class GameOver extends GameState{
-	private BitmapFont font = new BitmapFont(); 
+	private GameState playState;  
 
-	public GameOver(GameStateManager gsm) {
+	public GameOver(GameStateManager gsm, GameState playState) {
 		super(gsm);
-		font.scale(10);
+		this.playState = playState; //Tveksamt om detta är en vettig lösning
 	}
 
 	@Override
 	protected void handleInput() {
 		if(GInput.isPressed()){
-			gsm.playNextState(GameStateManager.STARTMENU);
+			gsm.playNextState(playState);
 		}
 		//Keybouad
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
-			gsm.playNextState(GameStateManager.STARTMENU);
+			gsm.playNextState(playState);
 		}
 	}
 
@@ -30,10 +28,8 @@ public class GameOver extends GameState{
 
 	@Override
 	public void render() {
-		sb.setProjectionMatrix(cam.combined);
-		sb.begin();
-		font.draw(sb, "GAMEOVER PRESS TO RESTART", 10, 500);
-		sb.end();
+		System.out.println("GameOver");
+
 	}
 
 	@Override

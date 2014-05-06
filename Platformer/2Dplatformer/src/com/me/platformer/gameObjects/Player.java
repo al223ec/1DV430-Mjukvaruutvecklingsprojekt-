@@ -5,22 +5,28 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.me.platformer.handlers.GContactListener;
 
 public class Player extends B2DSprite{
-	private GContactListener gcl;
 	
 	private boolean playerIsDead; 
+	private boolean playerHasCompletedTheLevel; 
 	private float speed = 2.5f; 
+
+	private boolean isOnGround () { return numOfFootContacts > 0; }
+	private boolean isCollidingRight () { return numOfRightContacts > 0; }
 	
-	public boolean isPlayerDead(){ return playerIsDead || gcl.isCollidingRight(); }
+	//PRivacy ??? 
+	public int numOfFootContacts; 
+	public int numOfRightContacts;
 	
-	public Player(Body body, GContactListener gcl) {
+	public boolean isPlayerDead(){ return playerIsDead || isCollidingRight(); }
+	
+	public Player(Body body) {
 		super(body);
-		this.gcl = gcl; 
 		playerIsDead = false; 
 	}
 
 	public void update(float dt) {
 		checkBounds(); 
-		if(!gcl.isCollidingRight()){
+		if(!isCollidingRight()){
 			body.setLinearVelocity(speed, body.getLinearVelocity().y); //Rör sig automatiskt i sidled
 		}
 	}
@@ -30,7 +36,7 @@ public class Player extends B2DSprite{
 	}
 	
 	public void jump(){
-		if(gcl.isOnGround() && !gcl.isCollidingRight()){
+		if(isOnGround() && !isCollidingRight()){
 			body.applyForceToCenter(0, 200, true);
 		}
 	}
@@ -40,7 +46,11 @@ public class Player extends B2DSprite{
 		}
 		System.out.println(body.getPosition().x);
 		//Kontrollerar om spelaren är nära slutet på banan
-		if(body.getPosition().x > 120){//Spelaren har klarat leveln
+		if(body.getPosition().x > 15){//Spelaren har klarat leveln
+			playerHasCompletedTheLevel = true; 
 		}
+	}
+	public boolean hasPlayerCompletedGame() {
+		return playerHasCompletedTheLevel;
 	}
 }

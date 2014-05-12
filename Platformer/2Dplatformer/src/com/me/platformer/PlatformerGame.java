@@ -14,7 +14,7 @@ import com.me.platformer.handlers.Content;
 import com.me.platformer.handlers.GInputProcessor;
 import com.me.platformer.handlers.GameStateManager;
 
-public class PlatformerGame implements ApplicationListener {
+public class PlatformerGame implements ApplicationListener {  //Kan använda Game då behövs inte GSM
 	public static final String TITLE = "The Game";
 	
 	public static final int WIDTH = 1280;
@@ -50,13 +50,13 @@ public class PlatformerGame implements ApplicationListener {
 	private void loadTextures(){
 		cont = new Content(); 
 		cont.loadTextures("res/images/player/idle.png", "player"); 
+		cont.loadTextures("res/images/player/run.png", "runSprites"); 
 	}
 	
 	public void render() {
 		Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
-		
 		gsm.update(Gdx.graphics.getDeltaTime());
-		gsm.render();
+		gsm.render(Gdx.graphics.getDeltaTime());
 	}
 	
 	public void dispose() {

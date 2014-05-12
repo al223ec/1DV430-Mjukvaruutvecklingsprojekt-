@@ -3,21 +3,21 @@ import com.me.platformer.handlers.GInput;
 import com.me.platformer.handlers.GameStateManager;
 
 public class GameOver extends GameState{
-	private GameState playState;  
+	//private GameState playState;  
 
 	public GameOver(GameStateManager gsm, GameState playState) {
 		super(gsm);
-		this.playState = playState; //Tveksamt om detta är en vettig lösning
+		//this.playState = playState; //Tveksamt om detta är en vettig lösning
 	}
 
 	@Override
 	protected void handleInput() {
 		if(GInput.isPressed()){
-			gsm.playNextState(playState);
+			gsm.playNextState(new Test(gsm));
 		}
 		//Keybouad
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
-			gsm.playNextState(playState);
+			gsm.playNextState(new Test(gsm));
 		}
 	}
 
@@ -27,7 +27,7 @@ public class GameOver extends GameState{
 	}
 
 	@Override
-	public void render() {
+	public void render(float dt) {
 		System.out.println("GameOver");
 
 	}

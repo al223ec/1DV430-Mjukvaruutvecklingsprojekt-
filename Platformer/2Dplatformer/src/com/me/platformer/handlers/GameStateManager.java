@@ -1,7 +1,5 @@
 package com.me.platformer.handlers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.platformer.PlatformerGame;
@@ -20,8 +18,8 @@ public class GameStateManager {
 	public void update(float dt){
 		currentGameState.update(dt);
 	}
-	public void render(){
-		currentGameState.render(); 
+	public void render(float dt){
+		currentGameState.render(dt); 
 	}
 /*	
  * Vet inte hur bra den nuvarande gamestatemanagern är, skapas alltid nya objekt 
@@ -59,6 +57,7 @@ public class GameStateManager {
 			throw new IllegalArgumentException("Denna state finns inte"); 	}
 	}	*/
 	public void playNextState(GameState state){	
+		currentGameState.dispose(); 
 		currentGameState = state; 
 	}
 	

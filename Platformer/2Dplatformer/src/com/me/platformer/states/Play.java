@@ -65,7 +65,7 @@ public class Play extends GameState {
 		player.update(dt); 
 	}
 	
-	public void render() {
+	public void render(float dt) {
 		//Rensa 
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
 		//rita mapen

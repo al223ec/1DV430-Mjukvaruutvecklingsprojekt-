@@ -31,7 +31,7 @@ public class LevelCompleteState extends GameState{
 	}
 
 	@Override
-	public void render() {
+	public void render(float dt) {
 		// TODO Auto-generated method stub
 		
 	}

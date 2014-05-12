@@ -2,6 +2,7 @@ package com.me.platformer.gameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.me.platformer.PlatformerGame;
 import com.me.platformer.handlers.B2DVars;
@@ -16,7 +17,6 @@ public class Player extends B2DSprite{
 	private boolean isOnGround () { return numOfFootContacts > 0; }
 	private boolean isCollidingRight () { return numOfRightContacts > 0; }
 	
-	private Texture idle; 
 	//PRivacy ??? 
 	public int numOfFootContacts; 
 	public int numOfRightContacts;
@@ -27,7 +27,9 @@ public class Player extends B2DSprite{
 		super(body);
 		playerIsDead = false;
 		
-		idle = PlatformerGame.cont.getTexture("player"); 
+		Texture run = PlatformerGame.cont.getTexture("runSprites");
+		TextureRegion[] runSprites = TextureRegion.split(run, 50, 70)[0];
+		setAnimationframes(runSprites, 1/32f); 
 	}
 
 	public void update(float dt) {
@@ -35,11 +37,14 @@ public class Player extends B2DSprite{
 		if(!isCollidingRight()){
 			body.setLinearVelocity(speed, body.getLinearVelocity().y); //Rör sig automatiskt i sidled
 		}
+		if(isOnGround()){
+			animation.update(dt);
+		}
 	}
 
 	public void render(SpriteBatch sb) {
 		//Rendera spelarens textur här
-		sb.draw(idle, (getX() * B2DVars.PPM)- 23f, (getY() * B2DVars.PPM ) -24f ); 
+		sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 + 8); 
 	}
 	
 	public void jump(){
@@ -51,7 +56,7 @@ public class Player extends B2DSprite{
 		if(getY() < -2){
 			playerIsDead = true; 
 		}
-		System.out.println(body.getPosition().x);
+		
 		//Kontrollerar om spelaren är nära slutet på banan
 		if(getX() > 15){//Spelaren har klarat leveln
 			playerHasCompletedTheLevel = true; 

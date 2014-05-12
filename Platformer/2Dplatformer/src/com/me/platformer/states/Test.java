@@ -38,9 +38,7 @@ public class Test extends GameState {
 	private OrthographicCamera b2dCam;
 	
 	private Player player; 
-
-	private TiledMap tileMap;
-	private float tileSize; 
+	private float tileSize = 45; 
 	
 	private OrthogonalTiledMapRenderer tmr; 
 	
@@ -48,18 +46,17 @@ public class Test extends GameState {
 		super(gsm);
 		Gdx.input.setInputProcessor(new GInputProcessor());
 		world = new World(new Vector2(0, -9.81f), true);
-		
-		createTiles(); 
+
 		createPlayer(); 
+		world.setContactListener(new GContactListener(player));
 		
-		world.setContactListener(new GContactListener(player)); 
 		b2dr = new Box2DDebugRenderer(); 
 		if(debug){
 			b2dCam = new OrthographicCamera(); 
 			b2dCam.setToOrtho(false, PlatformerGame.WIDTH / PPM, PlatformerGame.HEIGHT / PPM); 		
-		}
-		
+		}		
 		mapManager = new MapManager(world); 
+		tmr = new OrthogonalTiledMapRenderer(mapManager.getTiledMap()); 
 	}
 
 	protected void handleInput() {
@@ -67,6 +64,7 @@ public class Test extends GameState {
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
 			player.jump();			
 		}
+		
 		//Touch inputs
 		if(GInput.isPressed()){
 			if(GInput.x < Gdx.graphics.getWidth() / 2){//Om hen toucher vänstra delen hoppa högt 
@@ -87,12 +85,21 @@ public class Test extends GameState {
 	
 	public void render(float dt) {
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT); 
-		cam.position.set(player.getX() * PPM + PlatformerGame.WIDTH/4, PlatformerGame.HEIGHT / 2, 0f);  
 		
+		//	if(player.getY() > 3.5){ 
+			/*
+			cam.position.set(player.getX() * PPM + PlatformerGame.WIDTH/4, player.getY() * PPM - (PlatformerGame.HEIGHT / 5), 0f);  
+			if(debug){
+				b2dCam.position.set(player.getX() + PlatformerGame.WIDTH/4/PPM, player.getY() - (PlatformerGame.HEIGHT / 5)/PPM, 0f);  
+				b2dCam.update();
+			}*/
+		
+		cam.position.set(player.getX() * PPM + PlatformerGame.WIDTH/4, PlatformerGame.HEIGHT / 2 , 0f);  
 		if(debug){
 			b2dCam.position.set(player.getX() + PlatformerGame.WIDTH/4/PPM, PlatformerGame.HEIGHT / 2/PPM, 0f);  
 			b2dCam.update();
 		}
+	
 
 		cam.update();
 		tmr.setView(cam); 
@@ -107,7 +114,7 @@ public class Test extends GameState {
 		if(debug){
 			b2dr.render(world, b2dCam.combined); 
 		}
-		if(player.hasPlayerCompletedGame()){
+		if(player.playerHasCompletedTheLevel){
 			gsm.playNextState(new LevelCompleteState(gsm)); 
 			return; 
 		}
@@ -117,7 +124,7 @@ public class Test extends GameState {
 		}
 	}
 	
-	public void resetState(){
+	public void restartLevel(){
 	}
 	public void dispose() {}
 	
@@ -142,7 +149,7 @@ public class Test extends GameState {
 		body.createFixture(fDef).setUserData("player");
 
 		//Fot sensor
-		shape.setAsBox(tileSize/2/PPM, 4/PPM, new Vector2(0, -tileSize/2/PPM), 0);
+		shape.setAsBox((tileSize - 5)/2/PPM, 4/PPM, new Vector2(0, -tileSize/2/PPM), 0);
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
 		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
@@ -156,57 +163,8 @@ public class Test extends GameState {
 		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
 		fDef.isSensor = true; 
 		body.createFixture(fDef).setUserData("rightSensor");
+		
 		shape.dispose(); 
-	}
-
-	private void createTiles(){
-		//Load map
-		tileMap = new TmxMapLoader().load("res/maps/test.tmx"); 
-		tmr = new OrthogonalTiledMapRenderer(tileMap); 		
-		tileSize = (int) tileMap.getProperties().get("tilewidth");
-		
-		createLayer((TiledMapTileLayer) tileMap.getLayers().get("ground"), B2DVars.BIT_GROUND);		
-	}
-	
-	private void createLayer(TiledMapTileLayer layer, short bits){
-		BodyDef bdef = new BodyDef();
-		FixtureDef fDef = new FixtureDef();
-		bdef.type = BodyType.StaticBody; 
-		fDef.isSensor = false; 
-		
-		for(int row = 0; row < layer.getHeight(); row++){
-			for(int col = 0; col < layer.getWidth(); col++){
-				Cell cell = layer.getCell(col, row); 
-				
-				if(cell == null) continue; //IFall det inte finns något här skippa
-				if(cell.getTile() == null) continue; 
-			
-				//skapae en body def och en box
-				bdef.position.set
-				(
-					(col + 0.5f) * tileSize /PPM,
-					(row + 0.5f) * tileSize /PPM
-				);
-				
-				ChainShape cs = new ChainShape(); 
-				Vector2[] v = new Vector2[4]; 
-				v[0] = new Vector2( //topright
-						-tileSize/2/PPM, -tileSize/2/PPM);
-				v[1] = new Vector2( //topleft
-						-tileSize/2/PPM, tileSize/2/PPM);
-				v[2] = new Vector2( //bottomleft
-					 	tileSize/2/PPM, tileSize/2/PPM);
-				v[3] = new Vector2( //bottomright
-						tileSize/2/PPM, -tileSize/2/PPM ); 
-				cs.createLoop(v);
-				fDef.friction = 0;
-				fDef.shape = cs; 
-				fDef.filter.categoryBits = bits;
-				fDef.filter.maskBits = B2DVars.BIT_PLAYER | B2DVars.BIT_BALL; 
-				world.createBody(bdef).createFixture(fDef);	
-				cs.dispose();
-			}
-		}
 	}
 	/*
 	private void playerJump(){ }

@@ -41,6 +41,13 @@ public class GContactListener implements ContactListener {
 		if(fb.getUserData() != null && fb.getUserData().equals("rightSensor")) {
 			player.numOfRightContacts++;
 		}		
+		
+		if(fa.getUserData() != null && fa.getUserData().equals("goal")) {
+			player.playerHasCompletedTheLevel = true;
+		}
+		if(fb.getUserData() != null && fb.getUserData().equals("goal")) {
+			player.playerHasCompletedTheLevel = true;
+		}		
 	}
 
 	@Override

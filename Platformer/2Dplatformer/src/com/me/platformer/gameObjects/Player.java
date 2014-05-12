@@ -11,7 +11,6 @@ import com.me.platformer.handlers.GContactListener;
 public class Player extends B2DSprite{
 	
 	private boolean playerIsDead; 
-	private boolean playerHasCompletedTheLevel; 
 	private float speed = 2.5f; 
 
 	private boolean isOnGround () { return numOfFootContacts > 0; }
@@ -20,6 +19,7 @@ public class Player extends B2DSprite{
 	//PRivacy ??? 
 	public int numOfFootContacts; 
 	public int numOfRightContacts;
+	public boolean playerHasCompletedTheLevel; 
 	
 	public boolean isPlayerDead(){ return playerIsDead || isCollidingRight(); }
 	
@@ -57,13 +57,6 @@ public class Player extends B2DSprite{
 		if(getY() < -2){
 			playerIsDead = true; 
 		}
-		
-		//Kontrollerar om spelaren är nära slutet på banan
-		if(getX() > 15){//Spelaren har klarat leveln
-			playerHasCompletedTheLevel = true; 
-		}
-	}
-	public boolean hasPlayerCompletedGame() {
-		return playerHasCompletedTheLevel;
+
 	}
 }

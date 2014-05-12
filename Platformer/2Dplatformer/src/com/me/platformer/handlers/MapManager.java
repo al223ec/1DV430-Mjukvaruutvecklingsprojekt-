@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.CircleMapObject;
+import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -46,6 +48,13 @@ public class MapManager {
 		//Load map
 		tileMap = new TmxMapLoader().load("res/maps/test.tmx"); 
 		createLayer(tileMap.getLayers().get("collision"), B2DVars.BIT_GROUND);		
+		createLayer(tileMap.getLayers().get("goal"), B2DVars.BIT_GROUND);			
+	}
+	private void createGoal(MapLayer layer){
+		FixtureDef fDef = new FixtureDef();
+		fDef.isSensor = false; 
+		
+		MapObjects objects = layer.getObjects(); 
 	}
 	
 	private void createLayer(MapLayer layer, short bits){
@@ -54,11 +63,12 @@ public class MapManager {
 		
 		MapObjects objects = layer.getObjects(); 
 		Iterator<MapObject> objectIt = objects.iterator(); 
+		boolean isGoal = false; 
 		
 		while(objectIt.hasNext()){
 			MapObject object = objectIt.next(); 
 			
-			Shape shape; 
+			Shape shape = null; 
 			BodyDef bdef = new BodyDef();
 			bdef.type = BodyType.StaticBody;
 			
@@ -71,7 +81,11 @@ public class MapManager {
 				shape = getPolyline((PolylineMapObject)object); 
 			}else if(object instanceof CircleMapObject){
 				shape = getCircle((CircleMapObject)object);
-			}else{
+			}else if(object instanceof EllipseMapObject){
+				shape = getEllipseMapObject((EllipseMapObject)object);
+				isGoal = true; 
+			}
+			if(shape == null){
 				System.out.println("Fail"); 
 				continue; 
 			}
@@ -79,19 +93,38 @@ public class MapManager {
 			fDef.filter.categoryBits = bits; 
 			
 			Body body = world.createBody(bdef); 
-			body.createFixture(fDef); 
+			if(isGoal){
+				body.createFixture(fDef).setUserData("goal");
+			}else{
+				body.createFixture(fDef); 
+			}
 			bodies.add(body); 
 			fDef.shape = null; 
 			shape.dispose(); 
 		}
 	}
+	private Shape getEllipseMapObject(EllipseMapObject object) {
+		//Vet inte hur jag ska lösa denna
+		Ellipse ellipse = object.getEllipse();
+		if(ellipse.height == ellipse.width){
+			CircleShape circleShape = new CircleShape(); 
+			circleShape.setRadius((ellipse.width/2) /PPM); 
+			circleShape.setPosition(new Vector2((ellipse.x + ellipse.width/2) /PPM, (ellipse.y + ellipse.width/2) / PPM));
+			System.out.println("EllipseCircle"); 
+			return circleShape; 
+		}
+		System.out.println("Ellipse"); 
+		return null;
+	}
+
 	private Shape getCircle(CircleMapObject circleObject) {
+		System.out.println("Circle"); 
 		Circle circle = circleObject.getCircle(); 
 		CircleShape circleShape = new CircleShape(); 
 		
 		circleShape.setRadius(circle.radius/PPM); 
 		circleShape.setPosition(new Vector2(circle.x /PPM, circle.y / PPM));
-	
+
 		return circleShape;
 	}
 
@@ -145,5 +178,9 @@ public class MapManager {
 			world.destroyBody(body); 
 		}
 		bodies.clear(); 
+	}
+
+	public TiledMap getTiledMap() {
+		return tileMap;
 	}
 }

@@ -8,4 +8,19 @@
    eJxjZBg8gBEHHqxg1H2UgVH3UQZG3UcZGHUfZWDUfZQBerqPHHto7T5K63tquw+Xe8hxIylmEWs+pWZiwwDvgABZ
   </data>
  </layer>
+ <objectgroup name="collision" width="40" height="16">
+  <object x="44" y="675">
+   <polyline points="0,0 207,-1 249,-33 306,-1 383,-75 493,-1 721,-168 901,-48 962,-116 979,-49 991,-97 1004,-66 999,3 1314,-6"/>
+  </object>
+  <object x="705" y="20" width="287" height="211">
+   <ellipse/>
+  </object>
+  <object x="546" y="131" width="72" height="193">
+   <ellipse/>
+  </object>
+  <object x="304" y="121" width="107" height="89"/>
+  <object x="1094" y="38">
+   <polygon points="0,0 223,291 -26,230"/>
+  </object>
+ </objectgroup>
 </map>

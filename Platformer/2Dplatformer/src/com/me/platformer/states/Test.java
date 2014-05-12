@@ -27,11 +27,13 @@ import com.me.platformer.handlers.GContactListener;
 import com.me.platformer.handlers.GInput;
 import com.me.platformer.handlers.GInputProcessor;
 import com.me.platformer.handlers.GameStateManager;
+import com.me.platformer.handlers.MapManager;
 
 public class Test extends GameState {
-	private boolean debug = false; 
+	private boolean debug = true; 
 	private World world; 
 
+	private MapManager mapManager; 
 	private Box2DDebugRenderer b2dr; 
 	private OrthographicCamera b2dCam;
 	
@@ -56,6 +58,8 @@ public class Test extends GameState {
 			b2dCam = new OrthographicCamera(); 
 			b2dCam.setToOrtho(false, PlatformerGame.WIDTH / PPM, PlatformerGame.HEIGHT / PPM); 		
 		}
+		
+		mapManager = new MapManager(world); 
 	}
 
 	protected void handleInput() {

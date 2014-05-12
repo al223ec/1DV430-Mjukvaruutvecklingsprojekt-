@@ -18,7 +18,7 @@ public class Logo extends Actor {
 	public void draw(SpriteBatch sb, float alpha){
 		
 	}
-	
+	@Override
 	public void act(float dt){
 		
 	}

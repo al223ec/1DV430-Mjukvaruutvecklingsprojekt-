@@ -15,7 +15,7 @@ public class Player extends B2DSprite{
 	private float speed = 2.5f; 
 
 	private boolean isOnGround () { return numOfFootContacts > 0; }
-	private boolean isCollidingRight () { return numOfRightContacts > 0; }
+	private boolean isCollidingRight () { return /*numOfRightContacts > 0;*/ false; }
 	
 	//PRivacy ??? 
 	public int numOfFootContacts; 
@@ -49,7 +49,8 @@ public class Player extends B2DSprite{
 	
 	public void jump(){
 		if(isOnGround() && !isCollidingRight()){
-			body.applyForceToCenter(0, 200, true);
+			//body.applyForceToCenter(0, 200, true);
+			body.applyLinearImpulse(0, 2f, getX(), getY(), true);
 		}
 	}
 	private void checkBounds(){

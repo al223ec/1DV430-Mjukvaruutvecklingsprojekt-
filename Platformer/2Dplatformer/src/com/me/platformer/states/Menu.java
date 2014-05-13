@@ -73,16 +73,6 @@ public class Menu extends GameState {
 	}
 	
 	public void handleInput(){
-		/*
-		//Touch
-		if(GInput.isPressed()){
-			gsm.playNextState(new Test(gsm));
-			return; 
-		}
-		//Keybouad
-		if(GInput.isPressed(GInput.BUTTONJUMP)){
-			gsm.playNextState(new Test(gsm));
-		}*/
 	}
 	@Override
 	public void update(float dt) {

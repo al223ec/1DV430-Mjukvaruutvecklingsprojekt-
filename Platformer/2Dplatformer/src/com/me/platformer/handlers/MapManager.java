@@ -4,6 +4,9 @@ import static com.me.platformer.handlers.B2DVars.PPM;
 
 import java.util.Iterator;
 
+import sun.org.mozilla.javascript.internal.json.JsonParser;
+
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
@@ -29,6 +32,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 
 public class MapManager {
 	private World world;
@@ -42,10 +47,16 @@ public class MapManager {
 		this.world = world; 
 		this.path = path; 
 		createTiles(); 
+		loadMaterialsFile();
 	}
 	
 	public void render() {
 		tmr.render(); 
+	}
+	private void loadMaterialsFile(){
+		FileHandle file = new FileHandle("res/maps/materials.json"); 
+		FixtureDef fixtureDef = new FixtureDef(); 
+		JsonReader reader = new JsonReader(); 
 	}
 	
 	private void createTiles(){
@@ -56,8 +67,8 @@ public class MapManager {
 	}
 	
 	private void createLayer(MapLayer layer, short bits){
-		FixtureDef fDef = new FixtureDef();
-		fDef.isSensor = false; 
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.isSensor = false; 
 		
 		MapObjects objects = layer.getObjects(); 
 		Iterator<MapObject> objectIt = objects.iterator(); 
@@ -87,17 +98,17 @@ public class MapManager {
 				System.out.println("Fail"); 
 				continue; 
 			}
-			fDef.shape = shape; 
-			fDef.filter.categoryBits = bits; 
+			fixtureDef.shape = shape; 
+			fixtureDef.filter.categoryBits = bits; 
 			
 			Body body = world.createBody(bdef); 
 			if(isGoal){
-				body.createFixture(fDef).setUserData("goal");
+				body.createFixture(fixtureDef).setUserData("goal");
 			}else{
-				body.createFixture(fDef); 
+				body.createFixture(fixtureDef); 
 			}
 			bodies.add(body); 
-			fDef.shape = null; 
+			fixtureDef.shape = null; 
 			shape.dispose(); 
 		}
 	}

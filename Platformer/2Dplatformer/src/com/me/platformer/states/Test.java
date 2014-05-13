@@ -36,8 +36,10 @@ public class Test extends LevelState {
 			}else{
 				System.out.println("right");
 				player.jump();
+				//if(player.canFlip()){
 				//world.setGravity(new Vector2(0, 9.81f));
 				//player.flip(); 
+				//}
 			}
 		}
 	}

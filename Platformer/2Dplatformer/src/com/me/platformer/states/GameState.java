@@ -1,6 +1,6 @@
 package com.me.platformer.states;
 
-import com.badlogic.gdx.Screen;
+//import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.platformer.PlatformerGame;

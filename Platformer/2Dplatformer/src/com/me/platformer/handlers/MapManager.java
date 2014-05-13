@@ -35,26 +35,24 @@ public class MapManager {
 	private Array<Body> bodies = new Array<Body>(); 
 	private TiledMap tileMap; 
 	private OrthogonalTiledMapRenderer tmr; 
+
+	private String path; 
 	
-	public MapManager(World world){
+	public MapManager(World world, String path){
 		this.world = world; 
+		this.path = path; 
 		createTiles(); 
 	}
 	
 	public void render() {
 		tmr.render(); 
 	}
+	
 	private void createTiles(){
 		//Load map
-		tileMap = new TmxMapLoader().load("res/maps/test.tmx"); 
+		tileMap = new TmxMapLoader().load(path); 
 		createLayer(tileMap.getLayers().get("collision"), B2DVars.BIT_GROUND);		
 		createLayer(tileMap.getLayers().get("goal"), B2DVars.BIT_GROUND);			
-	}
-	private void createGoal(MapLayer layer){
-		FixtureDef fDef = new FixtureDef();
-		fDef.isSensor = false; 
-		
-		MapObjects objects = layer.getObjects(); 
 	}
 	
 	private void createLayer(MapLayer layer, short bits){
@@ -103,6 +101,7 @@ public class MapManager {
 			shape.dispose(); 
 		}
 	}
+	
 	private Shape getEllipseMapObject(EllipseMapObject object) {
 		//Vet inte hur jag ska lösa denna
 		Ellipse ellipse = object.getEllipse();
@@ -110,15 +109,12 @@ public class MapManager {
 			CircleShape circleShape = new CircleShape(); 
 			circleShape.setRadius((ellipse.width/2) /PPM); 
 			circleShape.setPosition(new Vector2((ellipse.x + ellipse.width/2) /PPM, (ellipse.y + ellipse.width/2) / PPM));
-			System.out.println("EllipseCircle"); 
 			return circleShape; 
 		}
-		System.out.println("Ellipse"); 
 		return null;
 	}
 
 	private Shape getCircle(CircleMapObject circleObject) {
-		System.out.println("Circle"); 
 		Circle circle = circleObject.getCircle(); 
 		CircleShape circleShape = new CircleShape(); 
 		

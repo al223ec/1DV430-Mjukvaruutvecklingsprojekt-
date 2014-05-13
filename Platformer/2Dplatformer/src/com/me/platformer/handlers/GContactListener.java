@@ -9,12 +9,7 @@ import com.me.platformer.gameObjects.Player;
 
 public class GContactListener implements ContactListener {
 	private Player player;  
-	//Jag kanske borde ha en referens till spelaren i denna 
-	//klass och sätt canjump och can flip till spelaren
-	//Det kan ju egentligen vara vettigare att denna klass sätter annat
-	//DVs att denna klass berättar när något händer ist för att man behöver "lyssna på den"
-	
-	
+
 	public GContactListener(Player player){
 		this.player = player; 
 	}
@@ -38,9 +33,10 @@ public class GContactListener implements ContactListener {
 		if(fa.getUserData() != null && fa.getUserData().equals("rightSensor")) {
 			player.numOfRightContacts++;
 		}
+		
 		if(fb.getUserData() != null && fb.getUserData().equals("rightSensor")) {
 			player.numOfRightContacts++;
-		}		
+		}
 		
 		if(fa.getUserData() != null && fa.getUserData().equals("goal")) {
 			player.playerHasCompletedTheLevel = true;
@@ -77,6 +73,5 @@ public class GContactListener implements ContactListener {
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {}
 	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse) {
-	}
+	public void postSolve(Contact contact, ContactImpulse impulse) {}
 }

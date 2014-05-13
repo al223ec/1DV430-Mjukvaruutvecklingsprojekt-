@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="40" height="16" tilewidth="45" tileheight="45">
+<map version="1.0" orientation="orthogonal" width="60" height="16" tilewidth="45" tileheight="45">
  <tileset firstgid="1" name="blocks" tilewidth="45" tileheight="45">
   <image source="blocks.png" width="45" height="45"/>
  </tileset>
- <layer name="ground" width="40" height="16">
+ <layer name="ground" width="60" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjZBg8gBEHHqxg1H2UgVH3UQZG3UcZGHUfZWDUfZQBerqPHHto7T5K63tquw+Xe8hxIylmEWs+pWZiwwDvgABZ
+   eJzt0NEJACAMA1Gz/9JOUETQtsY76Ld5avyVqgckh9c7vN7h9Q6vd3i9y/J2+debOxRcZSffj3ydzDsbV3tf8E7ByAA7
   </data>
  </layer>
- <objectgroup name="collision" width="40" height="16">
+ <objectgroup name="collision" width="60" height="16">
   <object x="44" y="675">
    <polyline points="0,0 207,-1 249,-33 306,-1 383,-75 493,-1 721,-168 901,-48 962,-116 979,-49 991,-97 1004,-66 999,3 1314,-6"/>
   </object>
   <object x="304" y="121" width="107" height="89"/>
   <object x="578" y="542" width="66" height="56"/>
+  <object x="1078" y="395">
+   <polyline points="0,0 71,-20 112,-52"/>
+  </object>
+  <object x="1291" y="608">
+   <polyline points="0,0 26,-15 39,-49 52,-113 60,-178 85,-234 145,-280 220,-312 246,-320 296,-334 311,-349 329,-395 417,-406 550,-414"/>
+  </object>
+  <object x="1929" y="329">
+   <polyline points="0,0 107,2 222,-82 281,-82"/>
+  </object>
+  <object x="2299" y="177">
+   <polyline points="0,0 159,-31"/>
+  </object>
  </objectgroup>
- <objectgroup name="goal" width="40" height="16">
-  <object x="979" y="781" width="359" height="50">
+ <objectgroup name="goal" width="60" height="16">
+  <object x="2522" y="10" width="230" height="230">
    <ellipse/>
   </object>
-  <object x="1412" y="349" width="230" height="230">
-   <ellipse/>
-  </object>
  </objectgroup>
+ <objectgroup name="damage" width="60" height="16"/>
 </map>

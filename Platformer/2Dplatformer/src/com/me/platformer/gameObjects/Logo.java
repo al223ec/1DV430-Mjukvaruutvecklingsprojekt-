@@ -11,7 +11,7 @@ public class Logo extends Actor {
 	private Animation logoAnimation; 
 	
 	public Logo(){
-		
+	
 	}
 	
 	@Override
@@ -22,5 +22,4 @@ public class Logo extends Actor {
 	public void act(float dt){
 		
 	}
-	
 }

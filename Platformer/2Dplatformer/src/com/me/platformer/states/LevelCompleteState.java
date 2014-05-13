@@ -25,9 +25,6 @@ public class LevelCompleteState extends GameState{
 	@Override
 	public void update(float dt) {
 		handleInput();
-		System.out.println("Levelcomplete"); 
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -31,7 +31,6 @@ public class Play extends GameState {
 	private Box2DDebugRenderer b2dr; 
 	private OrthographicCamera b2dCam; 
 	
-	private GContactListener gcl; 
 	private TiledMap tileMap;
 	private float tileSize; 
 	private OrthogonalTiledMapRenderer tmr; 
@@ -151,7 +150,6 @@ public class Play extends GameState {
 	
 	//Bits är vilken typ detta lagret ska vara vad det ska maska måt
 	private void createLayer(TiledMapTileLayer layer, short bits){
-
 		BodyDef bdef = new BodyDef();
 		FixtureDef fDef = new FixtureDef();
 		bdef.type = BodyType.StaticBody; 

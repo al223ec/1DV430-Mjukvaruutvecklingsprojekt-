@@ -4,59 +4,22 @@ import static com.me.platformer.handlers.B2DVars.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.ChainShape;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
 import com.me.platformer.PlatformerGame;
 import com.me.platformer.gameObjects.Player;
 import com.me.platformer.handlers.B2DVars;
-import com.me.platformer.handlers.GContactListener;
 import com.me.platformer.handlers.GInput;
-import com.me.platformer.handlers.GInputProcessor;
 import com.me.platformer.handlers.GameStateManager;
-import com.me.platformer.handlers.MapManager;
 
-public class Test extends GameState {
-	private boolean debug = true; 
-	private World world; 
-
-	private MapManager mapManager; 
-	private Box2DDebugRenderer b2dr; 
-	private OrthographicCamera b2dCam;
-	
-	private Player player; 
-	private float tileSize = 45; 
-	
-	private OrthogonalTiledMapRenderer tmr; 
-	
+public class Test extends LevelState {
 	public Test(GameStateManager gsm) {
-		super(gsm);
-		Gdx.input.setInputProcessor(new GInputProcessor());
-		world = new World(new Vector2(0, -9.81f), true);
-
-		createPlayer(); 
-		world.setContactListener(new GContactListener(player));
-		
-		b2dr = new Box2DDebugRenderer(); 
-		if(debug){
-			b2dCam = new OrthographicCamera(); 
-			b2dCam.setToOrtho(false, PlatformerGame.WIDTH / PPM, PlatformerGame.HEIGHT / PPM); 		
-		}		
-		mapManager = new MapManager(world); 
-		tmr = new OrthogonalTiledMapRenderer(mapManager.getTiledMap()); 
+		super(gsm, "res/maps/test.tmx");
 	}
 
 	protected void handleInput() {
@@ -73,6 +36,8 @@ public class Test extends GameState {
 			}else{
 				System.out.println("right");
 				player.jump();
+				//world.setGravity(new Vector2(0, 9.81f));
+				//player.flip(); 
 			}
 		}
 	}
@@ -94,9 +59,12 @@ public class Test extends GameState {
 				b2dCam.update();
 			}*/
 		
-		cam.position.set(player.getX() * PPM + PlatformerGame.WIDTH/4, PlatformerGame.HEIGHT / 2 , 0f);  
+		//cam.position.set(player.getX() * PPM + PlatformerGame.WIDTH/4, PlatformerGame.HEIGHT / 2 , 0f);  
+		cam.position.lerp(new Vector3(player.getX() * PPM + PlatformerGame.WIDTH/4, player.getY() * PPM + (PlatformerGame.HEIGHT)/6, 0f), 0.08f);
+		
 		if(debug){
-			b2dCam.position.set(player.getX() + PlatformerGame.WIDTH/4/PPM, PlatformerGame.HEIGHT / 2/PPM, 0f);  
+			//b2dCam.position.set(player.getX() + PlatformerGame.WIDTH/4/PPM, PlatformerGame.HEIGHT / 2/PPM, 0f);  
+			b2dCam.position.lerp(new Vector3(player.getX() + PlatformerGame.WIDTH/4/PPM, player.getY() + (PlatformerGame.HEIGHT)/6/PPM, 0f), 0.08f);		
 			b2dCam.update();
 		}
 	
@@ -124,11 +92,10 @@ public class Test extends GameState {
 		}
 	}
 	
-	public void restartLevel(){
-	}
+	@Override
 	public void dispose() {}
 	
-	private void createPlayer(){
+	protected void createPlayer(){
 		BodyDef bdef = new BodyDef();
 		FixtureDef fDef = new FixtureDef();
 		PolygonShape shape = new PolygonShape();
@@ -139,7 +106,7 @@ public class Test extends GameState {
 		Body body = world.createBody(bdef);
 		player = new Player(body); 
 				
-		shape.setAsBox(tileSize/2 /PPM, tileSize/2 /PPM); 
+		shape.setAsBox(hitBoxSize/2 /PPM, hitBoxSize/2 /PPM); 
 		
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
@@ -149,68 +116,26 @@ public class Test extends GameState {
 		body.createFixture(fDef).setUserData("player");
 
 		//Fot sensor
-		shape.setAsBox((tileSize - 5)/2/PPM, 4/PPM, new Vector2(0, -tileSize/2/PPM), 0);
+		shape.setAsBox((hitBoxSize - 5)/2/PPM, 4/PPM, new Vector2(0, -hitBoxSize/2/PPM), 0);
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
 		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
 		fDef.isSensor = true; 
 		body.createFixture(fDef).setUserData("footSensor");
-	
+	/*
 		//Höger sensor
-		shape.setAsBox(2/PPM, (tileSize/2 -2)/PPM, new Vector2(tileSize/2/PPM, 0), 0);
+		shape.setAsBox(2/PPM, (hitBoxSize/2 -2)/PPM, new Vector2(hitBoxSize/2/PPM, 0), 0);
 		fDef.shape = shape; 
 		fDef.filter.categoryBits = B2DVars.BIT_PLAYER; 
 		fDef.filter.maskBits = B2DVars.BIT_GROUND; 
 		fDef.isSensor = true; 
 		body.createFixture(fDef).setUserData("rightSensor");
-		
+		*/
 		shape.dispose(); 
 	}
-	/*
-	private void playerJump(){ }
-	private void worldFlip(){ 
-		/*
-		if(GInput.isDown(GInput.BUTTONFLIP)){
-			player.getBody().applyForceToCenter(0, 270, true);
-			System.out.println("Flip is pressed");
-			world.setGravity(new Vector2(0, 9.81f));
-			System.out.println("Flip to inverted");
-			player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
-			worldIsFlipped = true; 
-			/*
-			 * Skapa world flip 
-			 * function som ser 
-			 * till att spelaren är 
-			 * de fakto på marken innan man kan flippa igen
-			if(worldIsFlipped){
-				world.setGravity(new Vector2(0, -9.81f));
-				System.out.println("Flip to normal");
-				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f);
-				worldIsFlipped = false; 
-			} else{
-				world.setGravity(new Vector2(0, 9.81f));
-				System.out.println("Flip to inverted");
-				player.getBody().setTransform(player.getBody().getPosition(), 3.1415f); 
-				worldIsFlipped = true; 
-			}*/
-	//	}
-	//}
-/*	private void createBall(float spawnX, float spawnY){
-		BodyDef bdef = new BodyDef();
-		bdef.type = BodyType.DynamicBody; 
-
-		Body body = world.createBody(bdef);
-
-		bdef.position.set(spawnX/PPM, spawnY/ PPM);
-		body = world.createBody(bdef);
+	@Override
+	public void resetLevel() {
+		// TODO Auto-generated method stub
 		
-		CircleShape cShape = new CircleShape(); 
-		cShape.setRadius(45/PPM);
-		FixtureDef fDef = new FixtureDef();
-		fDef.restitution = 0.9f; //Elastitet bouncing 
-		fDef.shape = cShape; 
-		fDef.filter.categoryBits = B2DVars.BIT_BALL; 
-		fDef.filter.maskBits = B2DVars.BIT_GROUND | B2DVars.BIT_PLAYER | B2DVars.BIT_BALL; 
-		body.createFixture(fDef).setUserData("ball");
-	}*/
+	}
 }

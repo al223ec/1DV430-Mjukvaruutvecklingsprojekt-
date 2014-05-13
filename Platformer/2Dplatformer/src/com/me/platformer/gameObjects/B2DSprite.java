@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.me.platformer.handlers.Animation;
-import com.me.platformer.handlers.Content;
 
 public abstract class B2DSprite {
 

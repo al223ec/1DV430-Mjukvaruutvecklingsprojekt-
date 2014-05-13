@@ -5,11 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.me.platformer.handlers.Content;
 import com.me.platformer.handlers.GInputProcessor;
 import com.me.platformer.handlers.GameStateManager;
@@ -50,6 +46,7 @@ public class PlatformerGame implements ApplicationListener {  //Kan använda Game
 	private void loadTextures(){
 		cont = new Content();
 		cont.loadTextures("res/images/player/run.png", "runSprites"); 
+		cont.loadTextures("res/images/player/hats/hat.png", "hat"); 
 	}
 	
 	public void render() {

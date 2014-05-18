@@ -3,34 +3,29 @@
  <tileset firstgid="1" name="blocks" tilewidth="45" tileheight="45">
   <image source="blocks.png" width="45" height="45"/>
  </tileset>
+ <tileset firstgid="2" name="bg" tilewidth="45" tileheight="45">
+  <image source="bg.png" width="2636" height="853"/>
+ </tileset>
+ <tileset firstgid="1046" name="mapTiles" tilewidth="45" tileheight="45">
+  <image source="mapTiles.png" width="2636" height="853"/>
+ </tileset>
  <layer name="ground" width="60" height="16">
   <data encoding="base64" compression="zlib">
-   eJzt0NEJACAMA1Gz/9JOUETQtsY76Ld5avyVqgckh9c7vN7h9Q6vd3i9y/J2+debOxRcZSffj3ydzDsbV3tf8E7ByAA7
+   eJxN1FPQWIcahtGcJD9i27aaJg3bWG1ss22SBm1jNY1t27Zt27ZtuysXZ/LvmTXz7pu957n5+ocNFWoAAxnEYIYwlGEMZwQjGcVoxjCWcYxnAhOZxGSmMJVpTGcGM5nFbOYwl3nMZwELWcRilrCUZSxnBStZxWrWsJZ1rGcDG9nEZrawlW1sZwf/f3bau9jNHvayj/0c4CCHOMwRjnKM45zgJKc4zRnOco7zXOAil7jMFa5yjevc4Ca3uM0d7nKP+zzgIY94zBOe8oznvOAlr3jNG97yjvd84COfQvR+tr98fQ8IFep/hCYMYQkgkCCCCUd4IhCRSEQmClGJRnRiEJNYxCYOcYlHfBKQkEQkJglJSUZyUpCSVKQmDWlJR3oykJFMZCYLWcnGd2Tne3KQkx8CvvXmsnOTh7zkIz8/8hMFKEghClOEohSjOCUoSSl+5hdKU4aylKM8FahIJSpThapUozo1qEktalOHutSjPg1oSCN+5Td+pzFNaMofNKM5LWjJn/wVovdvuxWtaUNb2tGeDnSkE53pwj905V+60Z0e9KQXvelDX/rRnwEMZBCDGcJQhjGcEYxkFKMZw1jGMZ4JTGQSk5nCVKYxnRnMZBazmcNc5jGfBSF6F9qLWMwSlrKM5axgJatYzRrWso71bGAjm9jMFrayje3sYCe72M0e9rKP/RzgIIc4zBGOcozjnOAkpzjNGc5yjvNc4CKXuMwVrnKN69zgJrdC9N6273CXe9znAQ95xGOe8JRnPOcFL3nFa97wlne85wMf+cRnvnz9X6D7QGjCEJYAAgkimHCEJwIRiURkohCVaEQnBjGJRWziEJd4xCcBCUlEYpIEfutNaicjOSlISSpSk4a0pCM9GchIJjKThaxk4zuy8z05yMkP5CI3echLPvLzIz9RgIIUojBFKEoxilOCkpTiZ36hNGUoSznKU4GKVKIyVahKNaqH6K1h16QWtalDXepRnwY0pBG/8hu/05gmNOUPmtGcFrTkT/7ib1rRmja0pR3t6UBHOtGZLvxDV/6lG93pQU960Zs+9KUf/RnAQAYxmCEMZRjDGRGid6Q9itGMYSzjGM8EJjKJyUxhKtOYzgxmMovZzGEu85jPAhayiMUsYSnLWM4KVrKK1axhLetYzwY2sonNbGEr29jODnayi93sYS/72M8BDnIoRO9h+whHOcZxTnCSU5zmDGc5x3kucJFLXOYKV7nGdW5wk1vc5g53ucd9HvCQRzzmCU95xnNe8JJXvOYNb3nHez7wkU985svXniD3gdCEISwBBBIU9K032A5HeCIQkUhEJgpRiUZ0YhCTWMQmDnGJR3wSkJBEJCYJSUlGclKQklSkJg1pSUd6MpCRTGQmC1nJxndk53tykJMfyEVu8pCXfOTnR36iAAVD9BayC1OEohSjOCUoSSl+5hdKU4aylKM8FahIJSpThapUozo1qEktalOHutSjPg1oSCN+5Td+pzFNaMofNKM5LWjJn/zF37SiNW1oSzva04GOdArR29nuwj905V+60Z0e9KQXvelDX/rRnwEMZBCDGcJQhjGcEYxkFKMZw1jGMZ4JTGQSk5nCVKYxnRnMZBazmcNc5jGfBSxkEYtZwlKWsZwVrGRViN7V9hrWso71bGAjm9jMFrayje3sYCe72M0e9rKP/RzgIIc4zBGOcozjnOAkpzjNGc5yjvNc4CKXuMwVrnKN69zgJre4zR3uco/7POAhj3jMkxC9T+1nPOcFL3nFa97wlne85wMf+cRnvnz9TrA7QWjCEJYAAgkimHCEJwIRiURkohCVaEQnBjGJRWziEJd4xCcBCUlEYpKQlGQkJwUpSUVq0pCWdMHfev8D2i3xqA==
   </data>
  </layer>
  <objectgroup name="collision" width="60" height="16">
-  <object x="44" y="675">
-   <polyline points="0,0 207,-1 249,-33 306,-1 383,-75 493,-1 721,-168 901,-48 962,-116 979,-49 991,-97 1004,-66 999,3 1314,-6"/>
+  <object x="23" y="539">
+   <polyline points="0,0 13,22 36,39 55,74 73,117 172,115 235,114 327,144 388,161 457,165 517,157 570,141 676,122 767,120 809,124 838,122 902,86 953,44 1002,-6 1039,-45 1079,-95 1147,-142 1198,-158 1259,-158 1297,-155 1323,-140 1352,-106 1366,-80 1397,-15 1427,29 1473,50 1517,54 1553,38 1581,30"/>
   </object>
-  <object x="304" y="121" width="107" height="89"/>
-  <object x="578" y="542" width="66" height="56"/>
-  <object x="1078" y="395">
-   <polyline points="0,0 71,-20 112,-52"/>
-  </object>
-  <object x="1291" y="608">
-   <polyline points="0,0 26,-15 39,-49 52,-113 60,-178 85,-234 145,-280 220,-312 246,-320 296,-334 311,-349 329,-395 417,-406 550,-414"/>
-  </object>
-  <object x="1929" y="329">
-   <polyline points="0,0 107,2 222,-82 281,-82"/>
-  </object>
-  <object x="2299" y="177">
-   <polyline points="0,0 159,-31"/>
+  <object x="1604" y="568">
+   <polyline points="0,0 30,-4 66,0 103,22 124,87 155,120 180,144 195,149 230,149 279,126 337,93 409,88 455,106 509,129 557,135 606,127 668,112 767,104 825,121 840,125 860,117 906,122 948,130 974,90 978,39 964,-5 922,-49 888,-104 882,-136 906,-177 971,-192 1004,-210 1007,-251"/>
   </object>
  </objectgroup>
  <objectgroup name="goal" width="60" height="16">
-  <object x="2522" y="10" width="230" height="230">
+  <object x="2181" y="417" width="236" height="236">
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="damage" width="60" height="16"/>
+ <objectgroup name="damage" width="60" height="16" visible="0"/>
 </map>

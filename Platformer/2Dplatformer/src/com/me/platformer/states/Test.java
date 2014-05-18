@@ -4,6 +4,7 @@ import static com.me.platformer.handlers.B2DVars.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -18,6 +19,7 @@ import com.me.platformer.handlers.GInput;
 import com.me.platformer.handlers.GameStateManager;
 
 public class Test extends LevelState {
+	
 	public Test(GameStateManager gsm) {
 		super(gsm, "res/maps/test.tmx");
 	}
@@ -25,7 +27,8 @@ public class Test extends LevelState {
 	protected void handleInput() {
 		// keyboard input
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
-			player.jump();			
+			player.jump();		
+			
 		}
 		
 		//Touch inputs
@@ -72,14 +75,13 @@ public class Test extends LevelState {
 	
 
 		cam.update();
-		tmr.setView(cam); 
-		tmr.render(); 
-		
 		sb.setProjectionMatrix(cam.combined);//Sätter vad som ska renderas 
 		sb.begin();
 		player.render(sb);
 		sb.end();
 		
+		tmr.setView(cam); 
+		tmr.render(); 
 		//Rita box2d
 		if(debug){
 			b2dr.render(world, b2dCam.combined); 

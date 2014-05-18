@@ -47,13 +47,13 @@ public class MapManager {
 		this.world = world; 
 		this.path = path; 
 		createTiles(); 
-		loadMaterialsFile();
+		loadMaterials();
 	}
 	
 	public void render() {
 		tmr.render(); 
 	}
-	private void loadMaterialsFile(){
+	private void loadMaterials(){
 		FileHandle file = new FileHandle("res/maps/materials.json"); 
 		FixtureDef fixtureDef = new FixtureDef(); 
 		JsonReader reader = new JsonReader(); 

@@ -15,6 +15,7 @@ public class Content {
 	}
 	
 	public void loadTextures(String path, String key){
+		System.out.println("loadingfile: " + path + " key: " + key); 
 		Texture tex = new Texture(Gdx.files.internal(path)); 
 		textures.put(key, tex); 		
 	}

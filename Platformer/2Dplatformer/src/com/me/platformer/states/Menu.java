@@ -2,6 +2,7 @@ package com.me.platformer.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -27,9 +28,13 @@ public class Menu extends GameState {
 	private BitmapFont font; 
 	private Skin skin; 
 	private TextureAtlas buttonAtlas; 
+	private Texture splash; 
 	
 	public Menu(GameStateManager gsm) {
 		super(gsm); 	
+
+		splash = PlatformerGame.cont.getTexture("splash");
+		
 		stage = new Stage(); 
 		stage.setViewport(PlatformerGame.WIDTH, PlatformerGame.HEIGHT); 	
 		
@@ -62,9 +67,10 @@ public class Menu extends GameState {
 		table.add(welcomeLabel).spaceBottom(50);
 		table.row(); 
 		table.add(startGameButton).size(300f, 60f).uniform().spaceBottom(50); 
-		table.row(); 
-		
+		table.row();
+
 	}
+	
 	private void playNext(){
 		gsm.playNextState(new Test(gsm));
 	}
@@ -78,12 +84,16 @@ public class Menu extends GameState {
 	public void update(float dt) {
 		handleInput();
 	
-	}
+	} 
 
 	@Override
 	public void render(float dt) {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT); 
+		
 		sb.setProjectionMatrix(cam.combined);
+		sb.begin();
+		sb.draw(splash, 0, 0);
+		sb.end();
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
 		//sb

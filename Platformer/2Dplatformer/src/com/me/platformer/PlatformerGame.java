@@ -29,14 +29,14 @@ public class PlatformerGame implements ApplicationListener {  //Kan använda Game
 	public void create() {
 		Texture.setEnforcePotImages(false);
 		Gdx.input.setInputProcessor(new GInputProcessor());
-		 
+		loadTextures(); 
 		sb = new SpriteBatch();
 		
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, WIDTH, HEIGHT);
 
 		gsm = new GameStateManager(this);		
-		loadTextures(); 
+
 		//Kamera
 		gl = Gdx.graphics.getGL10(); 
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT); 
@@ -47,6 +47,8 @@ public class PlatformerGame implements ApplicationListener {  //Kan använda Game
 		cont = new Content();
 		cont.loadTextures("res/images/player/run.png", "runSprites"); 
 		cont.loadTextures("res/images/player/hats/hat.png", "hat"); 
+		cont.loadTextures("res/images/splash.jpg", "splash");
+		cont.loadTextures("res/images/bg.png", "bg");
 	}
 	
 	public void render() {

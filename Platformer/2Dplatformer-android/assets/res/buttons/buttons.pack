@@ -1,0 +1,33 @@
+
+buttons.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+editPlayer
+  rotate: false
+  xy: 1, 293
+  size: 507, 144
+  orig: 507, 144
+  offset: 0, 0
+  index: -1
+editPlayerPress
+  rotate: false
+  xy: 1, 147
+  size: 507, 144
+  orig: 507, 144
+  offset: 0, 0
+  index: -1
+startGame
+  rotate: false
+  xy: 510, 293
+  size: 507, 144
+  orig: 507, 144
+  offset: 0, 0
+  index: -1
+startGamePress
+  rotate: false
+  xy: 1, 1
+  size: 507, 144
+  orig: 507, 144
+  offset: 0, 0
+  index: -1

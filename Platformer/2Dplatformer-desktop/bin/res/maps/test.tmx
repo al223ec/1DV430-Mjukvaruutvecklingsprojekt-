@@ -3,27 +3,33 @@
  <tileset firstgid="1" name="blocks" tilewidth="45" tileheight="45">
   <image source="blocks.png" width="45" height="45"/>
  </tileset>
- <tileset firstgid="2" name="bg" tilewidth="45" tileheight="45">
-  <image source="bg.png" width="2636" height="853"/>
+ <tileset firstgid="2" name="tl" tilewidth="45" tileheight="45">
+  <image source="tl.png" width="1280" height="360"/>
  </tileset>
- <tileset firstgid="1046" name="mapTiles" tilewidth="45" tileheight="45">
-  <image source="mapTiles.png" width="2636" height="853"/>
+ <tileset firstgid="226" name="tr" tilewidth="45" tileheight="45">
+  <image source="tr.png" width="1280" height="360"/>
+ </tileset>
+ <tileset firstgid="450" name="bl" tilewidth="45" tileheight="45">
+  <image source="bl.png" width="1280" height="360"/>
+ </tileset>
+ <tileset firstgid="674" name="br" tilewidth="45" tileheight="45">
+  <image source="br.png" width="1280" height="360"/>
  </tileset>
  <layer name="ground" width="60" height="16">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="collision" width="60" height="16">
-  <object x="23" y="539">
-   <polyline points="0,0 13,22 36,39 55,74 73,117 172,115 235,114 327,144 388,161 457,165 517,157 570,141 676,122 767,120 809,124 838,122 902,86 953,44 1002,-6 1039,-45 1079,-95 1147,-142 1198,-158 1259,-158 1297,-155 1323,-140 1352,-106 1366,-80 1397,-15 1427,29 1473,50 1517,54 1553,38 1581,30"/>
+  <object x="0" y="553">
+   <polyline points="23,-159 20,18 57,46 74,75 92,116 172,115 235,114 327,144 388,161 457,165 517,157 570,141 676,122 767,120 809,124 838,122 902,86 953,44 1002,-6 1039,-45 1079,-95 1147,-142 1193,-151 1257,-147 1292,-127 1325,-88 1342,-45 1358,-10 1386,29 1426,55 1472,56 1529,34 1556,27"/>
   </object>
-  <object x="1604" y="568">
-   <polyline points="0,0 30,-4 66,0 103,22 124,87 155,120 180,144 195,149 230,149 279,126 337,93 409,88 455,106 509,129 557,135 606,127 668,112 767,104 825,121 840,125 860,117 906,122 948,130 974,90 978,39 964,-5 922,-49 888,-104 882,-136 906,-177 971,-192 1004,-210 1007,-251"/>
+  <object x="1535" y="583">
+   <polyline points="23,-3 66,0 103,22 124,87 155,120 180,144 195,149 230,149 279,126 337,93 409,88 455,106 509,129 557,135 606,127 668,112 745,103 799,115 822,125 846,114 897,128 923,129 949,100 959,45 942,8 902,-45 871,-90 862,-126 874,-158 906,-174 958,-188 983,-209"/>
   </object>
  </objectgroup>
  <objectgroup name="goal" width="60" height="16">
-  <object x="2181" y="417" width="236" height="236">
+  <object x="2001" y="406" width="236" height="236">
    <ellipse/>
   </object>
  </objectgroup>

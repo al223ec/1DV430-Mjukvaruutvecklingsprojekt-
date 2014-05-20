@@ -47,8 +47,7 @@ public class PlatformerGame implements ApplicationListener {  //Kan använda Game
 		cont = new Content();
 		cont.loadTextures("res/images/player/run.png", "runSprites"); 
 		cont.loadTextures("res/images/player/hats/hat.png", "hat"); 
-		cont.loadTextures("res/images/splash.jpg", "splash");
-		cont.loadTextures("res/images/bg.png", "bg");
+		cont.loadTextures("res/images/splash.png", "splash");
 	}
 	
 	public void render() {

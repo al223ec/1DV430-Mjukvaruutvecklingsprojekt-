@@ -16,12 +16,11 @@ public class Player extends B2DSprite{
 	private boolean isOnGround () { return numOfFootContacts > 0; }
 	private boolean isCollidingRight () { return /*numOfRightContacts > 0;*/ false; }
 	private boolean playerIsFlipping; 
-	//PRivacy ??? 
+
 	public int numOfFootContacts; 
-	public int numOfRightContacts;
 	
 	public boolean playerHasCompletedTheLevel; 
-	
+	public void setPlayerIsDead(){ playerIsDead = true; } 
 	public boolean isPlayerDead(){ return playerIsDead || isCollidingRight(); }
 	
 	private float currentRadian; 
@@ -76,8 +75,11 @@ public class Player extends B2DSprite{
 			body.applyLinearImpulse(0, 2f, getX(), getY(), true);
 		}
 	}
+	//Denna funktion ska flippa spelaren, dvs roteara 180 grader, detta har jag inte lyckats med fullt ut och kommer inte hinna implementera 
+	//Så spelaren får helt enkelt bara hoppa högre
 	public void flip(){
-		playerIsFlipping = true; 
+		body.applyLinearImpulse(0, 2.1f, getX(), getY(), true);
+		//playerIsFlipping = true; 
 	}
 	private void checkBounds(){
 		if(getY() < -2){

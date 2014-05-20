@@ -33,5 +33,12 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="damage" width="60" height="16" visible="0"/>
+ <objectgroup name="damage" width="60" height="16">
+  <object x="630" y="702">
+   <polyline points="0,0 33,-91 47,-6"/>
+  </object>
+  <object x="2284" y="697">
+   <polyline points="0,0 10,-41 32,11 56,-106 68,15"/>
+  </object>
+ </objectgroup>
 </map>

@@ -34,11 +34,9 @@ public class Test extends LevelState {
 		//Touch inputs
 		if(GInput.isPressed()){
 			if(GInput.x < Gdx.graphics.getWidth() / 2){//Om hen toucher vänstra delen hoppa högt 
-				System.out.println("left");
 				player.jump();
 			}else{
-				System.out.println("right");
-				player.jump();
+				player.flip();
 				//if(player.canFlip()){
 				//world.setGravity(new Vector2(0, 9.81f));
 				//player.flip(); 

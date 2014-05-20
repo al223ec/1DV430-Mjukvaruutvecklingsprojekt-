@@ -30,12 +30,12 @@ public class GContactListener implements ContactListener {
 			player.numOfFootContacts++;
 		}
 		
-		if(fa.getUserData() != null && fa.getUserData().equals("rightSensor")) {
-			player.numOfRightContacts++;
+		if(fa.getUserData() != null && fa.getUserData().equals("damage")) {
+			player.setPlayerIsDead();
 		}
 		
-		if(fb.getUserData() != null && fb.getUserData().equals("rightSensor")) {
-			player.numOfRightContacts++;
+		if(fb.getUserData() != null && fb.getUserData().equals("damage")) {
+			player.setPlayerIsDead();
 		}
 		
 		if(fa.getUserData() != null && fa.getUserData().equals("goal")) {
@@ -60,13 +60,6 @@ public class GContactListener implements ContactListener {
 		}
 		if(fb.getUserData() != null && fb.getUserData().equals("footSensor")) {
 			player.numOfFootContacts--;
-		}
-		
-		if(fa.getUserData() != null && fa.getUserData().equals("rightSensor")) {
-			player.numOfRightContacts--;
-		}
-		if(fb.getUserData() != null && fb.getUserData().equals("rightSensor")) {
-			player.numOfRightContacts--;
 		}
 	}
 

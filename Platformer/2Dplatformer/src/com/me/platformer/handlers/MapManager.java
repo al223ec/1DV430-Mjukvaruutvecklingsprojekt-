@@ -47,23 +47,23 @@ public class MapManager {
 		this.world = world; 
 		this.path = path; 
 		createTiles(); 
-		loadMaterials();
 	}
 	
 	public void render() {
 		tmr.render(); 
 	}
-	private void loadMaterials(){
-		FileHandle file = new FileHandle("res/maps/materials.json"); 
-		FixtureDef fixtureDef = new FixtureDef(); 
-		JsonReader reader = new JsonReader(); 
-	}
+	
+	//private void loadMaterials(){
+		//Hade tänkt hantera olika material halt, geggigt studsande men saknar tid
+	//}
 	
 	private void createTiles(){
 		//Load map
 		tileMap = new TmxMapLoader().load(path); 
 		createLayer(tileMap.getLayers().get("collision"), B2DVars.BIT_GROUND);		
-		createLayer(tileMap.getLayers().get("goal"), B2DVars.BIT_GROUND);			
+		createLayer(tileMap.getLayers().get("goal"), B2DVars.BIT_GROUND, "goal");
+		createLayer(tileMap.getLayers().get("damage"), B2DVars.BIT_GROUND, "damage");
+			
 	}
 	
 	private void createLayer(MapLayer layer, short bits){
@@ -72,7 +72,6 @@ public class MapManager {
 		
 		MapObjects objects = layer.getObjects(); 
 		Iterator<MapObject> objectIt = objects.iterator(); 
-		boolean isGoal = false; 
 		
 		while(objectIt.hasNext()){
 			MapObject object = objectIt.next(); 
@@ -92,7 +91,6 @@ public class MapManager {
 				shape = getCircle((CircleMapObject)object);
 			}else if(object instanceof EllipseMapObject){
 				shape = getEllipseMapObject((EllipseMapObject)object);
-				isGoal = true; 
 			}
 			if(shape == null){
 				System.out.println("Fail"); 
@@ -102,11 +100,51 @@ public class MapManager {
 			fixtureDef.filter.categoryBits = bits; 
 			
 			Body body = world.createBody(bdef); 
-			if(isGoal){
-				body.createFixture(fixtureDef).setUserData("goal");
-			}else{
-				body.createFixture(fixtureDef); 
+			
+			body.createFixture(fixtureDef); 
+			
+			bodies.add(body); 
+			fixtureDef.shape = null; 
+			shape.dispose(); 
+		}
+	}
+
+	private void createLayer(MapLayer layer, short bits, String userData){
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.isSensor = false; 
+		
+		MapObjects objects = layer.getObjects(); 
+		Iterator<MapObject> objectIt = objects.iterator(); 
+		
+		while(objectIt.hasNext()){
+			MapObject object = objectIt.next(); 
+			
+			Shape shape = null; 
+			BodyDef bdef = new BodyDef();
+			bdef.type = BodyType.StaticBody;
+			
+			if(object instanceof RectangleMapObject){
+				RectangleMapObject rectangle = (RectangleMapObject)object; 
+				shape = getRectangle(rectangle);
+			}else if(object instanceof PolygonMapObject){
+				shape = getPolygon((PolygonMapObject)object);
+			}else if(object instanceof PolylineMapObject){
+				shape = getPolyline((PolylineMapObject)object); 
+			}else if(object instanceof CircleMapObject){
+				shape = getCircle((CircleMapObject)object);
+			}else if(object instanceof EllipseMapObject){
+				shape = getEllipseMapObject((EllipseMapObject)object); 
 			}
+			if(shape == null){
+				System.out.println("Fail"); 
+				continue; 
+			}
+			fixtureDef.shape = shape; 
+			fixtureDef.filter.categoryBits = bits; 
+			
+			Body body = world.createBody(bdef); 
+			
+			body.createFixture(fixtureDef).setUserData(userData);
 			bodies.add(body); 
 			fixtureDef.shape = null; 
 			shape.dispose(); 

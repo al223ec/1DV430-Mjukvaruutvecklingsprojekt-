@@ -1,62 +1,46 @@
 package com.mygdx.pixelJump.states;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.GameStateManager;
 
-public class GameOver extends GameState{
-	//private GameState playState;  
-
-	private TextureAtlas buttonAtlas; 
-	private Button restartGameButton; 
-	private Button mainMenuButton; 
+public class GameOver extends MenuState {
+	private TextButton restartGameButton;
+	private TextButton mainMenuButton; 
 	
-	private Stage stage; 
-	private Table table; 
+	private Label label; 
 	
 	public GameOver(GameStateManager gsm) {
-		super(gsm);
-		
-		stage = new Stage(new StretchViewport(PixelJump.WIDTH, PixelJump.HEIGHT));
-		
-		table = new Table(); 
-		table.debug(); 
-		table.setWidth(PixelJump.WIDTH);
-		table.setHeight(PixelJump.HEIGHT);
-		table.left().bottom(); 
-		
+		super(gsm); 			
+		mainMenuButton = new TextButton("Main menu", buttonstyle); 
+		restartGameButton = new TextButton("Restart game", buttonstyle); 
 		setUpMenu();
+		
+		LabelStyle ls = new LabelStyle();
+		ls.font = PixelJump.cont.getHeaderFont();
+		ls.fontColor = Color.RED; 
+		label = new Label("Game Over!", ls); 
+		
+		upperTable.center(); 
+		upperTable.add(label); 
 	}
+	private void restartGame(){
+		gsm.playNextState(new Test(gsm));
+	}
+	private void mainMenu(){
+		gsm.playNextState(new Menu(gsm)); 
+	}
+	
 	private void setUpMenu(){
-		buttonAtlas = PixelJump.cont.getTextureAtlas("startButtons");// new TextureAtlas(Gdx.files.internal("res/buttons/buttons.pack")); 
-		Skin buttonSkin = new Skin(); 
-		buttonSkin.addRegions(buttonAtlas); 
-		
-		ButtonStyle startBstyle = new ButtonStyle(); 
-		startBstyle.down = buttonSkin.getDrawable("startGamePress"); 
-		startBstyle.up = buttonSkin.getDrawable("startGame"); 
-		restartGameButton = new Button(startBstyle);
-		
-		
-		ButtonStyle mainBstyle = new ButtonStyle(); 
-		mainBstyle.down = buttonSkin.getDrawable("editPlayerPress"); 
-		mainBstyle.up = buttonSkin.getDrawable("editPlayer");
-		mainMenuButton = new Button(mainBstyle);
-		
-		
-		Gdx.input.setInputProcessor(stage); 	
-		
+		super.setUpMenu(restartGameButton, mainMenuButton); 
 		restartGameButton.addListener(new ChangeListener(){
 			public void changed(ChangeEvent event, Actor actor){
-				restartLevel(); 
+				restartGame(); 
 			}
 		});
 		
@@ -65,41 +49,20 @@ public class GameOver extends GameState{
 				mainMenu(); 
 			}
 		});
-		
-		table.row().padBottom(33); 
-		table.add(restartGameButton).padLeft(40).padRight(94);
-		table.add(mainMenuButton).padLeft(94);
-		
-		stage.addActor(table); 	
 	}
-	private void restartLevel(){
-		gsm.playNextState(new Test(gsm));
-	}
-	private void mainMenu(){
-		gsm.playNextState(new Menu(gsm));
-	}
+	
 	@Override
-	protected void handleInput() {}
-
+	public void handleInput(){ }
 	@Override
-	public void update(float dt) {
-		handleInput(); 
-	}
-
+	public void update(float dt) {} 
 	@Override
 	public void render(float dt) {
-		//Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT); 
-		
-		sb.setProjectionMatrix(cam.combined);
-		
-		stage.act(Gdx.graphics.getDeltaTime());
-		stage.draw();
-		Table.drawDebug(stage);	}
+		super.render(dt); 
+	}
 
 	@Override
 	public void dispose() {
-		stage.dispose(); 
-		
+		System.out.println("Game over disposed"); 
+		super.dispose(); 
 	}
-
 }

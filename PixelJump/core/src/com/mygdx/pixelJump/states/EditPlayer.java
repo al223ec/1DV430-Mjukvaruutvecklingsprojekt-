@@ -1,174 +1,59 @@
 package com.mygdx.pixelJump.states;
 
-import com.badlogic.gdx.Gdx;
-import com.mygdx.pixelJump.PixelJump;
-import com.mygdx.pixelJump.gameObjects.Hat;
-import com.mygdx.pixelJump.handlers.GInputProcessor;
-import com.mygdx.pixelJump.handlers.GameStateManager;
-import com.mygdx.pixelJump.handlers.PlayerSettings;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.mygdx.pixelJump.handlers.GameStateManager;
 
-public class EditPlayer extends GameState{
+public class EditPlayer extends MenuState {
+	
+	private TextButton startGameButton;
+	private TextButton mainMenuButton; 
 
-	private Hat hat; 
-	
-	private TextureAtlas allHats; 
-	private Texture background; 
-	
-	private int currentHat = 0; 
-	private int numOfHats = 5; 
-	
-	private PlayerSettings playerSettings; 
-	
-	private Stage stage; 
-	private Table bTable;  
-	private Table uTable;
-	
-	private TextureAtlas buttonAtlas; 
-	private Button startGameButton;
-	private Button mainMenuButton;
-	
 	
 	public EditPlayer(GameStateManager gsm) {
-		super(gsm);
-		Gdx.input.setInputProcessor(new GInputProcessor());
-		background = PixelJump.cont.getTexture("splash");
-		playerSettings = PixelJump.playerSettings; 
+		super(gsm); 			
+		mainMenuButton = new TextButton("Main menu", buttonstyle); 
+		startGameButton = new TextButton("Start game", buttonstyle); 
+		setUpMenu();
 		
-		stage = new Stage(new StretchViewport(PixelJump.WIDTH, PixelJump.HEIGHT)); 
-
-		uTable = new Table(); 
-		uTable.debug(); 
-		uTable.setWidth(PixelJump.WIDTH);
-		uTable.setHeight(700);
-		uTable.top().left(); 
-		uTable.setOriginY(100); 
-		
-		bTable = new Table(); 
-		bTable.debug(); 
-		bTable.setWidth(PixelJump.WIDTH);
-		bTable.setHeight(179);
-		
-		LabelStyle labelStyle = new LabelStyle(); 
-		labelStyle.font = new BitmapFont(); 
-		Skin tableSkin = new Skin();
-		tableSkin.add("default", labelStyle); 		
-		
-		uTable.setSkin(tableSkin); 
-		/*
-		TextButtonStyle tbs = new TextButtonStyle(); 
-		Button lb = new Button(tbs);
-		lb.addListener(new ChangeListener(){
-			public void changed(ChangeEvent event, Actor actor){
-				nextHat(); 
-			} 
-		});
-		Button rb = new Button(tbs);
-		rb.addListener(new ChangeListener(){
-			public void changed(ChangeEvent event, Actor actor){
-				prevHat(); 
-			} 
-		});
-		uTable.add(lb).height(542).width(556);
-		uTable.add(rb).height(542).width(556);
-		uTable.row(); 
-		 */
-		uTable.add("test"); 
-		stage.addActor(uTable);
-		bTable.left().bottom(); 
-		setUpMenu(); 
+		upperTable.add("EditPlayer");
 	}
+	
+	private void startGame(){
+		gsm.playNextState(new Test(gsm));
+	}
+	private void mainMenu(){
+		gsm.playNextState(new Menu(gsm)); 
+	}
+	
 	private void setUpMenu(){
-		buttonAtlas = PixelJump.cont.getTextureAtlas("startButtons");// new TextureAtlas(Gdx.files.internal("res/buttons/buttons.pack")); 
-		Skin buttonSkin = new Skin(); 
-		buttonSkin.addRegions(buttonAtlas); 
-		
-		ButtonStyle startBstyle = new ButtonStyle(); 
-		startBstyle.down = buttonSkin.getDrawable("startGamePress"); 
-		startBstyle.up = buttonSkin.getDrawable("startGame"); 
-		startGameButton = new Button(startBstyle);
-		
-		
-		ButtonStyle mainBstyle = new ButtonStyle(); 
-		mainBstyle.down = buttonSkin.getDrawable("editPlayerPress"); 
-		mainBstyle.up = buttonSkin.getDrawable("editPlayer");
-		mainMenuButton = new Button(mainBstyle);
-		
-		
-		Gdx.input.setInputProcessor(stage); 	
-		
+		super.setUpMenu(startGameButton, mainMenuButton); 
 		startGameButton.addListener(new ChangeListener(){
 			public void changed(ChangeEvent event, Actor actor){
-				///playNext(); 
+				startGame(); 
 			}
 		});
 		
 		mainMenuButton.addListener(new ChangeListener(){
 			public void changed(ChangeEvent event, Actor actor){
-				//editPlayer(); 
+				mainMenu(); 
 			}
 		});
-		
-		bTable.row().padBottom(33); 
-		bTable.add(startGameButton).padLeft(40).padRight(94);
-		bTable.add(mainMenuButton).padLeft(94);
-		
-		stage.addActor(bTable); 	
-	}
-
-	@Override
-	protected void handleInput() {
-	}
-
-	private void nextHat(){
-		System.out.println("nextHat");
-		
-	}
-	private void prevHat(){
-		System.out.println("prevHat");
-		
 	}
 	
 	@Override
-	public void update(float dt) {
-		handleInput(); 
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void handleInput(){ }
+	@Override
+	public void update(float dt) {} 
 	@Override
 	public void render(float dt) {
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); 
-		
-		sb.setProjectionMatrix(cam.combined);
-		sb.begin();
-		sb.draw(background, 0, 0);
-		sb.end();	
-		stage.act(Gdx.graphics.getDeltaTime());
-		stage.draw();
-		Table.drawDebug(stage); 
+		super.render(dt); 
 	}
 
 	@Override
 	public void dispose() {
-		stage.dispose(); 
-		// TODO Auto-generated method stub
-		
+		System.out.println("EditPlayer disposed"); 
+		super.dispose(); 
 	}
-
 }

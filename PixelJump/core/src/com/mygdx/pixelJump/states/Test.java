@@ -4,7 +4,7 @@ import static com.mygdx.pixelJump.handlers.B2DVars.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -12,25 +12,28 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.gameObjects.Player;
 import com.mygdx.pixelJump.handlers.B2DVars;
-import com.mygdx.pixelJump.handlers.GContactListener;
 import com.mygdx.pixelJump.handlers.GInput;
 import com.mygdx.pixelJump.handlers.GameStateManager;
 
 public class Test extends LevelState {
-	
 
+	private BitmapFont timeFont; 
+	
 	public Test(GameStateManager gsm) {
 		super(gsm, "res/maps/test.tmx");
+		timeFont = PixelJump.cont.getFont(); 
 	}
 
 	protected void handleInput() {
 		// keyboard input
 		if(GInput.isPressed(GInput.BUTTONJUMP)){
 			player.jump();		
-			
 		}
 		
 		//Touch inputs
@@ -50,33 +53,9 @@ public class Test extends LevelState {
 	public void update(float dt) {
 		handleInput(); 
 		player.update(dt); 
-		world.step(dt, 6, 2); 		
-	}
-	
-	public void render(float dt) {
-		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT); 
-		
-		cam.position.lerp(new Vector3(player.getX() * PPM + PixelJump.WIDTH/4, player.getY() * PPM + (PixelJump.HEIGHT)/6, 0f), 0.08f);
-		if(debug){
-			b2dCam.position.lerp(new Vector3(player.getX() + PixelJump.WIDTH/4/PPM, player.getY() + (PixelJump.HEIGHT)/6/PPM, 0f), 0.08f);		
-			b2dCam.update();
-		}
-		cam.update();
-		
-		sb.setProjectionMatrix(cam.combined);//Sätter vad som ska renderas 
+		world.step(dt, 6, 2); 	
+		elapsedTime += dt; 
 
-		tmr.setView(cam); 
-		tmr.render();
-		
-		sb.begin();
-		player.render(sb);
-		sb.end();
-		 
-		//Rita box2d
-		
-		if(debug){
-			b2dr.render(world, b2dCam.combined); 
-		}
 		if(player.playerHasCompletedTheLevel){
 			gsm.playNextState(new LevelCompleteState(gsm)); 
 			return; 
@@ -84,6 +63,34 @@ public class Test extends LevelState {
 		if(player.isPlayerDead()){
 			gsm.playNextState(new GameOver(gsm)); 
 			return; 
+		}
+	}
+	
+	public void render(float dt) {
+		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT); 
+		
+		cam.position.lerp(new Vector3(player.getX() * PPM + PixelJump.WIDTH/4, player.getY() * PPM + (PixelJump.HEIGHT)/6, 0f), 0.08f);
+		cam.update();
+		
+		sb.setProjectionMatrix(cam.combined);//Sätter vad som ska renderas 
+		tmr.setView(cam); 
+		tmr.render();
+		
+		//rita spelare
+		player.render(sb);
+	 
+
+		//Rita timer
+		sb.setProjectionMatrix(hudCam.combined);
+		sb.begin();
+		timeFont.draw(sb, Float.toString((float) (Math.round(elapsedTime*1000.0)/1000.0)), PixelJump.WIDTH - 300, PixelJump.HEIGHT - 20); 
+		sb.end();
+
+		//Rita box2d
+		if(debug){
+			b2dCam.position.lerp(new Vector3(player.getX() + PixelJump.WIDTH/4/PPM, player.getY() + (PixelJump.HEIGHT)/6/PPM, 0f), 0.08f);		
+			b2dCam.update();
+			b2dr.render(world, b2dCam.combined); 
 		}
 	}
 	
@@ -120,7 +127,6 @@ public class Test extends LevelState {
 		shape.dispose(); 
 	}
 
-	@Override
 	public void resetLevel() {
 		// TODO Auto-generated method stub
 		

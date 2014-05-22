@@ -28,7 +28,11 @@ public abstract class LevelState extends GameState{
 	protected Player player; 
 	protected float hitBoxSize = 45; 
 	protected Background gameBackground; 
-	protected OrthogonalTiledMapRenderer tmr; 
+	protected OrthogonalTiledMapRenderer tmr;
+	
+	protected OrthographicCamera  hudCam;
+	
+	protected float elapsedTime; 
 	
 	public LevelState(GameStateManager gsm, String mapPath) {
 		super(gsm);
@@ -45,6 +49,7 @@ public abstract class LevelState extends GameState{
 		}		
 		mapManager = new MapManager(world, mapPath); 
 		tmr = new OrthogonalTiledMapRenderer(mapManager.getTiledMap()); 
+		hudCam = gsm.getHudCamera(); 
 	}
 	
 	public abstract void resetLevel();

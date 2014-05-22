@@ -2,16 +2,8 @@ package com.mygdx.pixelJump;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.utils.viewport.Viewport;
-
 import com.mygdx.pixelJump.handlers.Content;
 import com.mygdx.pixelJump.handlers.GInputProcessor;
 import com.mygdx.pixelJump.handlers.GameStateManager;
@@ -28,15 +20,12 @@ public static final String TITLE = "Pixel Jump";
 	
 	private SpriteBatch sb;
 	private OrthographicCamera cam; 
+	private OrthographicCamera hudCam;
 	
 	private GameStateManager gsm;
 
 	public static Content cont; 
 	public static PlayerSettings playerSettings;
-	
-	
-	private GL20 gl; 
-	
 	public void create() {
 		Gdx.input.setInputProcessor(new GInputProcessor());
 		loadTextures(); 
@@ -44,14 +33,12 @@ public static final String TITLE = "Pixel Jump";
 		sb = new SpriteBatch();
 		cam = new OrthographicCamera(WIDTH, HEIGHT);
 		cam.setToOrtho(false, WIDTH, HEIGHT);
-
-		gsm = new GameStateManager(this);		
 		
+		hudCam = new OrthographicCamera(WIDTH, HEIGHT);
+		hudCam.setToOrtho(false, WIDTH, HEIGHT);
+		
+		gsm = new GameStateManager(this);		
 		playerSettings = new PlayerSettings(); 
-		//Kamera
-		gl = Gdx.graphics.getGL20(); 
-		gl.glClear(GL20.GL_COLOR_BUFFER_BIT); 
-		gl.glViewport(0, 0, WIDTH, HEIGHT); 
 	}
 	
 	private void loadTextures(){
@@ -59,8 +46,7 @@ public static final String TITLE = "Pixel Jump";
 		cont.loadTextures("res/images/player/run.png", "runSprites"); 
 		cont.loadTextures("res/images/player/hats/hat.png", "hat"); 
 		cont.loadTextures("res/images/splash.png", "splash");
-		
-		cont.loadTextureAtlas("res/buttons/buttons.pack", "startButtons"); 
+		cont.loadTextureAtlas("res/buttons/buttons.pack", "buttons"); 
 	}
 	
 	public void render() {
@@ -70,11 +56,12 @@ public static final String TITLE = "Pixel Jump";
 	}
 	
 	public void dispose() {
-		
+		cont.disposeAll(); 
 	}
 	
 	public SpriteBatch getSpriteBatch() { return sb; }
 	public OrthographicCamera getCamera() { return cam; }
+	public OrthographicCamera getHudCamera() { return hudCam; }
 	
 	public void resize(int w, int h) {}
 	public void pause() {}

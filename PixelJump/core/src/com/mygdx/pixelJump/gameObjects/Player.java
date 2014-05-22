@@ -72,8 +72,7 @@ public class Player extends B2DSprite{
 	}
 
 	public void render(SpriteBatch sb) {
-		//Rendera spelarens textur här
-
+		sb.begin(); 
 		if(playerIsFlipping){
 			sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 + 8,
 					animation.getFrameWidth()/2, animation.getFrameHeight()/2,
@@ -82,6 +81,7 @@ public class Player extends B2DSprite{
 		else{
 			sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 + 8);
 		}
+		sb.end(); 
 		//hat.setPosition(body.getPosition()); 
 		//hat.render(sb); 
 	}

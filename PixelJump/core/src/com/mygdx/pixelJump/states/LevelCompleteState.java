@@ -1,43 +1,63 @@
 package com.mygdx.pixelJump.states;
 
-import com.mygdx.pixelJump.handlers.GInput;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.GameStateManager;
 
 
-public class LevelCompleteState extends GameState{
-
+public class LevelCompleteState extends MenuState{
+	private TextButton nextLevelButton;
+	private TextButton mainMenuButton; 
+	
+	private Label label; 
+	
 	public LevelCompleteState(GameStateManager gsm) {
-		super(gsm);
-		// TODO Auto-generated constructor stub
-	}
+		super(gsm); 			
+		mainMenuButton = new TextButton("Main menu", buttonstyle); 
+		nextLevelButton = new TextButton("Next level", buttonstyle); 
+		setUpMenu();
+		
+		LabelStyle ls = new LabelStyle();
+		ls.font = PixelJump.cont.getHeaderFont();
 
-	@Override
-	protected void handleInput() {
-		// TODO Auto-generated method stub
-		if(GInput.isPressed()){
-			gsm.playNextState(new Test(gsm));
-		}
-		//Keybouad
-		if(GInput.isPressed(GInput.BUTTONJUMP)){
-			gsm.playNextState(new Test(gsm));
-		}
+		label = new Label("       Level \nCompleted!", ls); 
+		
+		upperTable.center(); 
+		upperTable.add(label); 
 	}
-
-	@Override
-	public void update(float dt) {
-		handleInput();
+	private void nextLevel(){
+		gsm.playNextState(new Test(gsm));
 	}
-
+	private void mainMenu(){
+		gsm.playNextState(new Menu(gsm)); 
+	}
+	
+	private void setUpMenu(){
+		super.setUpMenu(nextLevelButton, mainMenuButton); 
+		nextLevelButton.addListener(new ChangeListener(){
+			public void changed(ChangeEvent event, Actor actor){
+				nextLevel(); 
+			}
+		});
+		
+		mainMenuButton.addListener(new ChangeListener(){
+			public void changed(ChangeEvent event, Actor actor){
+				mainMenu(); 
+			}
+		});
+	}
 	@Override
 	public void render(float dt) {
-		// TODO Auto-generated method stub
-		
+		super.render(dt); 
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("LevelCompleted disposed"); 
+		super.dispose(); 
 	}
-
 }

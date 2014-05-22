@@ -35,4 +35,8 @@ public class GameStateManager {
 	public OrthographicCamera getCamera() {
 		return game.getCamera();
 	}
+	
+	public OrthographicCamera getHudCamera() {
+		return game.getHudCamera();
+	}
 }

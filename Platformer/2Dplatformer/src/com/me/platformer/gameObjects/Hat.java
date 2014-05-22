@@ -40,6 +40,12 @@ public class Hat {
 		height = hat.getHeight(); 
 		//allHats = new TextureAtlas(Gdx.files.internal("res/images/hats/hats.pack")); 
 	}
+	public Hat(Texture texture){
+		hat = PlatformerGame.cont.getTexture("hat");
+		width = hat.getWidth(); 
+		height = hat.getHeight(); 
+		//allHats = new TextureAtlas(Gdx.files.internal("res/images/hats/hats.pack")); 
+	}
 
 	public void update(float dt) {
 		//animation.update(dt); 

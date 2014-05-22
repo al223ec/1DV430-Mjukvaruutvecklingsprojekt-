@@ -15,11 +15,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.me.platformer.PlatformerGame;
 import com.me.platformer.gameObjects.Player;
 import com.me.platformer.handlers.B2DVars;
+import com.me.platformer.handlers.GContactListener;
 import com.me.platformer.handlers.GInput;
 import com.me.platformer.handlers.GameStateManager;
 
 public class Test extends LevelState {
 	
+
 	public Test(GameStateManager gsm) {
 		super(gsm, "res/maps/test.tmx");
 	}
@@ -80,14 +82,14 @@ public class Test extends LevelState {
 			return; 
 		}
 		if(player.isPlayerDead()){
-			gsm.playNextState(new GameOver(gsm, this)); 
+			gsm.playNextState(new GameOver(gsm)); 
 			return; 
 		}
 	}
 	
 	@Override
 	public void dispose() {}
-	
+
 	protected void createPlayer(){
 		BodyDef bdef = new BodyDef();
 		FixtureDef fDef = new FixtureDef();
@@ -117,6 +119,7 @@ public class Test extends LevelState {
 		body.createFixture(fDef).setUserData("footSensor");
 		shape.dispose(); 
 	}
+
 	@Override
 	public void resetLevel() {
 		// TODO Auto-generated method stub

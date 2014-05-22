@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="36" height="8" tilewidth="90" tileheight="90">
+ <tileset firstgid="1" name="bg" tilewidth="90" tileheight="90">
+  <image source="bg.png" width="2636" height="853"/>
+ </tileset>
+ <layer name="ground" width="36" height="8">
+  <data encoding="base64" compression="zlib">
+   eJyFztN2XgEUhdE/xWvUtpPUtp00ZWrbtm2ntm3btm1bsy+Qs8eet2t8SUKhUFKSkZwUpCQVqUlDWtKRngxkJBOZyUJWspGdHOQkF7nJQzgRRJI3FP/lIz8FKEghClOEohSjOCUoSSlKU4aylKM8FahIJSpThapUozo1qEmtgJ7aRBFNHWKoSz3q04CGNCKWxjShKc1oTgta0orWtKEt7WhPBzrSic4BPV3oSje604Oe9KI3fehLP/ozgIEMYjBDGMowhjOCkYxiNGMYyzjGMyGgZyKTmMwUpjKN6cxgJrOYzRzmMo/5xLGAhSxiMUtYyjKWs4KVrGI1awJ61rKO9WxgI5vYzBa2so3t7GAnu9jNHvayj/0c4CCHOMwRjnKM45zgZEDPKU5zhrOc4zwXuMglLnOFq1zjOje4yS1uc4e73OM+D3jIIx7zhKc8C+h5zgte8orXvOEt73jPBz7yic984Svf+M4PfvKL3/zh7//xME8CEpKIxGHx9/wDaQV94w==
+  </data>
+ </layer>
+ <objectgroup name="collision" width="36" height="8">
+  <object x="42" y="658">
+   <polyline points="0,0 312,-9 606,16 968,19 1200,-130 1306,-126 1416,-67 1470,-41"/>
+  </object>
+  <object x="1508" y="615">
+   <polyline points="0,0 124,28 218,89 294,104 401,95 563,85 743,98 920,73 1026,76 1098,-59 1000,-139 1080,-227"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="goal" width="36" height="8">
+  <object x="2228" y="461" width="174" height="174">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>

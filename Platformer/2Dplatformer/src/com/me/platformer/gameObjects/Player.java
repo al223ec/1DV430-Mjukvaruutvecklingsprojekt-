@@ -5,38 +5,40 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.math.MathUtils;
 import com.me.platformer.PlatformerGame;
 import com.me.platformer.handlers.B2DVars;
+import com.me.platformer.handlers.PlayerSettings;
 
 public class Player extends B2DSprite{
-	
 	private boolean playerIsDead; 
 	private float speed = 2.5f; 
 
 	private boolean isOnGround () { return numOfFootContacts > 0; }
-	private boolean isCollidingRight () { return /*numOfRightContacts > 0;*/ false; }
 	private boolean playerIsFlipping; 
 
 	public int numOfFootContacts; 
 	
 	public boolean playerHasCompletedTheLevel; 
 	public void setPlayerIsDead(){ playerIsDead = true; } 
-	public boolean isPlayerDead(){ return playerIsDead || isCollidingRight(); }
+	public boolean isPlayerDead(){ return playerIsDead; }
 	
 	private float currentRadian; 
+	private Texture hatTexture; 
 	
-	private Hat hat; 
-	
-	public Player(Body body) {
-		super(body);
+	private PlayerSettings playerSettings; 
+	public Player(Body body){
+		super(body); 
 		playerIsDead = false;
+		
+		playerSettings = PlatformerGame.playerSettings; 
+		hatTexture = playerSettings.getCurrentHatTexture(); 
 		
 		Texture run = PlatformerGame.cont.getTexture("runSprites");
 		TextureRegion[] runSprites = TextureRegion.split(run, 50, 70)[0];
 		setAnimationframes(runSprites, 1/32f);
-		
-		hat = new Hat(); 
 	}
+
 
 	public void update(float dt) {
 		checkBounds(); 
@@ -44,12 +46,19 @@ public class Player extends B2DSprite{
 			body.setLinearVelocity(speed, body.getLinearVelocity().y); //Rör sig automatiskt i sidled
 		}
 
-		hat.update(dt);		
+		//hat.update(dt);		
 		if(playerIsFlipping){
-			currentRadian += 0.2f;
-			if(currentRadian > 3.14f){
-				body.setTransform(body.getPosition(), 3.14f);
-				currentRadian = 3.14f; 
+	
+			if(currentRadian > 1){
+				currentRadian *= 1.2f; 
+			}else{
+				currentRadian += 0.2f;
+			}
+			
+			System.out.println(currentRadian); 
+			if(currentRadian > 6.28f){
+				body.setTransform(body.getPosition(), 0f);
+				currentRadian = 0; 
 				playerIsFlipping = false; 
 			}else{
 				body.setTransform(body.getPosition(), currentRadian);
@@ -64,13 +73,21 @@ public class Player extends B2DSprite{
 
 	public void render(SpriteBatch sb) {
 		//Rendera spelarens textur här
-		sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 + 8); 
-		hat.setPosition(body.getPosition()); 
-		hat.render(sb); 
+
+		if(playerIsFlipping){
+			sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 + 8,
+					animation.getFrameWidth()/2, animation.getFrameHeight()/2,
+					animation.getFrameWidth(), animation.getFrameHeight(), 1f, 1f,  currentRadian * MathUtils.radiansToDegrees); 	
+		}
+		else{
+			sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 + 8);
+		}
+		//hat.setPosition(body.getPosition()); 
+		//hat.render(sb); 
 	}
 	
 	public void jump(){
-		if(isOnGround() && !isCollidingRight()){
+		if(isOnGround()){
 			//body.applyForceToCenter(0, 200, true);
 			body.applyLinearImpulse(0, 2f, getX(), getY(), true);
 		}
@@ -78,8 +95,10 @@ public class Player extends B2DSprite{
 	//Denna funktion ska flippa spelaren, dvs roteara 180 grader, detta har jag inte lyckats med fullt ut och kommer inte hinna implementera 
 	//Så spelaren får helt enkelt bara hoppa högre
 	public void flip(){
-		body.applyLinearImpulse(0, 2.1f, getX(), getY(), true);
-		//playerIsFlipping = true; 
+		if(isOnGround()){
+			body.applyLinearImpulse(0, 2f, getX(), getY(), true);
+			playerIsFlipping = true; 
+		}
 	}
 	private void checkBounds(){
 		if(getY() < -2){
@@ -89,5 +108,8 @@ public class Player extends B2DSprite{
 	public void destroyBody(){
 		World world = body.getWorld(); 
 		world.destroyBody(body); 
+	}
+	public void setBody(Body body) {
+		this.body = body; 
 	}
 }

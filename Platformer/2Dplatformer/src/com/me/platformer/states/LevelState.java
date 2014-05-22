@@ -26,7 +26,6 @@ public abstract class LevelState extends GameState{
 	
 	protected Player player; 
 	protected float hitBoxSize = 45; 
-	
 	protected Background gameBackground; 
 	protected OrthogonalTiledMapRenderer tmr; 
 	
@@ -47,6 +46,6 @@ public abstract class LevelState extends GameState{
 		tmr = new OrthogonalTiledMapRenderer(mapManager.getTiledMap()); 
 	}
 	
-	public abstract void resetLevel(); 
-	protected abstract void createPlayer(); 
+	public abstract void resetLevel();
+	protected abstract void createPlayer();
 }

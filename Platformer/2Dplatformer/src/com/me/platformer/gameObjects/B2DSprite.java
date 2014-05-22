@@ -12,11 +12,12 @@ public abstract class B2DSprite {
 	protected float height; 
 	
 	protected Animation animation; 
-	
+
 	public B2DSprite(Body body){
 		this.body = body; 
 		animation = new Animation(); 
 	}
+	
 		
 	public float getX() { return body.getPosition().x; }
 	public float getY() { return body.getPosition().y; }

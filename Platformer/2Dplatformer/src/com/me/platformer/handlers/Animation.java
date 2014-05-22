@@ -62,4 +62,12 @@ public class Animation {
 	public TextureRegion getFrame() { return frames[currentFrame]; }
 	public int getTimesPlayed(){ return timesPlayed; }
 	public boolean hasPlayedOnce() { return timesPlayed > 0; }
+
+	public float getFrameHeight() {
+		return frames[currentFrame].getRegionHeight();
+	}
+
+	public float getFrameWidth() {
+		return frames[currentFrame].getRegionWidth();
+	}
 }

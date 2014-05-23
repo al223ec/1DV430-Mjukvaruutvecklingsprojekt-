@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.GameStateManager;
+import com.mygdx.pixelJump.states.levels.Test;
 
 
 public class LevelCompleteState extends MenuState{
@@ -50,11 +51,6 @@ public class LevelCompleteState extends MenuState{
 			}
 		});
 	}
-	@Override
-	public void render(float dt) {
-		super.render(dt); 
-	}
-
 	@Override
 	public void dispose() {
 		System.out.println("LevelCompleted disposed"); 

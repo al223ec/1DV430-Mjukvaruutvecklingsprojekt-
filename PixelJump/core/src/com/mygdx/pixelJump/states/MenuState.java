@@ -85,7 +85,7 @@ public abstract class MenuState extends GameState {
 	@Override
 	public void update(float dt){}
 	@Override
-	public void render(float dt){
+	public void render(){
 		if(splash != null)
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); 
 		
@@ -98,7 +98,7 @@ public abstract class MenuState extends GameState {
 		}
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
-		Table.drawDebug(stage); 
+	//	Table.drawDebug(stage); 
 	}
 
 	@Override

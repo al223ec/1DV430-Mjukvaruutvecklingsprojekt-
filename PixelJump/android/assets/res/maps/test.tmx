@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="60" height="16" tilewidth="45" tileheight="45">
- <tileset firstgid="1" name="blocks" tilewidth="45" tileheight="45">
-  <image source="blocks.png" width="45" height="45"/>
- </tileset>
- <tileset firstgid="2" name="tl" tilewidth="45" tileheight="45">
+ <tileset firstgid="1" name="tl" tilewidth="45" tileheight="45">
   <image source="tl.png" width="1280" height="360"/>
  </tileset>
- <tileset firstgid="226" name="tr" tilewidth="45" tileheight="45">
-  <image source="tr.png" width="1280" height="360"/>
- </tileset>
- <tileset firstgid="450" name="bl" tilewidth="45" tileheight="45">
+ <tileset firstgid="225" name="bl" tilewidth="45" tileheight="45">
   <image source="bl.png" width="1280" height="360"/>
  </tileset>
- <tileset firstgid="674" name="br" tilewidth="45" tileheight="45">
+ <tileset firstgid="449" name="br" tilewidth="45" tileheight="45">
   <image source="br.png" width="1280" height="360"/>
+ </tileset>
+ <tileset firstgid="673" name="tr" tilewidth="45" tileheight="45">
+  <image source="tr.png" width="1280" height="360"/>
  </tileset>
  <layer name="ground" width="60" height="16">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="collision" width="60" height="16">
-  <object x="0" y="553">
+  <object x="0" y="543">
    <polyline points="23,-159 20,18 57,46 74,75 92,116 172,115 235,114 327,144 388,161 457,165 517,157 570,141 676,122 767,120 809,124 838,122 902,86 953,44 1002,-6 1039,-45 1079,-95 1147,-142 1193,-151 1257,-147 1292,-127 1325,-88 1342,-45 1358,-10 1386,29 1426,55 1472,56 1529,34 1556,27"/>
   </object>
-  <object x="1535" y="583">
+  <object x="1533" y="574">
    <polyline points="23,-3 66,0 103,22 124,87 155,120 180,144 195,149 230,149 279,126 337,93 409,88 455,106 509,129 557,135 606,127 668,112 745,103 799,115 822,125 846,114 897,128 923,129 949,100 959,45 942,8 902,-45 871,-90 862,-126 874,-158 906,-174 958,-188 983,-209"/>
   </object>
  </objectgroup>
@@ -34,9 +31,6 @@
   </object>
  </objectgroup>
  <objectgroup name="damage" width="60" height="16">
-  <object x="630" y="702">
-   <polyline points="0,0 33,-91 47,-6"/>
-  </object>
   <object x="2284" y="697">
    <polyline points="0,0 10,-41 32,11 56,-106 68,15"/>
   </object>

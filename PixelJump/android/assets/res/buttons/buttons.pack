@@ -5,15 +5,36 @@ filter: Nearest,Nearest
 repeat: none
 button
   rotate: false
-  xy: 1, 1
+  xy: 1, 333
   size: 507, 144
   orig: 507, 144
   offset: 0, 0
   index: -1
 pressed
   rotate: false
-  xy: 510, 1
+  xy: 1, 187
   size: 507, 144
   orig: 507, 144
+  offset: 0, 0
+  index: -1
+selectButton
+  rotate: false
+  xy: 510, 293
+  size: 184, 184
+  orig: 184, 184
+  offset: 0, 0
+  index: -1
+selectButtonLocked
+  rotate: false
+  xy: 1, 1
+  size: 184, 184
+  orig: 184, 184
+  offset: 0, 0
+  index: -1
+selectButtonPressed
+  rotate: false
+  xy: 696, 293
+  size: 184, 184
+  orig: 184, 184
   offset: 0, 0
   index: -1

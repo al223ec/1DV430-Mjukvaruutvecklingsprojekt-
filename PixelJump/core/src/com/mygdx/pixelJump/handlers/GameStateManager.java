@@ -20,8 +20,8 @@ public class GameStateManager {
 	public void update(float dt){
 		currentGameState.update(dt);
 	}
-	public void render(float dt){
-		currentGameState.render(dt); 
+	public void render(){
+		currentGameState.render(); 
 	}
 	public void playNextState(GameState state){	
 		currentGameState.dispose(); 

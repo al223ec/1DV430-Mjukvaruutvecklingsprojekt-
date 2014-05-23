@@ -46,13 +46,18 @@ public static final String TITLE = "Pixel Jump";
 		cont.loadTextures("res/images/player/run.png", "runSprites"); 
 		cont.loadTextures("res/images/player/hats/hat.png", "hat"); 
 		cont.loadTextures("res/images/splash.png", "splash");
+		cont.loadTextures("res/images/background.png", "background");
+		cont.loadTextures("res/images/hud.png", "hud");
+		
+		cont.loadTextures("res/maps/gameBackground.png", "gameBackground"); 
+		cont.loadTextures("res/maps/gameBackgroundFront.png", "gameBackgroundFront"); 
 		cont.loadTextureAtlas("res/buttons/buttons.pack", "buttons"); 
 	}
 	
 	public void render() {
 		Gdx.graphics.setTitle(TITLE + " -- FPS: " + Gdx.graphics.getFramesPerSecond());
 		gsm.update(Gdx.graphics.getDeltaTime());
-		gsm.render(Gdx.graphics.getDeltaTime());
+		gsm.render();
 	}
 	
 	public void dispose() {

@@ -43,11 +43,6 @@ public class Menu extends MenuState {
 	}
 	
 	@Override
-	public void render(float dt) {
-		super.render(dt); 
-	}
-
-	@Override
 	public void dispose() {
 		System.out.println("menu disposed"); 
 		super.dispose(); 

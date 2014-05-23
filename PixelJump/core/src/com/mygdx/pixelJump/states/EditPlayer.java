@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.pixelJump.handlers.GameStateManager;
+import com.mygdx.pixelJump.states.levels.Test;
 
 public class EditPlayer extends MenuState {
 	
@@ -46,11 +47,6 @@ public class EditPlayer extends MenuState {
 	public void handleInput(){ }
 	@Override
 	public void update(float dt) {} 
-	@Override
-	public void render(float dt) {
-		super.render(dt); 
-	}
-
 	@Override
 	public void dispose() {
 		System.out.println("EditPlayer disposed"); 

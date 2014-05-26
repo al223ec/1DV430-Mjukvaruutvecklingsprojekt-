@@ -34,6 +34,7 @@ public class Background {
 	}
 	
 	public void draw(SpriteBatch sb) {
+		//Känner att jag inte har tid att lösa detta på ett vettigt sätt
 		System.out.println(gameCam.position.x); 
 		x -= moveScale;
 		sb.begin(); 

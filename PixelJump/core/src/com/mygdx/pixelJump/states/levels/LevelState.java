@@ -20,7 +20,7 @@ import com.mygdx.pixelJump.states.GameState;
 
 
 public abstract class LevelState extends GameState{
-	protected boolean debug = true; 
+	protected boolean debug = false; 
 	protected World world; 
 
 	protected MapManager mapManager; 
@@ -55,7 +55,6 @@ public abstract class LevelState extends GameState{
 		mapManager = new MapManager(world, mapPath); 
 		tmr = new OrthogonalTiledMapRenderer(mapManager.getTiledMap()); 
 		hudCam = gsm.getHudCamera(); 
-		
 		hudTexture = PixelJump.cont.getTexture("hud"); 
 	}
 	

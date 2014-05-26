@@ -45,8 +45,13 @@ public static final String TITLE = "Pixel Jump";
 		cont = new Content();
 		cont.loadTextures("res/images/player/run.png", "runSprites"); 
 		cont.loadTextures("res/images/splash.png", "splash");
+		cont.loadTextures("res/images/editSplash.png", "editSplash");
 		cont.loadTextures("res/images/background.png", "background");
 		cont.loadTextures("res/images/hud.png", "hud");
+		
+		cont.loadTextures("res/images/player/hats/dreddGame.png", "dredd"); 
+		cont.loadTextures("res/images/player/hats/roboGame.png", "robo"); 
+		cont.loadTextures("res/images/player/hats/spiderGame.png", "spider"); 
 		
 		cont.loadTextures("res/maps/gameBackground.png", "gameBackground"); 
 		cont.loadTextures("res/maps/gameBackgroundFront.png", "gameBackgroundFront"); 

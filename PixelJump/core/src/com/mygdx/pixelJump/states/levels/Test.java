@@ -28,6 +28,7 @@ public class Test extends LevelState {
 		super(gsm, "res/maps/test.tmx");
 		timeFont = PixelJump.cont.getFont();  
 		background = new Background(gsm.getCamera()); 
+
 	}
 
 	protected void handleInput() {
@@ -50,7 +51,7 @@ public class Test extends LevelState {
 
 		world.step(PixelJump.STEP, 1, 1); 	
 		player.update(dt);
-		
+
 		elapsedTime += dt; 
 		
 		if(player.playerHasCompletedTheLevel){
@@ -69,15 +70,15 @@ public class Test extends LevelState {
 		cam.position.lerp(new Vector3(player.getX() * PPM + PixelJump.WIDTH/4, player.getY() * PPM + (PixelJump.HEIGHT)/6, 0f), 0.08f);
 		cam.update();
 		
-		//Rita bakgrounden 
-		//sb.setProjectionMatrix(hudCam.combined);
-		
-		sb.setProjectionMatrix(cam.combined);//Sätter vad som ska renderas 
+		//Rita bakgrunden 
+		sb.setProjectionMatrix(hudCam.combined);
 		background.draw(sb);
-		tmr.setView(cam); 
+		
+		tmr.setView(cam);
 		tmr.render();
 		
 		//rita spelare
+		sb.setProjectionMatrix(cam.combined);//Sätter vad som ska renderas 
 		player.render(sb);
 
 		//Rita timer

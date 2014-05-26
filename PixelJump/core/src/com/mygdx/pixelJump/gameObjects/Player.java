@@ -2,6 +2,7 @@ package com.mygdx.pixelJump.gameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -32,14 +33,11 @@ public class Player extends B2DSprite{
 		playerIsDead = false;
 		playerIsFlipping = false; 
 		
-		playerSettings = PixelJump.playerSettings; 
-		hatTexture = playerSettings.getCurrentHatTexture(); 
+		hatTexture = PixelJump.playerSettings.getCurrentHatTexture();
 		
 		Texture run = PixelJump.cont.getTexture("runSprites");
 		TextureRegion[] runSprites = TextureRegion.split(run, 50, 70)[0];
 		setAnimationframes(runSprites, 1/32f);
-		
-		
 	}
 
 
@@ -80,9 +78,18 @@ public class Player extends B2DSprite{
 			sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 + 8,
 					animation.getFrameWidth()/2, animation.getFrameHeight()/2,
 					animation.getFrameWidth(), animation.getFrameHeight(), 1f, 1f,  currentRadian * MathUtils.radiansToDegrees); 	
+			if(hatTexture != null){
+				sb.draw(hatTexture, (getX() * B2DVars.PPM)-width/2 -5, (getY() * B2DVars.PPM - height/2 + 12), 
+				animation.getFrameWidth()/2, animation.getFrameHeight()/2,
+				animation.getFrameWidth(), animation.getFrameHeight(), 1f, 1f,  currentRadian * MathUtils.radiansToDegrees,
+				0, 0, hatTexture.getWidth(), hatTexture.getHeight(), false, false); 	
+			}
 		}
 		else{
-			sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 + 8);
+			sb.draw(animation.getFrame(), (getX() * B2DVars.PPM)-width/2, (getY() * B2DVars.PPM ) - height/2 +12);
+			if(hatTexture != null){
+				sb.draw(hatTexture, (getX() * B2DVars.PPM)-width/2 -5, (getY() * B2DVars.PPM )); 
+			}
 		}
 		sb.end(); 
 		//hat.setPosition(body.getPosition()); 

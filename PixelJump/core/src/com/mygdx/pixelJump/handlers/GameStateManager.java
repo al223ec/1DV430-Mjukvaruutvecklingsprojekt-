@@ -24,6 +24,7 @@ public class GameStateManager {
 		currentGameState.render(); 
 	}
 	public void playNextState(GameState state){	
+		GInput.resetKeys();
 		currentGameState.dispose(); 
 		currentGameState = state; 
 	}

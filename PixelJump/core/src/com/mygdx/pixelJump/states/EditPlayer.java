@@ -1,21 +1,24 @@
 package com.mygdx.pixelJump.states;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.GameStateManager;
-import com.mygdx.pixelJump.states.levels.Test;
 import com.mygdx.pixelJump.states.myMenuItems.SelectButton;
 
 public class EditPlayer extends MenuState {
 	
 	private TextButton startGameButton;
 	private TextButton mainMenuButton; 
+	private com.esotericsoftware.tablelayout.Cell<Actor> currentActor; 
 	
 	private float selectSize = 210;
 	private TextButtonStyle selectButtonStyle; 
@@ -33,6 +36,8 @@ public class EditPlayer extends MenuState {
 		buttonAtlas = PixelJump.cont.getTextureAtlas("hats");
 		buttonSkin = new Skin(); 
 		buttonSkin.addRegions(buttonAtlas); 
+		
+		splash = PixelJump.cont.getTexture("editSplash");
 	
 		setUpMenu();
 	}
@@ -68,45 +73,55 @@ public class EditPlayer extends MenuState {
 		return tbstyle;  
 	}
 	
-	private SelectButton getSelectButton(String key){
+	private SelectButton getSelectButton(String key, String drawableKey){
 		SelectButton selectButton;
-		selectButton = new SelectButton("", getButtonStyle(key), key);
+		selectButton = new SelectButton("", getButtonStyle(drawableKey), key);
 		selectButton.addListener(new ChangeListener(){
 			public void changed(ChangeEvent event, Actor actor){
-				selectedHat(actor); 
+				selectItem(actor); 
 			}
 		}); 
-		
 		return selectButton; 
 	}
 	 
 	private void initHatSelection(){
-		upperTable.add("EditPlayer").colspan(3).left(); 
+		upperTable.add("EditPlayer").left(); 
 		upperTable.add("Hats"); 
 		
 		upperTable.row();
-		upperTable.add().width(selectSize).height(selectSize).center();
-		upperTable.add().width(selectSize).height(selectSize).center();
-		upperTable.add().width(selectSize/2).height(selectSize).center();	
-			
-		upperTable.add(getSelectButton("robo")).center().width(selectSize).height(selectSize).pad(10);
-		upperTable.add(getSelectButton("dredd")).center().width(selectSize).height(selectSize).pad(10);
+		
+		currentActor = upperTable.add().height(selectSize + 160); 
+		if(PixelJump.playerSettings.getItemName() != null){
+			currentActor.setWidget(setCurrentItem(PixelJump.playerSettings.getItemName()));
+		}
+		upperTable.add(getSelectButton("robo", "roboSmall")).center().width(selectSize).height(selectSize).pad(10);
+		upperTable.add(getSelectButton("dredd", "dreddSmall")).center().width(selectSize).height(selectSize).pad(10);
+		upperTable.add(getSelectButton("spider", "spiderSmall")).center().width(selectSize).height(selectSize).pad(10);
 		upperTable.row();
 		
-		upperTable.add().width(selectSize).height(selectSize).center();
-		upperTable.add().width(selectSize).height(selectSize).center();	
-		upperTable.add().width(selectSize/2).height(selectSize).center();
-		
-		upperTable.add(getSelectButton("spider")).center().width(selectSize).height(selectSize).pad(10);
 		upperTable.padBottom(20); 
 	}
 	
-	private void selectedHat(Actor actor) {
+	private void selectItem(Actor actor) {
 		SelectButton sbtn = (SelectButton) actor; 
-		System.out.println(sbtn.getItemName()); 
-		
+		PixelJump.playerSettings.setHatName(sbtn.getItemName()); 
+		currentActor.setWidget(setCurrentItem(sbtn.getItemName()));
+		System.out.println(sbtn.getItemName()); 	
 	}
 
+	private ImageButton setCurrentItem(String itemName){
+		ImageButton imgbtn = new ImageButton(buttonSkin.getDrawable(itemName));
+		imgbtn.addListener(new ChangeListener(){
+			public void changed(ChangeEvent event, Actor actor){
+				resetSelectedItem(); 
+			}
+		}); 
+		return imgbtn; 
+	}
+	private void resetSelectedItem(){
+		PixelJump.playerSettings.setHatName(null); 
+		currentActor.setWidget(null); 
+	}
 	@Override
 	public void handleInput(){ }
 	@Override

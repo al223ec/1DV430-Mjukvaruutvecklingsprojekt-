@@ -47,4 +47,9 @@ public class GInput {
 	public static boolean isPressed(int i){ 
 		return keys[i] && !pkeys[i]; 
 	} 
+	
+	public static void resetKeys(){
+		touchDown = false; 
+		ptouchDown = false; 
+	}
 }

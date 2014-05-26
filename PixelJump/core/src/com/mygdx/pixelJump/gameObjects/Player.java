@@ -30,6 +30,7 @@ public class Player extends B2DSprite{
 	public Player(Body body){
 		super(body); 
 		playerIsDead = false;
+		playerIsFlipping = false; 
 		
 		playerSettings = PixelJump.playerSettings; 
 		hatTexture = playerSettings.getCurrentHatTexture(); 
@@ -37,6 +38,8 @@ public class Player extends B2DSprite{
 		Texture run = PixelJump.cont.getTexture("runSprites");
 		TextureRegion[] runSprites = TextureRegion.split(run, 50, 70)[0];
 		setAnimationframes(runSprites, 1/32f);
+		
+		
 	}
 
 

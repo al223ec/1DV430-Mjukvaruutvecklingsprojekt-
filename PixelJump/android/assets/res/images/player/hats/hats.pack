@@ -1,0 +1,26 @@
+
+hats.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+robo
+  rotate: false
+  xy: 1, 1
+  size: 321, 331
+  orig: 321, 331
+  offset: 0, 0
+  index: -1
+dredd
+  rotate: false
+  xy: 324, 72
+  size: 344, 260
+  orig: 344, 260
+  offset: 0, 0
+  index: -1
+spider
+  rotate: false
+  xy: 670, 56
+  size: 288, 276
+  orig: 288, 276
+  offset: 0, 0
+  index: -1

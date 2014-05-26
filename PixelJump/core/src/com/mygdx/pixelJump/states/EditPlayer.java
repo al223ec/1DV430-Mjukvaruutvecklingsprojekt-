@@ -1,6 +1,8 @@
 package com.mygdx.pixelJump.states;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -15,8 +17,10 @@ public class EditPlayer extends MenuState {
 	private TextButton startGameButton;
 	private TextButton mainMenuButton; 
 	
-	private float selectSize = 184;
+	private float selectSize = 210;
 	private TextButtonStyle selectButtonStyle; 
+	
+	private Skin buttonSkin; 
 	
 	public EditPlayer(GameStateManager gsm) {
 		super(gsm); 			
@@ -25,14 +29,16 @@ public class EditPlayer extends MenuState {
 
 		selectButtonStyle = new TextButtonStyle();
 		selectButtonStyle.font = PixelJump.cont.getFont();
-		
-		upperTable.add("EditPlayer").colspan(2).left(); 
+	
+		buttonAtlas = PixelJump.cont.getTextureAtlas("hats");
+		buttonSkin = new Skin(); 
+		buttonSkin.addRegions(buttonAtlas); 
+	
 		setUpMenu();
-
 	}
 	
 	private void startGame(){
-		gsm.playNextState(new Test(gsm));
+		gsm.playNextState(new SelectLevel(gsm));
 	}
 	private void mainMenu(){
 		gsm.playNextState(new Menu(gsm)); 
@@ -54,27 +60,44 @@ public class EditPlayer extends MenuState {
 		
 		initHatSelection(); 
 	}
+	private TextButtonStyle getButtonStyle(String key){
+		TextButtonStyle tbstyle = new TextButtonStyle(); 
+		tbstyle.font = PixelJump.cont.getFont(); 
+		tbstyle.up = buttonSkin.getDrawable(key); 
+		tbstyle.down = buttonSkin.getDrawable(key); 
+		return tbstyle;  
+	}
 	
-	private void initHatSelection(){
+	private SelectButton getSelectButton(String key){
 		SelectButton selectButton;
-		upperTable.row();
-
-		for(int y = 1; y < 3; y++){
-			upperTable.add().width(selectSize).height(selectSize).center();
-			upperTable.add().width(selectSize).height(selectSize).center();
-			for(int i = 1; i < 3; i++ ){
-				selectButton  = new SelectButton(Integer.toString(i), selectButtonStyle, "itemName");
-				selectButton  = new SelectButton(Integer.toString(i), selectButtonStyle, "itemName");
-
-				selectButton.addListener(new ChangeListener(){
-					public void changed(ChangeEvent event, Actor actor){
-						selectedHat(actor); 
-					}
-				}); 
-				upperTable.add(selectButton).center().width(selectSize).height(selectSize).pad(10);
+		selectButton = new SelectButton("", getButtonStyle(key), key);
+		selectButton.addListener(new ChangeListener(){
+			public void changed(ChangeEvent event, Actor actor){
+				selectedHat(actor); 
 			}
-			upperTable.row();
-		}
+		}); 
+		
+		return selectButton; 
+	}
+	 
+	private void initHatSelection(){
+		upperTable.add("EditPlayer").colspan(3).left(); 
+		upperTable.add("Hats"); 
+		
+		upperTable.row();
+		upperTable.add().width(selectSize).height(selectSize).center();
+		upperTable.add().width(selectSize).height(selectSize).center();
+		upperTable.add().width(selectSize/2).height(selectSize).center();	
+			
+		upperTable.add(getSelectButton("robo")).center().width(selectSize).height(selectSize).pad(10);
+		upperTable.add(getSelectButton("dredd")).center().width(selectSize).height(selectSize).pad(10);
+		upperTable.row();
+		
+		upperTable.add().width(selectSize).height(selectSize).center();
+		upperTable.add().width(selectSize).height(selectSize).center();	
+		upperTable.add().width(selectSize/2).height(selectSize).center();
+		
+		upperTable.add(getSelectButton("spider")).center().width(selectSize).height(selectSize).pad(10);
 		upperTable.padBottom(20); 
 	}
 	

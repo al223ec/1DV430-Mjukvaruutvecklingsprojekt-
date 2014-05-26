@@ -58,7 +58,7 @@ public class SelectLevel extends MenuState {
 	
 	private void playeSelectedLevel(Actor actor){
 		SelectButton sBtn = (SelectButton) actor; 
-		if(sBtn.getLevelNumber() == 1){
+		if(sBtn.getItemNumber() == 1){
 			gsm.playNextState(new Test(gsm));
 		}
 	}

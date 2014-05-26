@@ -98,7 +98,7 @@ public abstract class MenuState extends GameState {
 		}
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
-	//	Table.drawDebug(stage); 
+		Table.drawDebug(stage); 
 	}
 
 	@Override

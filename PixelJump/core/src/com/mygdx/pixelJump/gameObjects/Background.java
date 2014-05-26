@@ -38,9 +38,14 @@ public class Background {
 		x -= moveScale;
 		sb.begin(); 
 		sb.draw(gameBackground,  0 , 0);
+		sb.draw(gameBackground, gameBackground.getWidth() , 0);
+		
+		sb.draw(gameBackgroundFront,  x, 0);
+		sb.draw(gameBackgroundFront,gameBackgroundFront.getWidth() + x, 0);
+		
 		//sb.draw(gameBackgroundFront,  x, 0);
-		sb.draw(gameBackgroundFront, x, 0, width/2, height/2, width/2, height/2, 1, 1); 
-		sb.draw(gameBackgroundFront, x + width, 0); 
+		//sb.draw(gameBackgroundFront, x, 0, width/2, height, width/2, height, 1, 1); 
+		//sb.draw(gameBackgroundFront, x + width, 0); 
 		sb.end(); 
 		
 	}

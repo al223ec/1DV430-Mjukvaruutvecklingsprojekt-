@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.GameStateManager;
+import com.mygdx.pixelJump.states.levels.LevelState;
 import com.mygdx.pixelJump.states.levels.Test;
 
 
@@ -15,6 +16,12 @@ public class LevelCompleteState extends MenuState{
 	private TextButton mainMenuButton; 
 	
 	private Label label; 
+	private LevelState playedLevel; 
+
+	public LevelCompleteState(GameStateManager gsm, LevelState playedLevel) {
+		this(gsm); 			
+		this.playedLevel = playedLevel; 
+	}
 	
 	public LevelCompleteState(GameStateManager gsm) {
 		super(gsm); 			
@@ -50,6 +57,13 @@ public class LevelCompleteState extends MenuState{
 				mainMenu(); 
 			}
 		});
+	}
+	
+	public void render(){
+		if(playedLevel != null){
+			playedLevel.render(); 
+		}
+		super.render(); 
 	}
 	@Override
 	public void dispose() {

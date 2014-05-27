@@ -30,7 +30,7 @@ public abstract class MenuState extends GameState {
 	public MenuState(GameStateManager gsm) {
 		super(gsm);
 		
-		cam.setToOrtho(false, PixelJump.WIDTH, PixelJump.HEIGHT);
+		//cam.setToOrtho(false, PixelJump.WIDTH, PixelJump.HEIGHT);
 		stage = new Stage( new StretchViewport(PixelJump.WIDTH, PixelJump.HEIGHT)); 
 	
 		table = new Table(); 

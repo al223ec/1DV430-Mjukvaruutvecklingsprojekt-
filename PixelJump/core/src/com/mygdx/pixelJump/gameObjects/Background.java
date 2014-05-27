@@ -6,38 +6,30 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.pixelJump.PixelJump;
 
 public class Background {
-	private Texture gameBackground; 
-	private Texture gameBackgroundFront; 
 	
-	private OrthographicCamera gameCam; 
+	private Texture gameBackground; 
+	private Texture gameBackgroundFront; 	
 
 	private float x;
-	private float dx;
 	
 	private float moveScale = 0.5f;
 	
-	private int width; 
-	private int height; 
 	
 	public Background(OrthographicCamera gameCam){
-		this.gameCam = gameCam; 
-		
 		gameBackground = PixelJump.cont.getTexture("gameBackground"); 
 		gameBackgroundFront = PixelJump.cont.getTexture("gameBackgroundFront"); 
-		
-		width = gameBackgroundFront.getWidth();
-		height = gameBackgroundFront.getHeight(); 
 	}
 	
 	public void setVector(float x){
 		this.x = x; 
 	}
 	
+	public void update(){
+		x -= moveScale;
+	}
 	public void draw(SpriteBatch sb) {
 		//Känner att jag inte har tid att lösa detta på ett vettigt sätt
-		System.out.println(gameCam.position.x); 
-		x -= moveScale;
-		sb.begin(); 
+		sb.begin();
 		sb.draw(gameBackground,  0 , 0);
 		sb.draw(gameBackground, gameBackground.getWidth() , 0);
 		

@@ -1,15 +1,16 @@
 package com.mygdx.pixelJump.gameObjects;
 
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.B2DVars;
-import com.mygdx.pixelJump.handlers.PlayerSettings;
 
 public class Player extends B2DSprite{
 	private boolean playerIsDead; 
@@ -21,20 +22,29 @@ public class Player extends B2DSprite{
 	public int numOfFootContacts; 
 	
 	public boolean playerHasCompletedTheLevel; 
-	public void setPlayerIsDead(){ playerIsDead = true; } 
+	
+	public void setPlayerIsDead(){
+		Array<Fixture> fixtures = body.getFixtureList();
+		for(int i = 0; i < fixtures.size; i++){
+			Filter filter = fixtures.get(i).getFilterData(); 
+			filter.categoryBits = B2DVars.BIT_PLAYERDEAD;
+			filter.maskBits = B2DVars.BIT_PLAYERDEAD;		
+			fixtures.get(i).setFilterData(filter); 
+		}
+		playerIsDead = true; 
+	}
+	
 	public boolean isPlayerDead(){ return playerIsDead; }
 	
 	private float currentRadian; 
 	private Texture hatTexture; 
 	
-	private PlayerSettings playerSettings; 
 	public Player(Body body){
 		super(body); 
 		playerIsDead = false;
 		playerIsFlipping = false; 
 		
 		hatTexture = PixelJump.playerSettings.getCurrentHatTexture();
-		
 		Texture run = PixelJump.cont.getTexture("runSprites");
 		TextureRegion[] runSprites = TextureRegion.split(run, 50, 70)[0];
 		setAnimationframes(runSprites, 1/32f);
@@ -46,8 +56,6 @@ public class Player extends B2DSprite{
 		if(body.getLinearVelocity().x < speed){
 			body.setLinearVelocity(speed, body.getLinearVelocity().y); //Rör sig automatiskt i sidled
 		}
-
-		//hat.update(dt);		
 		if(playerIsFlipping){
 	
 			if(currentRadian > 1){
@@ -55,8 +63,6 @@ public class Player extends B2DSprite{
 			}else{
 				currentRadian += 0.2f;
 			}
-			
-			System.out.println(currentRadian); 
 			if(currentRadian > 6.28f){
 				body.setTransform(body.getPosition(), 0f);
 				currentRadian = 0; 
@@ -91,9 +97,7 @@ public class Player extends B2DSprite{
 				sb.draw(hatTexture, (getX() * B2DVars.PPM)-width/2 -5, (getY() * B2DVars.PPM )); 
 			}
 		}
-		sb.end(); 
-		//hat.setPosition(body.getPosition()); 
-		//hat.render(sb); 
+		sb.end();
 	}
 	
 	public void jump(){
@@ -114,12 +118,15 @@ public class Player extends B2DSprite{
 		if(getY() < -2){
 			playerIsDead = true; 
 		}
-	}
+	}	
 	public void destroyBody(){
-		World world = body.getWorld(); 
-		world.destroyBody(body); 
+		body.getWorld().destroyBody(body); 
 	}
 	public void setBody(Body body) {
 		this.body = body; 
+	}
+	
+	public Body getBody() {
+		return body; 
 	}
 }

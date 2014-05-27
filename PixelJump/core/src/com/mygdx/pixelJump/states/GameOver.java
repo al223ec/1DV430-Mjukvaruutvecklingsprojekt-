@@ -8,18 +8,23 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.GameStateManager;
-import com.mygdx.pixelJump.states.levels.Test;
+import com.mygdx.pixelJump.states.levels.LevelState;
 
 public class GameOver extends MenuState {
 	private TextButton restartGameButton;
 	private TextButton mainMenuButton; 
 	
 	private Label label; 
+
+	private LevelState playedLevel;
 	
-	public GameOver(GameStateManager gsm) {
-		super(gsm); 			
+	public GameOver(GameStateManager gsm, LevelState playedLevel) {
+		super(gsm);
+		this.playedLevel = playedLevel;
+		
 		mainMenuButton = new TextButton("Main menu", buttonstyle); 
 		restartGameButton = new TextButton("Restart game", buttonstyle); 
+		
 		setUpMenu();
 		
 		LabelStyle ls = new LabelStyle();
@@ -30,8 +35,10 @@ public class GameOver extends MenuState {
 		upperTable.center(); 
 		upperTable.add(label); 
 	}
+	
 	private void restartGame(){
-		gsm.playNextState(new Test(gsm));
+		playedLevel.resetLevel();
+		gsm.playNextState(playedLevel);
 	}
 	private void mainMenu(){
 		gsm.playNextState(new Menu(gsm)); 
@@ -52,10 +59,21 @@ public class GameOver extends MenuState {
 		});
 	}
 	
+	public void render(){
+		if(playedLevel != null){
+			playedLevel.render(); 
+		}
+		super.render(); 
+	}
 	@Override
 	public void handleInput(){ }
 	@Override
-	public void update(float dt) {} 
+	public void update(float dt) {
+		if(playedLevel != null){
+			playedLevel.updateWorldAndPlayer(dt);
+		}
+		super.update(dt);	
+	} 
 
 	@Override
 	public void dispose() {

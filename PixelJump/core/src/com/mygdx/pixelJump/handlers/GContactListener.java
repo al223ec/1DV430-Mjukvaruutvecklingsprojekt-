@@ -67,4 +67,8 @@ public class GContactListener implements ContactListener {
 	public void preSolve(Contact contact, Manifold oldManifold) {}
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {}
+
+	public void setPlayer(Player player) {
+			this.player = player; 
+	}
 }

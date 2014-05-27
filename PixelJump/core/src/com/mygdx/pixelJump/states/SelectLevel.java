@@ -22,6 +22,7 @@ public class SelectLevel extends MenuState {
 	
 	public SelectLevel(GameStateManager gsm) {
 		super(gsm); 			
+		cam.setToOrtho(false, PixelJump.WIDTH, PixelJump.HEIGHT);
 		splash = PixelJump.cont.getTexture("background");
 		
 		mainMenuButton = new TextButton("Main menu", buttonstyle); 

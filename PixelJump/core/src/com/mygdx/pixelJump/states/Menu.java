@@ -12,6 +12,7 @@ public class Menu extends MenuState {
 	
 	public Menu(GameStateManager gsm) {
 		super(gsm); 			
+		cam.setToOrtho(false, PixelJump.WIDTH, PixelJump.HEIGHT);
 		splash = PixelJump.cont.getTexture("splash");
 		
 		editPlayerButton = new TextButton("Edit player", buttonstyle); 

@@ -42,4 +42,7 @@ public class Background {
 		sb.end(); 
 		
 	}
+	public void reset() {
+		x = 0; 
+	}
 }

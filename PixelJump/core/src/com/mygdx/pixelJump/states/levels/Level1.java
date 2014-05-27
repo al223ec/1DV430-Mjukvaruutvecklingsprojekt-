@@ -1,5 +1,4 @@
 package com.mygdx.pixelJump.states.levels;
-
 import static com.mygdx.pixelJump.handlers.B2DVars.*;
 
 import com.badlogic.gdx.Gdx;
@@ -19,17 +18,16 @@ import com.mygdx.pixelJump.handlers.GameStateManager;
 import com.mygdx.pixelJump.states.GameOver;
 import com.mygdx.pixelJump.states.LevelCompleteState;
 
-public class Test extends LevelState {
+public class Level1 extends LevelState {
 	
-	public Test(GameStateManager gsm) {
-		super(gsm, "res/maps/level1.tmx");  
+	public Level1(GameStateManager gsm) {
+		super(gsm, "res/maps/Level1.tmx");  
 		background = new Background(gsm.getCamera()); 
 	}
 
 	protected void handleInput() {
-		//Touch inputs dessa kan triggas med musen 
 		if(GInput.isPressed()){
-			if(GInput.x < Gdx.graphics.getWidth() / 2){//Om hen toucher vänstra delen hoppa högt 
+			if(GInput.x < Gdx.graphics.getWidth() / 2){
 				player.jump();
 			}else{
 				player.flip();
@@ -99,9 +97,5 @@ public class Test extends LevelState {
 		createPlayer();
 		contactListener.setPlayer(player); 
 		world.setContactListener(contactListener);
-		
-
-		background.reset(); 
-		elapsedTime = 0; 
 	}
 }

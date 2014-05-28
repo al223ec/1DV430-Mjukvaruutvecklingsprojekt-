@@ -66,8 +66,10 @@ public class Content {
 	}
 
 	public void disposeAll() {
-		// TODO Auto-generated method stub
-		//Ta bort alla texturer
-		
+		for(Object o : textures.values()) {
+			Texture tex = (Texture) o;
+			tex.dispose();
+		}
+		textures.clear();		
 	}
 }

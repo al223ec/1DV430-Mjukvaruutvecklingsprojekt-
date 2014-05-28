@@ -8,7 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.GameStateManager;
-import com.mygdx.pixelJump.states.levels.Test;
+import com.mygdx.pixelJump.states.levels.Level1;
+import com.mygdx.pixelJump.states.levels.Level2;
 import com.mygdx.pixelJump.states.myMenuItems.SelectButton;
 
 public class SelectLevel extends MenuState {
@@ -50,7 +51,7 @@ public class SelectLevel extends MenuState {
 	}
 	
 	private void playNext(){
-		gsm.playNextState(new Test(gsm));
+		gsm.playNextState(new Level1(gsm));
 	}
 	
 	private void mainMenu(){
@@ -60,7 +61,9 @@ public class SelectLevel extends MenuState {
 	private void playeSelectedLevel(Actor actor){
 		SelectButton sBtn = (SelectButton) actor; 
 		if(sBtn.getItemNumber() == 1){
-			gsm.playNextState(new Test(gsm));
+			gsm.playNextState(new Level1(gsm));
+		}else if(sBtn.getItemNumber() == 2){
+			gsm.playNextState(new Level2(gsm));
 		}
 	}
 	private void setUpMenu(){
@@ -89,7 +92,7 @@ public class SelectLevel extends MenuState {
 		for(int y = 1; y < 3; y++){
 			upperTable.add().width(selectSize/4).height(selectSize).center();
 			for(int i = 1; i < 6; i++ ){
-				if(level == 1){
+				if(level <= 2){
 					selectButton  = new SelectButton(Integer.toString(level), selectButtonStyle, level++);
 				} else {
 					selectButton  = new SelectButton(Integer.toString(level), lockedSelectButtonStyle, level++);
@@ -109,7 +112,7 @@ public class SelectLevel extends MenuState {
 	
 	@Override
 	public void dispose() {
-		System.out.println("menu disposed"); 
+		System.out.println("Select level disposed"); 
 		super.dispose(); 
 	}
 

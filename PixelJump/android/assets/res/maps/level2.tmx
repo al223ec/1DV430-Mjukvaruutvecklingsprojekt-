@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="16" tilewidth="45" tileheight="45">
+ <tileset firstgid="1" name="tl" tilewidth="45" tileheight="45">
+  <image source="tl.png" width="1280" height="360"/>
+ </tileset>
+ <tileset firstgid="225" name="bl" tilewidth="45" tileheight="45">
+  <image source="bl.png" width="1280" height="360"/>
+ </tileset>
+ <tileset firstgid="449" name="br" tilewidth="45" tileheight="45">
+  <image source="br.png" width="1280" height="360"/>
+ </tileset>
+ <tileset firstgid="673" name="tr" tilewidth="45" tileheight="45">
+  <image source="tr.png" width="1280" height="360"/>
+ </tileset>
+ <tileset firstgid="897" name="damage" tilewidth="45" tileheight="45">
+  <image source="damage.png" width="800" height="178"/>
+ </tileset>
+ <tileset firstgid="948" name="goal" tilewidth="45" tileheight="45">
+  <image source="goal.png" width="229" height="183"/>
+ </tileset>
+ <layer name="ground" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1jdsk0EYBmDbofeR3juIjYHe68ZG77DBTi8jEHpfKQudjYEW0pDoJCGElt57YCPAEykoIbISBDhRgE96dJYtn773vzufA4H/Fcm6HQoE7nCXe9wnhgfEEkc8CSSGWrrb36/XMqTxhre84z0fSCeDTLLIJodc8singEKKKKaEUsoop4JKqlrxszodrHMm2NLdRL5qliqq3vivVyjQ+p7FqQZ79uxfvm9DDURqrTIiNG9jFVO7drHGOOJJIJGHnBP4PI+8fswTnvKM57zgJUkkk8IrUnlNWiN7o7p5IoatdH1lkEkW2eSQSx75FFBIEcWUUEoZ5VRQSRUf+dTEOegVgXMyLsyc+713gOja8SCfqeYLX2u+Y02DhIiiDW1pR3s60JFOdKYLXelGd3r8xJ07PgJ5F4aZM9z57FnbX29jH/rSj/4MYCCDGMwQhjKM4YxgJKMYzRjG/kTeRRHI+30do39h7gl6nsgkJjOFqUxjOjOYySxmM4e5zGM+C5rIvElPm/9w5j/1G7vYJEtYyjKWs4KVrGI1a1jLOtazgY2NZL7ls33BH89Xzdk6xGGOcJRjHOcEJ4N192Vz35Vb9LuVbWxnBzvZxW72sLeJvEkkk8IrUrkkw2WucJVrXOcGN+vdGRe42Ir+m38D08KFCQ==
+  </data>
+ </layer>
+ <objectgroup name="collision" width="60" height="16">
+  <object x="20" y="359">
+   <polyline points="0,0 1,178 3,207 19,220 30,229 46,246 68,294 76,305 87,302 207,303 252,308 296,326 341,337 385,348 433,348 479,344 525,332 612,315 657,304 709,305 789,304 785,311 789,312 790,337"/>
+  </object>
+  <object x="944" y="630">
+   <polyline points="0,0 2,-57 26,-60 106,-61 134,-58 136,-28"/>
+  </object>
+  <object x="1170" y="536">
+   <polyline points="0,0 0,-61 8,-54 195,-57 226,-45 226,-39 225,4"/>
+  </object>
+  <object x="1531" y="356">
+   <polyline points="0,0 -3,-42 46,-53 167,-53 205,-49 221,-47 224,36 157,42 134,40 134,4 0,4"/>
+  </object>
+  <object x="1847" y="224">
+   <polyline points="0,0 -4,-53 17,-54 177,-56 180,-46 178,4 1,1"/>
+  </object>
+  <object x="2206" y="224">
+   <polyline points="0,0 -1,46"/>
+  </object>
+  <object x="2205" y="223">
+   <polyline points="0,0 134,2 135,45 58,46"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="goal" width="60" height="16">
+  <object x="2520" y="10" width="153" height="153">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="damage" width="60" height="16"/>
+ <layer name="goalTiles" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1sEJgDAQRNGB9N+NiWgkKkbr8jehgjsP/n3nttK/DUnKVGhMX1/zvImNM1VaAuxtbFxpoz3A3oONnU66Auw1MzN7S4Q/0cykG+s7DLs=
+  </data>
+ </layer>
+ <layer name="damageTiles" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAD8Gw8AAAE=
+  </data>
+ </layer>
+</map>

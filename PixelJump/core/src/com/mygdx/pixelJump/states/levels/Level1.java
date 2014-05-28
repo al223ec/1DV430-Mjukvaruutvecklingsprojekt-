@@ -88,14 +88,4 @@ public class Level1 extends LevelState {
 		shape.dispose(); 
 		
 	}
-
-	public void resetLevel() {
-		Gdx.input.setInputProcessor(new GInputProcessor());
-		player.destroyBody();
-		player = null; 
-		
-		createPlayer();
-		contactListener.setPlayer(player); 
-		world.setContactListener(contactListener);
-	}
 }

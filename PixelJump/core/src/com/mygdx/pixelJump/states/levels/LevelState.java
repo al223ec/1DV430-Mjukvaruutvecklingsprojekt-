@@ -23,7 +23,7 @@ import com.mygdx.pixelJump.states.GameState;
 
 
 public abstract class LevelState extends GameState{
-	protected boolean debug = true; 
+	protected boolean debug = false; 
 	protected World world; 
 
 	protected MapManager mapManager; 
@@ -101,7 +101,18 @@ public abstract class LevelState extends GameState{
 			b2dr.render(world, b2dCam.combined); 
 		}
 	}
-	public abstract void resetLevel();
+	public void resetLevel(){
+		
+		Gdx.input.setInputProcessor(new GInputProcessor());
+		player.destroyBody();
+		player = null; 
+		
+		createPlayer();
+		contactListener.setPlayer(player); 
+		world.setContactListener(contactListener);
+		elapsedTime = 0; 
+		
+	}
 	protected abstract void createPlayer();
 	public abstract void updateWorldAndPlayer(float dt); 
 }

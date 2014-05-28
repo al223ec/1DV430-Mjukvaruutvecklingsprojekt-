@@ -66,6 +66,7 @@ public static final String TITLE = "Pixel Jump";
 	}
 	
 	public void dispose() {
+		System.out.println("Game disposed"); 
 		cont.disposeAll(); 
 	}
 	

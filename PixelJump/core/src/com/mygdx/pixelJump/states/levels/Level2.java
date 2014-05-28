@@ -1,5 +1,4 @@
 package com.mygdx.pixelJump.states.levels;
-
 import static com.mygdx.pixelJump.handlers.B2DVars.*;
 
 import com.badlogic.gdx.Gdx;
@@ -14,22 +13,20 @@ import com.mygdx.pixelJump.gameObjects.Background;
 import com.mygdx.pixelJump.gameObjects.Player;
 import com.mygdx.pixelJump.handlers.B2DVars;
 import com.mygdx.pixelJump.handlers.GInput;
-import com.mygdx.pixelJump.handlers.GInputProcessor;
 import com.mygdx.pixelJump.handlers.GameStateManager;
 import com.mygdx.pixelJump.states.GameOver;
 import com.mygdx.pixelJump.states.LevelCompleteState;
 
-public class Test extends LevelState {
+public class Level2 extends LevelState {
 	
-	public Test(GameStateManager gsm) {
-		super(gsm, "res/maps/test.tmx");  
+	public Level2(GameStateManager gsm) {
+		super(gsm, "res/maps/Level2.tmx");  
 		background = new Background(gsm.getCamera()); 
 	}
 
 	protected void handleInput() {
-		//Touch inputs dessa kan triggas med musen 
 		if(GInput.isPressed()){
-			if(GInput.x < Gdx.graphics.getWidth() / 2){//Om hen toucher vänstra delen hoppa högt 
+			if(GInput.x < Gdx.graphics.getWidth() / 2){
 				player.jump();
 			}else{
 				player.flip();
@@ -89,18 +86,5 @@ public class Test extends LevelState {
 		body.createFixture(fdef).setUserData("footSensor");
 		shape.dispose(); 
 		
-	}
-
-	public void resetLevel() {
-		Gdx.input.setInputProcessor(new GInputProcessor());
-		player.destroyBody();
-		player = null; 
-		
-		createPlayer();
-		contactListener.setPlayer(player); 
-		world.setContactListener(contactListener);
-
-		background.reset(); 
-		elapsedTime = 0; 
 	}
 }

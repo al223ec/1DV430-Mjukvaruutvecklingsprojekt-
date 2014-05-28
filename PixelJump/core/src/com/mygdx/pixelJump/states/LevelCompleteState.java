@@ -7,8 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.pixelJump.PixelJump;
 import com.mygdx.pixelJump.handlers.GameStateManager;
+import com.mygdx.pixelJump.states.levels.Level2;
 import com.mygdx.pixelJump.states.levels.LevelState;
-import com.mygdx.pixelJump.states.levels.Test;
 
 
 public class LevelCompleteState extends MenuState{
@@ -38,7 +38,7 @@ public class LevelCompleteState extends MenuState{
 		upperTable.add(label); 
 	}
 	private void nextLevel(){
-		gsm.playNextState(new Test(gsm));
+		gsm.playNextState(new Level2(gsm));
 	}
 	private void mainMenu(){
 		gsm.playNextState(new Menu(gsm)); 

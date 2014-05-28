@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="16" tilewidth="45" tileheight="45">
+ <tileset firstgid="1" name="bl" tilewidth="45" tileheight="45">
+  <image source="bl.png" width="1280" height="360"/>
+ </tileset>
+ <tileset firstgid="225" name="damage" tilewidth="45" tileheight="45">
+  <image source="damage.png" width="800" height="178"/>
+ </tileset>
+ <tileset firstgid="276" name="goal" tilewidth="45" tileheight="45">
+  <image source="goal.png" width="229" height="183"/>
+ </tileset>
+ <tileset firstgid="296" name="tiles" tilewidth="45" tileheight="45">
+  <image source="tiles.png" width="552" height="300"/>
+ </tileset>
+ <layer name="ground" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALaAQ1GBoYAKNZkHGjXDDzQGA2LQQ+Q0ywIa4+guNIB+lV3BPl3qAG/gXYAnUEWFjH0/DlQZan+CMsnvUDcR2UzB3N9CHLXKiC9GojXAPFaIF4HxOuBeAMQbwTiTUC8GYi3DJQjqQgc0PIVDJ8Gyp0B4rNAfA6IzwPxBSC+CMSXGAZHXiQHAACRShhn
+  </data>
+ </layer>
+ <objectgroup name="collision" width="60" height="16">
+  <object x="20" y="359">
+   <polyline points="0,0 1,178 3,207 19,220 30,229 46,246 68,294 76,305 87,302 207,303 252,308 296,326 341,337 385,348 433,348 479,344 525,332 612,315 663,314 721,315"/>
+  </object>
+  <object x="744" y="675">
+   <polyline points="0,0 60,0 68,9 66,36 64,45"/>
+  </object>
+  <object x="990" y="632">
+   <polyline points="0,0 -38,-2 -45,-10 -47,-41 -38,-46 82,-47 91,-39 90,-10 74,0 28,2"/>
+  </object>
+  <object x="1170" y="532">
+   <polyline points="0,0 -1,-30"/>
+  </object>
+  <object x="1175" y="540">
+   <polyline points="0,0 -6,-9"/>
+  </object>
+  <object x="1178" y="540">
+   <polyline points="0,0 214,0 220,-9 216,-40 211,-45 -1,-46 -9,-38"/>
+  </object>
+  <object x="1664" y="361">
+   <polyline points="0,0 -129,-1 -134,-7 -134,-39 -125,-46 84,-45 90,-37 91,35 85,44 10,44 3,39 0,1"/>
+  </object>
+  <object x="1851" y="224">
+   <polyline points="0,0 -7,-8 -7,-38 5,-44 171,-44 176,-36 173,-5 166,0 1,1"/>
+  </object>
+  <object x="2216" y="271">
+   <polyline points="0,0 -9,-10 -10,-37 -5,-45 120,-49 128,-40 123,-7 113,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="goal" width="60" height="16">
+  <object x="2520" y="10" width="153" height="153">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="damage" width="60" height="16"/>
+ <layer name="goalTiles" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1sEJgDAQRNFJDyaikagY7b9EfxMquPPg33duK/3bkKRMhcb09TXPm9g4U6UlwN7GxpU22gPsPdjY6aQrwF4zM7O3RPgTzUy6Ad4YAfk=
+  </data>
+ </layer>
+ <layer name="damageTiles" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAD8Gw8AAAE=
+  </data>
+ </layer>
+</map>

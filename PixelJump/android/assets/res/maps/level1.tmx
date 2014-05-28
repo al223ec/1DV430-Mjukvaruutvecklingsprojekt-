@@ -18,17 +18,23 @@
  <tileset firstgid="948" name="goal" tilewidth="45" tileheight="45">
   <image source="goal.png" width="229" height="183"/>
  </tileset>
+ <tileset firstgid="968" name="tiles" tilewidth="45" tileheight="45">
+  <image source="tiles.png" width="800" height="600"/>
+ </tileset>
  <layer name="ground" width="60" height="16">
   <data encoding="base64" compression="zlib">
-   eJzV1kVvFAEYBuBtcS0ccCnuluDuzoES3J1wgAR3KdyQFile5IrLP8Dd3d3dDjhPAwmQ0DaQ7i68yZOZ7G6+eb/NbmYCgR8ZHvlNRueZyEwWsgZ+TU6iAv93oilGcUqEt0rQU4/6NAjBtS76/VziMle4yrXItJn9wpyXvOI1b34ztwtd6ZY2l/znM4rRjAl3kRBlPnHEh7tIiLKeDeEuEcLsDXeBEOdmkOe/4z0f+MjOiEBgF7vZw172sZ8DHOQQhznCUY5xnBOc5BSnOcNZznGeC1zkUkTyfT4Fed88rp33p+tfdX6N69zgJre4zR3uco/7POAhj3jME57yjOe84CWveM0b3qawa1IKpPL+36SKmVWplszs917/wEc+8ZkvSZ91v4wgknSkJ0PS8x6ZyEwWspKN7OQgJ1HkIncq9/KaQdi3nZnt6ZDM7Lw65SM/BShIIQpThKJEU4zilKAkpShNGcpSjvJUoCKVqJzKvjFB2HeomcNSmVtdrxrUpBa1qUNd6lGfBjSkEY1pQlOa0ZwWtKQVrWlDW9qlsPMIvUam4c6xfzCro14xdPrer7NjF7rSje70oCe96E0f+tKP/gxgIIMYzBCGMiyFnefoOJd5zCeOeBawkEUsJoElLGUZy1nBSlaRmAbf2yg9RzOGsYxjPBOYyCQmM4WpTGM6M5hJLLOY/YfP5Bt138RmtrCVbWxnRxD+Az8nTtd4FrCQRd+7JzguYSnLWM4KVrKKRFazhrWs+83OXwFr2IVZ
+   eJzV1slzFGUYB+DJDEKIEvRgIC6EBFTABaoUF1YBZfUAlCQCiitJedCqJK64AjeVBBAIO1wVFeE/QGUzUUFBSTDoqKBGUSDxYBbx6ZocgEpmrFRmRt6qp7p7uur9fu90z3SHQrE6GQmFngzH9HTci0x6kxU6v7LpG7o4q9acZ8mzP5B8CtIbKakVzDrKdjRjUrBerfunjqN8Sz3Hwt3T+5Q+pzlDI00d9J1DIUXds+T/vkopozzdQVJUy6igMt1BUlTv8G66Q6Swdqc7QIormuT+f9NMC63sygiFPuJjPmE3e9jLPvbzKdXU8Bmf8wUHOMiXfMUhDvM133CEWuoyOs/TluR5r7R2TrB+j5h6+8f4ju+J8gM/8hPHOcHP/MKvNPAbv3OSP/iTU5zmDI008VecWYPKTXC+K3WLnsMZEcwUOf9c1HGzz1topY1/OBvk8LzMIEyEHlwSvO/Ri0x6k8WlXEYfsunL5VyR4Fk+MgnzTtdzBvd10jtHpn70J5eruJpruJYB5DGQfAoYxGCu43puYAhDGcaN3MTNCeadlYR5i/UsCe7BSMfng3e6W+W6jZHczh3cyV2MYjRjGMs4xnM3E5jIJO7hXiYzhalMY3qcmZ+S6+lunHlxB/fwhdXQ/s4+U65ZzA7y+W3fbzuHQop4gLnMYz4P8hALeJhHeJTHeJwnWEgxJZ3MHKz9hoxv8hbLqKCS5axgJW+zitWsoYq1rGM9G9gY55r+lwp+26VyllHOMzzLczzPC7zIIl7iZV7hVV7jdRazhKVxrnG0/fs+1zbZ3+N9PmA7H7KDne3/t4muY1eqRs8KWStZzgpWhmOZVtmuZg1VrGUd69nARjaxmS1spfqCjP8CsTGa7w==
   </data>
  </layer>
  <objectgroup name="collision" width="60" height="16">
   <object x="0" y="543">
-   <polyline points="23,-159 20,18 57,46 74,75 92,116 172,115 235,114 327,144 388,161 457,165 517,157 570,141 676,122 767,120 809,124 838,122 902,86 953,44 1002,-6 1039,-45 1079,-95 1147,-142 1193,-151 1257,-147 1292,-127 1325,-88 1342,-45 1358,-10 1386,29 1426,55 1472,56 1529,34 1556,27"/>
+   <polyline points="23,-159 20,18 57,46 74,75 92,116 172,115 235,114 327,144 388,161 457,165 517,157 570,141 676,122 767,120 809,124 838,122 902,86 953,44 1002,-6 1039,-45 1079,-95 1147,-136 1190,-147 1257,-147 1292,-127 1325,-88 1342,-45 1358,-10 1390,35 1426,55 1465,60 1529,34 1559,30"/>
   </object>
   <object x="1533" y="574">
-   <polyline points="23,-3 66,0 103,22 124,87 155,120 180,144 195,149 230,149 279,126 337,93 409,88 455,106 509,129 557,135 606,127 668,112 745,103 799,115 822,125 846,114 897,128 923,129 949,100"/>
+   <polyline points="23,-3 66,3 103,22 124,87 155,120 180,144 195,149 230,149 279,126 337,93 421,93 459,115 495,132 557,135 605,120 668,112 745,103 799,115 822,125 846,114 897,128 923,129 949,100"/>
+  </object>
+  <object x="2482" y="676">
+   <polyline points="0,0 72,-2 84,6 84,43"/>
   </object>
  </objectgroup>
  <objectgroup name="goal" width="60" height="16">

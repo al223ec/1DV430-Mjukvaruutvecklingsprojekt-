@@ -107,6 +107,7 @@ public abstract class LevelState extends GameState{
 		player.destroyBody();
 		player = null; 
 		
+		background.reset();
 		createPlayer();
 		contactListener.setPlayer(player); 
 		world.setContactListener(contactListener);

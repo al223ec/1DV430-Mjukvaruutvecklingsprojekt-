@@ -19,11 +19,11 @@
   <image source="goal.png" width="229" height="183"/>
  </tileset>
  <tileset firstgid="968" name="tiles" tilewidth="45" tileheight="45">
-  <image source="tiles.png" width="800" height="600"/>
+  <image source="tiles.png" width="552" height="300"/>
  </tileset>
  <layer name="ground" width="60" height="16">
   <data encoding="base64" compression="zlib">
-   eJzV1slzFGUYB+DJDEKIEvRgIC6EBFTABaoUF1YBZfUAlCQCiitJedCqJK64AjeVBBAIO1wVFeE/QGUzUUFBSTDoqKBGUSDxYBbx6ZocgEpmrFRmRt6qp7p7uur9fu90z3SHQrE6GQmFngzH9HTci0x6kxU6v7LpG7o4q9acZ8mzP5B8CtIbKakVzDrKdjRjUrBerfunjqN8Sz3Hwt3T+5Q+pzlDI00d9J1DIUXds+T/vkopozzdQVJUy6igMt1BUlTv8G66Q6Swdqc7QIormuT+f9NMC63sygiFPuJjPmE3e9jLPvbzKdXU8Bmf8wUHOMiXfMUhDvM133CEWuoyOs/TluR5r7R2TrB+j5h6+8f4ju+J8gM/8hPHOcHP/MKvNPAbv3OSP/iTU5zmDI008VecWYPKTXC+K3WLnsMZEcwUOf9c1HGzz1topY1/OBvk8LzMIEyEHlwSvO/Ri0x6k8WlXEYfsunL5VyR4Fk+MgnzTtdzBvd10jtHpn70J5eruJpruJYB5DGQfAoYxGCu43puYAhDGcaN3MTNCeadlYR5i/UsCe7BSMfng3e6W+W6jZHczh3cyV2MYjRjGMs4xnM3E5jIJO7hXiYzhalMY3qcmZ+S6+lunHlxB/fwhdXQ/s4+U65ZzA7y+W3fbzuHQop4gLnMYz4P8hALeJhHeJTHeJwnWEgxJZ3MHKz9hoxv8hbLqKCS5axgJW+zitWsoYq1rGM9G9gY55r+lwp+26VyllHOMzzLczzPC7zIIl7iZV7hVV7jdRazhKVxrnG0/fs+1zbZ3+N9PmA7H7KDne3/t4muY1eqRs8KWStZzgpWhmOZVtmuZg1VrGUd69nARjaxmS1spfqCjP8CsTGa7w==
+   eJzV1tdzVGUYB+DNLkgRKRcEQSCEpiiIMwLS7Cj1AhwhgFKkDhcwE1BRQDR4B5Jm6KDc0pX/AJSaIKColNAELBRNKBdS1OfM5gKYZNfJbNF35plzds/s+/3ePWVOKBStc5FQaEY46gGf61GfBjQM3VuNaRL6f9YRc1aQZb8d2bRPb6SkVjBrX9t+9E/BesdcP8c5QTknORVOTO8KfSq5yjWuV9N3JKPIScyS//nKZTZz0h0kRbWUfApq+fsEXYopqw1sTHeIFNaudAdIcZ1Ncv8/ucktbrMjIxTayVd8zS52s4e97GM/pZRxgG84yCEO8y3fcYTv+YEfOcoxjmfUnOdOkudtbu1MKiNRJ+2f4jRnOMtPnOM8F/iZX/iV37jIJS5zhd/5g4qgL1e5xnVuxJg1qJZxjtemntSzO09xInLvsXKfb/r+Fre5w1/8HeTw8MsgTIQ61A3e96hHfRrQkAdpxEM0pglNaRbnAdozCfMO0XMow2ronSlTCx6mJa14hNa0oS1ZtCOb9nSgI53ozKM8Rhce5wm60i3OvCOSMO80PacH12qk+uPBO93TcvWgJ714ht70oS/96M+zPMfzvMCLvMTLDOAVXmUggxjMkBgzz5RrVgJnzqvmGr6/zlS9sw+XawSvhaP39uu2IxlFDqMZw1je4E3GMZ4JTOQtJjGZKUxlGtNrmDlYe7GMS/iEpeRTQCFFFPMpJSxjOStYySpWs4a1Mc7pv6ng3s6VczZzeJt3eJe5vMf7zGM+C/iAhXzIR+SxiI9jnOPyqv/7bptk38wWtrKNL/iS7VXP23jnsTZVpme+rAUUUkRxOJqpxHYZy1nBSlaxmjWsZR2f8TnrKb0v4z9wmp3V
   </data>
  </layer>
  <objectgroup name="collision" width="60" height="16">

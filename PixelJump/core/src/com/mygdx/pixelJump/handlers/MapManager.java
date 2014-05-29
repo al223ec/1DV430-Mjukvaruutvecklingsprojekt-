@@ -29,6 +29,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.pixelJump.PixelJump;
 
 public class MapManager {
 	private World world;
@@ -36,11 +37,11 @@ public class MapManager {
 	private TiledMap tileMap; 
 	private OrthogonalTiledMapRenderer tmr; 
 
-	private String path; 
+	private String mapKey; 
 	
-	public MapManager(World world, String path){
+	public MapManager(World world, String mapKey){
 		this.world = world; 
-		this.path = path; 
+		this.mapKey = mapKey; 
 		createTiles(); 
 	}
 	
@@ -51,7 +52,7 @@ public class MapManager {
 	
 	private void createTiles(){
 		//Load map
-		tileMap = new TmxMapLoader().load(path); 
+		tileMap =  PixelJump.cont.getTiledMap(mapKey); 
 		createLayer(tileMap.getLayers().get("collision"), B2DVars.BIT_GROUND);		
 		createLayer(tileMap.getLayers().get("goal"), B2DVars.BIT_GROUND, "goal");
 		createLayer(tileMap.getLayers().get("damage"), B2DVars.BIT_GROUND, "damage");

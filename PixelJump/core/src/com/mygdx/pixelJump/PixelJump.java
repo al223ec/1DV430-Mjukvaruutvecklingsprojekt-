@@ -57,6 +57,10 @@ public static final String TITLE = "Pixel Jump";
 		cont.loadTextures("res/maps/gameBackgroundFront.png", "gameBackgroundFront"); 
 		cont.loadTextureAtlas("res/buttons/buttons.pack", "buttons"); 
 		cont.loadTextureAtlas("res/images/player/hats/hats.pack", "hats"); 
+		
+		cont.loadMaps("res/maps/level1.tmx", "level1"); 
+		cont.loadMaps("res/maps/level2.tmx", "level2"); 
+		
 	}
 	
 	public void render() {

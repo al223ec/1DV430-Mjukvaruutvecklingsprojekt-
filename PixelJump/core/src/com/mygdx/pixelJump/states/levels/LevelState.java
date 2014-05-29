@@ -44,7 +44,7 @@ public abstract class LevelState extends GameState{
 	protected GContactListener contactListener;
 
 	protected BitmapFont timeFont;
-	public LevelState(GameStateManager gsm, String mapPath) {
+	public LevelState(GameStateManager gsm, String mapKey) {
 		super(gsm);
 		
 		Gdx.input.setInputProcessor(new GInputProcessor());
@@ -60,7 +60,7 @@ public abstract class LevelState extends GameState{
 			b2dCam = new OrthographicCamera(); 
 			b2dCam.setToOrtho(false, PixelJump.WIDTH / PPM, PixelJump.HEIGHT / PPM); 		
 		}		
-		mapManager = new MapManager(world, mapPath); 
+		mapManager = new MapManager(world, mapKey); 
 		tmr = new OrthogonalTiledMapRenderer(mapManager.getTiledMap()); 
 		hudCam = gsm.getHudCamera(); 
 		hudTexture = PixelJump.cont.getTexture("hud");

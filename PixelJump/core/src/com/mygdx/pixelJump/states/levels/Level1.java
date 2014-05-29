@@ -21,7 +21,7 @@ import com.mygdx.pixelJump.states.LevelCompleteState;
 public class Level1 extends LevelState {
 	
 	public Level1(GameStateManager gsm) {
-		super(gsm, "res/maps/test.tmx");  
+		super(gsm, "level1");  
 		background = new Background(gsm.getCamera()); 
 	}
 

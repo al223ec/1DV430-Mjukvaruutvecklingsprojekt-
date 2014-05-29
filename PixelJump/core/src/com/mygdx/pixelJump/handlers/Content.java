@@ -8,11 +8,14 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Content {
 //Denna klass ska sköta importeringen av texturer andra saker. 
 	
 	private HashMap<String, Texture> textures; 
+	private HashMap<String, TiledMap> maps; 
 	private BitmapFont font; 
 	private BitmapFont headerFont; 
 	
@@ -21,6 +24,7 @@ public class Content {
 	public Content (){
 		textures = new HashMap<String, Texture>(); 
 		textureAtlases = new HashMap<String, TextureAtlas>();
+		maps = new HashMap<String, TiledMap>(); 
 		
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("res/font/Oboe.ttf")); 
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter(); 
@@ -39,10 +43,18 @@ public class Content {
 	public BitmapFont getHeaderFont(){
 		return headerFont; 
 	}
+	
 	public void loadTextures(String path, String key){
-		System.out.println("loadingfile: " + path + " key: " + key); 
 		Texture tex = new Texture(Gdx.files.internal(path)); 
 		textures.put(key, tex); 		
+	}
+	public void loadMaps(String path, String key){
+		TiledMap map = new TmxMapLoader().load(path);
+		maps.put(key, map); 
+	}
+	
+	public TiledMap getTiledMap(String key){
+		return maps.get(key); 
 	}
 	
 	public Texture getTexture(String key){

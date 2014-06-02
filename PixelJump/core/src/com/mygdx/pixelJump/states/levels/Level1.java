@@ -13,7 +13,6 @@ import com.mygdx.pixelJump.gameObjects.Background;
 import com.mygdx.pixelJump.gameObjects.Player;
 import com.mygdx.pixelJump.handlers.B2DVars;
 import com.mygdx.pixelJump.handlers.GInput;
-import com.mygdx.pixelJump.handlers.GInputProcessor;
 import com.mygdx.pixelJump.handlers.GameStateManager;
 import com.mygdx.pixelJump.states.GameOver;
 import com.mygdx.pixelJump.states.LevelCompleteState;
@@ -25,7 +24,7 @@ public class Level1 extends LevelState {
 		background = new Background(gsm.getCamera()); 
 	}
 
-	protected void handleInput() {
+	protected void handleInput(){
 		if(GInput.isPressed()){
 			if(GInput.x < Gdx.graphics.getWidth() / 2){
 				player.jump();

@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="com.mygdx.pixelJump.PixelJump" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/PixelJump.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="151" y="95"/>    
+    <position height="-1" width="-1" x="544" y="95"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.mygdx.pixelJump.gameObjects.B2DSprite" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/gameObjects/B2DSprite.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="188" y="807"/>    
+    <position height="-1" width="-1" x="1235" y="1168"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.mygdx.pixelJump.gameObjects.Player" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/gameObjects/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="478" y="885"/>    
+    <position height="-1" width="-1" x="1614" y="1180"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.mygdx.pixelJump.handlers.GameStateManager" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/GameStateManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="501" y="18"/>    
+    <position height="-1" width="-1" x="953" y="12"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.mygdx.pixelJump.handlers.B2DVars" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/B2DVars.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="129" y="576"/>    
+    <position height="-1" width="-1" x="1181" y="239"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.mygdx.pixelJump.handlers.Content" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/Content.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="491" y="293"/>    
+    <position height="-1" width="-1" x="168" y="130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="com.mygdx.pixelJump.handlers.GContactListener" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/GContactListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="389" y="546"/>    
+    <position height="-1" width="-1" x="1620" y="822"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="com.mygdx.pixelJump.handlers.GInput" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/GInput.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="387" width="166" x="998" y="-83"/>    
+    <position height="387" width="166" x="1297" y="-77"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="com.mygdx.pixelJump.handlers.GInputProcessor" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/GInputProcessor.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1358" y="36"/>    
+    <position height="-1" width="-1" x="1657" y="35"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="com.mygdx.pixelJump.handlers.MapManager" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/MapManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1347" y="388"/>    
+    <position height="-1" width="-1" x="1625" y="485"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="com.mygdx.pixelJump.handlers.PlayerSettings" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/PlayerSettings.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="141" y="450"/>    
+    <position height="-1" width="-1" x="374" y="447"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="com.mygdx.pixelJump.states.MenuState" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/states/MenuState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="751" y="315"/>    
+    <position height="-1" width="-1" x="708" y="527"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="com.mygdx.pixelJump.states.GameState" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/states/GameState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="810" y="20"/>    
+    <position height="-1" width="-1" x="964" y="269"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,113 +120,139 @@
   </class>  
   <class id="14" language="java" name="com.mygdx.pixelJump.states.levels.LevelState" project="PixelJump-core" 
     file="/PixelJump-core/src/com/mygdx/pixelJump/states/levels/LevelState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1045" y="544"/>    
+    <position height="-1" width="-1" x="1245" y="523"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="15">    
+  <class id="15" language="java" name="com.mygdx.pixelJump.states.levels.Level1" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/states/levels/Level1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1171" y="899"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.mygdx.pixelJump.states.Menu" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/states/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="963" y="610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="17">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="18" name="game"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="16" name="cont"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+      <attribute id="21" name="cont"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="18">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="19" name="currentGameState"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="22">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="23" name="game"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="25">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="26" name="gsm"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="28">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="29" name="player"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="32" name="playerSettings"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="34">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <association id="35">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="36" name="gsm"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <association id="39">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="40" name="game"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="42">    
+  <association id="23">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="43" name="mapManager"/>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="45">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="46" name="player"/>      
-      <multiplicity id="47" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="48">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="49" name="contactListener"/>      
-      <multiplicity id="50" minimum="0" maximum="1"/>    
+      <attribute id="24" name="contactListener"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <association id="27">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="28" name="currentGameState"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="31" name="playerSettings"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="34">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="35" name="gsm"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="38" name="gsm"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="41" name="game"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="44" name="mapManager"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="47">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="48" name="player"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="51" name="player"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

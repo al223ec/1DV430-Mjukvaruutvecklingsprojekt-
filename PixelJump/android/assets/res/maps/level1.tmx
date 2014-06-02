@@ -38,7 +38,7 @@
   </object>
  </objectgroup>
  <objectgroup name="goal" width="60" height="16">
-  <object x="2077" y="511" width="153" height="153">
+  <object x="2076" y="467" width="153" height="153">
    <ellipse/>
   </object>
  </objectgroup>
@@ -52,7 +52,7 @@
  </objectgroup>
  <layer name="goalTiles" width="60" height="16">
   <data encoding="base64" compression="zlib">
-   eJztz8kJgEAUBNEPk382LrgwKi5xWTEIModfD+reHSFJkiTl05WIngYaS+s1/5v4ONNCa4K/lY8b7XQk+Hvy8aKbngR/v3oBKoIMAQ==
+   eJztz8cJgFAABNGF3383BgwYMNTllOBFPPx5MPfdRJIkSUqakrTUUV/+XvO9gY8jTTRX8Hfh40ob7RX8Pfh40kV3BX/1zgNrJwwB
   </data>
  </layer>
  <layer name="damageTiles" width="60" height="16">

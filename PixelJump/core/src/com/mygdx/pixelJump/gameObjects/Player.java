@@ -17,7 +17,7 @@ public class Player extends B2DSprite{
 	private float speed = 2.5f; 
 
 	private boolean isOnGround () { return numOfFootContacts > 0; }
-	private boolean playerIsFlipping; 
+	private boolean playerIsFlipping;
 
 	public int numOfFootContacts; 
 	
@@ -107,7 +107,7 @@ public class Player extends B2DSprite{
 		}
 	}
 	//Denna funktion ska flippa spelaren, dvs roteara 180 grader, detta har jag inte lyckats med fullt ut och kommer inte hinna implementera 
-	//Så spelaren får helt enkelt bara hoppa högre
+	//Så spelaren får helt enkelt bara volta
 	public void flip(){
 		if(isOnGround()){
 			body.applyLinearImpulse(0, 2f, getX(), getY(), true);

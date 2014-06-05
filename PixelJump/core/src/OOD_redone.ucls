@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.5" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.mygdx.pixelJump.PixelJump" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/PixelJump.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="243" x="1289" y="688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.mygdx.pixelJump.gameObjects.B2DSprite" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/gameObjects/B2DSprite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="249" width="293" x="619" y="688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.mygdx.pixelJump.gameObjects.Player" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/gameObjects/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="412" width="249" x="579" y="1104"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.mygdx.pixelJump.handlers.GameStateManager" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/GameStateManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1112" y="516"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.mygdx.pixelJump.handlers.B2DVars" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/B2DVars.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="183" x="810" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.mygdx.pixelJump.handlers.Content" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/Content.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="358" width="299" x="1119" y="1104"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.mygdx.pixelJump.handlers.GContactListener" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/GContactListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="255" x="303" y="688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.mygdx.pixelJump.handlers.GInput" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/GInput.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="87" width="188" x="488" y="37"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.mygdx.pixelJump.handlers.GInputProcessor" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/GInputProcessor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="215" x="139" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.mygdx.pixelJump.handlers.MapManager" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/MapManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="297" x="952" y="688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.mygdx.pixelJump.handlers.PlayerSettings" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/handlers/PlayerSettings.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="202" x="1458" y="1104"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.mygdx.pixelJump.states.MenuState" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/states/MenuState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="321" width="254" x="1375" y="273"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.mygdx.pixelJump.states.GameState" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/states/GameState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="195" width="216" x="1128" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.mygdx.pixelJump.states.levels.LevelState" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/states/levels/LevelState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="375" width="247" x="579" y="273"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.mygdx.pixelJump.states.levels.Level1" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/states/levels/Level1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="217" x="46" y="688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.mygdx.pixelJump.states.Menu" project="PixelJump-core" 
+    file="/PixelJump-core/src/com/mygdx/pixelJump/states/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="195" x="1572" y="688"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="17">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <association id="18">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="19" name="player"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="21">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="22" name="playerSettings"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="25" name="cont"/>      
+      <multiplicity id="26" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="28" name="gsm"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="31" name="mapManager"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="34" name="contactListener"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="37">    
+    <bendpoint x="588" y="688"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="38" name="player"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="41" name="currentGameState"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="43">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="44">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="45" name="game"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="47">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="48">    
+    <bendpoint x="1344" y="273"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="49" name="game"/>      
+      <multiplicity id="50" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <association id="52">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="53" name="gsm"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="false" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

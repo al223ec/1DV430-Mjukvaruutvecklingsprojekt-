@@ -1,0 +1,47 @@
+
+hats.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+dredd
+  rotate: false
+  xy: 1, 553
+  size: 321, 331
+  orig: 321, 331
+  offset: 0, 0
+  index: -1
+robo
+  rotate: false
+  xy: 1, 220
+  size: 321, 331
+  orig: 321, 331
+  offset: 0, 0
+  index: -1
+spider
+  rotate: false
+  xy: 324, 553
+  size: 321, 331
+  orig: 321, 331
+  offset: 0, 0
+  index: -1
+roboSmall
+  rotate: false
+  xy: 1, 1
+  size: 210, 217
+  orig: 210, 217
+  offset: 0, 0
+  index: -1
+spiderSmall
+  rotate: false
+  xy: 324, 350
+  size: 210, 201
+  orig: 210, 201
+  offset: 0, 0
+  index: -1
+dreddSmall
+  rotate: false
+  xy: 647, 725
+  size: 210, 159
+  orig: 210, 159
+  offset: 0, 0
+  index: -1

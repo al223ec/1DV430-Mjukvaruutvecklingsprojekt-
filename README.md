@@ -4,11 +4,12 @@ Individuellt mjukvaruutvecklingsprojekt - VT2014 Anton Ledström
 
 Demonstartionsfilm finns att hitta här: <br>
 http://www.youtube.com/watch?v=Aa5ehW1ZYbE#t=82
-
+<br>
+För att köra spelet i pc miljö bör det endast krävas Java, i min demonstrationsfilm visar jag hur man spelar spelet med mobil. 
 <br><br>
 Instruktioner för möjlighet att kompilera och köra projektet:
 Saxat från <br>
-https://github.com/libgdx/libgdx/wiki/Setting-up-your-Development-Environment-%28Eclipse%2C-Intellij-IDEA%2C-NetBeans%29
+https://github.com/libgdx/libgdx/wiki/Setting-up-your-Development-Environment-%28Eclipse%2C-Intellij-IDEA%2C-NetBeans%29<br>
 Java Development Kit 7+ (JDK) (6 will not work!) <br>
 Eclipse, the "Eclipse IDE for Java Developers" is usually sufficient.<br>
 Android SDK, you only need the SDK, not the ADT bundle, which includes Eclipse. Install all platforms via the SDK Manager!<br>
